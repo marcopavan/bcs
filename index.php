@@ -3,12 +3,9 @@
 <head>
 <title>The New Bottol Creation System</title>
 <link rel="stylesheet" href="style.css" type="text/css" media="screen, print" />
-<script type="text/javascript" language="javascript" src="js/jquery-1.7.1.min.js">
-	
-</script>
-<script type="text/javascript" language="javascript" src="js/jquery.carouFredSel-5.5.0-packed.js">
-	
-</script>
+<script type="text/javascript" language="javascript" src="js/jquery-1.7.1.min.js"></script>
+<script type="text/javascript" language="javascript" src="js/jquery.carouFredSel-5.5.0-packed.js"></script>
+<script type="text/javascript" src="js/blocks.js"></script>
 <script type="text/javascript" language="javascript">
 	$(function() {
 		$('#elements').carouFredSel({
@@ -43,7 +40,7 @@
 
 			<div class="list_carousel">
 				<div id="elements">
-					<div class="element">
+					<div class="element" onclick="add()">
 						<img src="img/document.png"/>
 					</div>
 					<div class="element">
@@ -81,6 +78,9 @@
 			</div>
 
 			<!-- End jcarousel -->
+
+			<!-- Content bottle creation -->
+			<div id="blocks_content"></div>
 
 			<input type="submit" name="submit_bottol" id="submit_bottol" value="Create"/>
 			<input type="button" id="save_bottol" value="Save as Draft"/>
