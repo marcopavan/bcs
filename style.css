@@ -1,0 +1,150 @@
+body {
+	background: url(img/background.png);
+	padding-left: 50px;
+	font-family: Arial, Tahoma, Verdana, sans-serif;
+	color: #555;
+}
+
+p {
+	margin: 0px;
+	padding: 0px;
+}
+
+#header {
+	height: 35px;
+	width: 100%;
+	background-color: #2d2d2d;
+	position: fixed;
+	top:0;
+	left:0;
+	padding-left: 60px;
+}
+
+#container {
+	/*min-height: 500px;*/
+	margin-top: 60px;
+	margin-left: 20px;
+}
+
+#content {
+	display: block;
+	height: 400px;
+	width: 800px;
+	background-color: #fff;
+	-moz-box-shadow: 0 0 5px #888;
+	-webkit-box-shadow: 0 0 5px #888;
+	box-shadow: 0 0 5px #888;
+	padding: 20px;
+	-moz-border-radius: 10px;
+	-webkit-border-radius: 10px;
+	float: left;
+}
+
+.pagetitle {
+	width: 318px;
+	height: 57px;
+	color: #fff;
+	margin: 0px;
+	background: url(img/nastro.png) no-repeat !important;
+	padding: 10px 0px 0px 35px;
+	margin-left: -42px;	
+}
+
+input[type="text"] {
+	border: 1px inset #CCC;
+	-moz-border-radius: 3px;
+	-webkit-border-radius: 3px;
+	border-radius: 3px;
+	padding: 6px;
+	font: inherit;
+	font-size: 14px;
+	color: #888;
+	margin: 0px 20px 15px 0px;
+	width: 500px;
+}
+
+label {
+	font-size: 12px;
+	font-weight: bold;
+}
+
+#create {
+	margin-bottom: 20px;
+}
+
+.asterisco {
+	color: red;
+}
+
+#submit_bottol {
+	color: green;
+}
+
+#cancel_bottol {
+	color: red;
+}
+
+#sidebar {
+	width: 200px;
+	height: 400px;
+	margin-left: 850px;
+	font-size: 12px;
+}
+
+.sidebox {
+	background-color: #fff;
+	height: 60px;
+	width: 160px;
+	-moz-box-shadow: 0 0 5px #888;
+	-webkit-box-shadow: 0 0 5px #888;
+	box-shadow: 0 0 5px #888;
+	padding: 10px 20px 20px 20px;
+	margin-bottom: 20px;
+}
+
+.sidebox p {
+	margin-bottom: 5px;
+	text-align: center;
+}
+
+.sidebox .sidemetrics {
+	font-size: 22px;
+	font-weight: bold;
+	color: #0077a3;
+}
+
+#footer {
+	margin-bottom: 50px;
+	margin-top: 50px;
+	padding-top: 10px;
+	font-size: 12px;
+}
+
+#footer #footlinks {
+	text-align: center;
+	margin-top: 20px;
+}
+
+#footer p, #footer p a {
+	color: #2d2d2d;
+	text-shadow: none;
+	text-decoration: none;
+}
+
+#footer p a:hover {
+	color: #2d2d2d;
+	text-decoration: underline;
+}
+
+#footer span {
+	/*color: #ff8f00;*/
+	color: #0077a3;
+	margin-left: 5px;
+	margin-right: 5px;
+}
+
+#copyright {
+	/*margin-top: 60px;*/
+	margin-top: 10px;
+	text-align: center;
+}
