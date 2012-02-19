@@ -257,20 +257,19 @@ a.prev {
 .modify{
 	position: absolute;
 	top: 0;
-	right: -40px;
+	right: -15px;
+	top: -15px;
 	width: 30px;
 	text-align: center;
 }
 .modify > *{
 	width: 30px;
-	margin-bottom: 10px;
 	height: 30px;
 	text-align: center;
-        border: 1px solid black;
-        background-color: #CCCCCC;
         cursor: pointer;
 }
-.modify > *:hover{
-        border: 1px dashed black;
+
+.modify > .remove{
+	margin-bottom: 15px;
 }
 /*bottol creator content end*/

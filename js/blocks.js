@@ -1,5 +1,5 @@
 
-var modifyer = '<div class="modify"><div class="remove">X</div><div class="move_up">&uarr;</div><div class="move_down">&darr;</div></div>';
+var modifyer = '<div class="modify"><img class="remove" src="img/close.png"/><img class="move_up" src="img/up.png"/><img class="move_down" src="img/down.png"/></div>';
 
 function add(index, content, before){
         before = before && !(before == null);
