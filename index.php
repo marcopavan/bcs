@@ -63,26 +63,20 @@
 					<div class="element" onclick="addDocument()">
 						<img src="img/document.png"/>
 					</div>
-					<!-- test icons -->
+					<!-- layout icons -->
 					<div class="element">
-						<img src="img/text.png"/>
-					</div>
-					<div class="element" onclick="addImage()">
-						<img src="img/image.png"/>
-					</div>
-					<div class="element" onclick="addMovie()">
-						<img src="img/video.png"/>
-					</div>
-					<div class="element" onclick="addAudio()">
-						<img src="img/music.png"/>
+						<img src="img/2x2.png"/>
 					</div>
 					<div class="element">
-						<img src="img/webpage.png"/>
+						<img src="img/3x1.png"/>
 					</div>
-					<div class="element" onclick="addDocument()">
-						<img src="img/document.png"/>
+					<div class="element">
+						<img src="img/3x2.png"/>
 					</div>
-					<!-- fine test icons -->
+					<div class="element">
+						<img src="img/3x3.png"/>
+					</div>
+					<!-- fine layout icons -->
 				</div>
 				<div class="clearfix"></div>
 				<a class="prev" id="elements_prev" href="#"><img src="img/left.png" alt=""></a>
@@ -96,8 +90,10 @@
 			<div id="blocks_content"></div>
 
 			<input type="submit" name="submit_bottol" id="submit_bottol" value="Create"/>
+			<!--
 			<input type="button" id="save_bottol" value="Save as Draft"/>
 			<input type="button" id="preview_bottol" value="Preview"/>
+			-->
 			<input type="button" id="cancel_bottol" value="Cancel"/>
 		</form>
 	</div>
