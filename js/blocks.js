@@ -3,17 +3,19 @@ var modifyer = '<div class="modify"><img class="remove" src="img/close.png"/><im
 
 function add(index, content, before){
         before = before && !(before == null);
-        if(index < 0) index = 0;
+        if(index != null && index < 0) index = 0;
         var max = $('.block').size();
-        if(index > max - 1) index = max - 1;
+        if(index != null && index == 'first') index = 0;
+        if(index != null && index == 'last') index = null;
+        if(index != null && index > max - 1) index = max - 1;
 
 	$('#active').attr('id', '');
 
 	if(content == null)
 		content = '<div class="block" id="active">'+modifyer+'</div>';
-		if(index == null)
+	if(index == null)
 		$('#blocks_content').append(content);
-		else
+	else
         {
                 if(before)
 			        $('#blocks_content > .block').eq(index).before(content);
@@ -21,6 +23,22 @@ function add(index, content, before){
                         $('#blocks_content > .block').eq(index).after(content);
         }
 }
+
+function create_block(content){
+        if(content == null) content = '';
+        var block = $('<div>');
+        block.attr('id', 'active');
+        block.addClass('block');
+        block.append(modifyer);
+        block.append(content);
+        return block;
+}
+
+function addDocument(){add('last', create_block('document'))};
+function addImage(){add('last', create_block('image'))};
+function addMovie(){add('last', create_block('movie'))};
+function addAudio(){add('last', create_block('audio'))};
+function addPicture(){add('last', create_block('picture'))};
 
 $('.remove').live('click', function(){
 	$(this).parent().parent().remove();
@@ -44,7 +62,14 @@ $('.move_down').live('click', function(){
         return false;
 });
 
-$('.block').live('click', function(){
+$('.block').live('mousedown', function(){
         $('#active').attr('id', '');
         $(this).attr('id', 'active');
+});
+
+$(function(){
+        $('#blocks_content').sortable({
+                revert: true,
+                distance: 10
+        });
 });

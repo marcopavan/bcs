@@ -245,7 +245,7 @@ a.prev {
 	margin: auto;
 	height: 150px;
 	background-color: #CCCCCC;
-	margin-bottom: 10px;
+	margin: 20px auto;
 	position: relative;
 }
 .block .modify{

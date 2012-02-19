@@ -4,6 +4,7 @@
 <title>The New Bottol Creation System</title>
 <link rel="stylesheet" href="style.css" type="text/css" media="screen, print" />
 <script type="text/javascript" language="javascript" src="js/jquery-1.7.1.min.js"></script>
+<script type="text/javascript" language="javascript" src="js/jquery-ui-1.8.16.custom.min.js"></script>
 <script type="text/javascript" language="javascript" src="js/jquery.carouFredSel-5.5.0-packed.js"></script>
 <script type="text/javascript" src="js/blocks.js"></script>
 <script type="text/javascript" language="javascript">
@@ -44,19 +45,19 @@
 
 			<div class="list_carousel">
 				<div id="elements">
-					<div class="element" onclick="add()">
+					<div class="element" onclick="addDocument()">
 						<img src="img/document.png"/>
 					</div>
-					<div class="element">
+					<div class="element" onclick="addImage()">
 						<img src="img/image.png"/>
 					</div>
-					<div class="element">
+					<div class="element" onclick="addMovie()">
 						<img src="img/movie.png"/>
 					</div>
-					<div class="element">
+					<div class="element" onclick="addAudio()">
 						<img src="img/music.png"/>
 					</div>
-					<div class="element">
+					<div class="element" onclick="addPicture()">
 						<img src="img/picture.png"/>
 					</div>
 					<div class="element">
