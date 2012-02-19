@@ -23,6 +23,10 @@
 
 <body>
 
+<div id="giveusfeedback-side">
+	<span><a href="#"></a></span>
+</div>
+
 <div id="header">
 	<img src="img/fakeadminbar.png" alt="">
 </div>
