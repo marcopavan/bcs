@@ -179,8 +179,8 @@ label {
 	background-color: white;
 	margin: 40px auto;
 	width: 500px;
-	border-radius: 5px;
-	box-shadow: 0 0 5px #999;
+	/*border-radius: 5px;
+	box-shadow: 0 0 5px #999;*/
 	position: relative;
 }
 
@@ -200,8 +200,8 @@ a.next {
 	text-decoration:none;
 	display:block;
 	position: absolute;
-	right:-30px;
-	top:50px;
+	right:-40px;
+	top:33px;
 }
 a.prev {
 	font-weight: bolder;
@@ -209,8 +209,8 @@ a.prev {
 	text-decoration:none;
 	display:block;
 	position: absolute;
-	left:-30px;
-	top:50px;
+	left:-40px;
+	top:33px;
 
 }
 .pagination {

@@ -45,40 +45,48 @@
 
 			<div class="list_carousel">
 				<div id="elements">
-					<div class="element" onclick="addDocument()">
-						<img src="img/document.png"/>
+					<div class="element">
+						<img src="img/text.png"/>
 					</div>
 					<div class="element" onclick="addImage()">
 						<img src="img/image.png"/>
 					</div>
 					<div class="element" onclick="addMovie()">
-						<img src="img/movie.png"/>
+						<img src="img/video.png"/>
 					</div>
 					<div class="element" onclick="addAudio()">
 						<img src="img/music.png"/>
 					</div>
-					<div class="element" onclick="addPicture()">
-						<img src="img/picture.png"/>
+					<div class="element">
+						<img src="img/webpage.png"/>
 					</div>
+					<div class="element" onclick="addDocument()">
+						<img src="img/document.png"/>
+					</div>
+					<!-- test icons -->
 					<div class="element">
 						<img src="img/text.png"/>
 					</div>
-					<div class="element">
+					<div class="element" onclick="addImage()">
+						<img src="img/image.png"/>
+					</div>
+					<div class="element" onclick="addMovie()">
 						<img src="img/video.png"/>
 					</div>
-					<div class="element">
-						<img src="img/picture.png"/>
-					</div>
-					<div class="element">
-						<img src="img/video.png"/>
-					</div>
-					<div class="element">
+					<div class="element" onclick="addAudio()">
 						<img src="img/music.png"/>
 					</div>
+					<div class="element">
+						<img src="img/webpage.png"/>
+					</div>
+					<div class="element" onclick="addDocument()">
+						<img src="img/document.png"/>
+					</div>
+					<!-- fine test icons -->
 				</div>
 				<div class="clearfix"></div>
-				<a class="prev" id="elements_prev" href="#"><span>&lt</span></a>
-				<a class="next" id="elements_next" href="#"><span>&gt</span></a>
+				<a class="prev" id="elements_prev" href="#"><img src="img/left.png" alt=""></a>
+				<a class="next" id="elements_next" href="#"><img src="img/right.png" alt=""></a>
 				<div class="pagination" id="elements_pag"></div>
 			</div>
 
