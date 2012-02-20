@@ -34,12 +34,18 @@ function create_block(content){
         return block;
 }
 
-function addText(){add('last', create_block('text'))};
+var textareaNum = 0;
+
+function addText(){
+        add('last', create_block('<textarea id="textarea' + (++textareaNum) + '"></textarea>'));
+        tinyMCE.settings = tinyconfig;
+        tinyMCE.execCommand('mceAddControl', true, 'textarea'+textareaNum);
+}
 function addDocument(){add('last', create_block('document'))};
-function addImage(){add('last', create_block('<div class="drop_zone"><p class="message">Drop image here!</p></div>'))};
-function addMovie(){add('last', create_block('movie'))};
-function addAudio(){add('last', create_block('audio'))};
-function addPicture(){add('last', create_block('picture'))};
+function addImage(){add('last', create_block('<div class="drop_zone"><p class="message">Drop image here!</p></div>'));}
+function addMovie(){add('last', create_block('movie'));}
+function addAudio(){add('last', create_block('audio'));}
+function addPicture(){add('last', create_block('picture'));}
 
 $('.remove').live('click', function(){
 	$(this).parent().parent().remove();
@@ -73,4 +79,18 @@ $(function(){
                 revert: true,
                 distance: 10
         });
+
+        tinyMCE.init(tinyconfig);
 });
+
+var tinyconfig = {
+       theme : "advanced",
+       mode : "specific_textareas",
+       editor_selector : "mceEditor",
+       theme_advanced_buttons1 : "bold,italic,underline,strikethrough,|,justifyleft,justifycenter,justifyright,justifyfull,|,bullist,numlist,undo,redo,|,formatselect,fontselect,fontsizeselect,|,forecolor,backcolor",
+       theme_advanced_buttons2: "",
+       theme_advanced_buttons3: "",
+       theme_advanced_buttons4: "",
+       theme_advanced_toolbar_location : "top",
+       theme_advanced_toolbar_align : "left"
+}          

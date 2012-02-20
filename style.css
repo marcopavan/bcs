@@ -247,13 +247,11 @@ a.prev {
 	margin: 20px auto;
 	position: relative;
 }
-.block .modify{
-	display: none;
-}
 .block#active .modify{
 	display: block;
 }
-.modify{
+.block > .modify{
+	display: none;
 	position: absolute;
 	top: 0;
 	right: -15px;
@@ -261,6 +259,7 @@ a.prev {
 	width: 30px;
 	text-align: center;
 	height: 50%;
+	min-height: 0;
 }
 .modify img{
 	width: 30px;
@@ -274,6 +273,12 @@ a.prev {
 	position:absolute;
 	bottom: -45px;
 }
+.block > *{
+	width: 100%;
+  	min-height:150px;
+}
+
+
 .drop_zone {
   text-align:center;
   width:100%;
