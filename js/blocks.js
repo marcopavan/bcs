@@ -46,7 +46,7 @@ $('.remove').live('click', function(){
 });
 
 $('.move_up').live('click', function(){
-	var cont = $(this).parent().parent();
+	var cont = $(this).parent().parent().parent();
 	var myIndex = $('#blocks_content > .block').index(cont);
 	myIndex--;
 		add(myIndex, cont.clone(), true);
@@ -55,7 +55,7 @@ $('.move_up').live('click', function(){
 });
 
 $('.move_down').live('click', function(){
-        var cont = $(this).parent().parent();
+        var cont = $(this).parent().parent().parent();
         var myIndex = $('#blocks_content > .block').index(cont);
         myIndex++;
         add(myIndex, cont.clone());

@@ -260,7 +260,7 @@ a.prev {
 	top: -15px;
 	width: 30px;
 	text-align: center;
-	height: 80%;
+	height: 50%;
 }
 .modify img{
 	width: 30px;
@@ -270,9 +270,9 @@ a.prev {
 .modify > .remove{
 	margin-bottom: 15px;
 }
-.modify .mod_controls{
-	position: relative;
-	top:50%;
+.modify > .mod_controls{
+	position:absolute;
+	bottom: -45px;
 }
 .drop_zone {
   text-align:center;
