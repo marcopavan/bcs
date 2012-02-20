@@ -271,7 +271,7 @@ a.prev {
 .modify > .remove{
 	margin-bottom: 15px;
 }
-#drop_zone {
+.drop_zone {
   margin-top:50px;
   margin-bottom:50px;
   text-align:center;
@@ -282,11 +282,19 @@ a.prev {
   padding-top:20px;
   padding-bottom:20px;
 }
-#drop_zone:hover {
+.img_added{
+   border:2px dashed transparent;
+}
+.drop_zone:hover {
   color: #888;
   border:2px dashed #888;
   background-color: #eee;
 }
+
+.drop_zone:hover .dropped_div{
+  opacity:0.4;
+}
+
 .dropped_div{
   height:100%;
 }
@@ -300,8 +308,6 @@ a.prev {
   width:auto;
   color:red;
   font-weight:bold;
-  border:2px solid red;
-  border-radius: 5px;
   padding:5px;
 }
 /*bottol creator content end*/
