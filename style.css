@@ -268,8 +268,40 @@ a.prev {
 	text-align: center;
         cursor: pointer;
 }
-
 .modify > .remove{
 	margin-bottom: 15px;
+}
+#drop_zone {
+  margin-top:50px;
+  margin-bottom:50px;
+  text-align:center;
+  width:100%;
+  border-radius:10px;
+  border:2px dashed #ccc;
+  color: #ccc;
+  padding-top:20px;
+  padding-bottom:20px;
+}
+#drop_zone:hover {
+  color: #888;
+  border:2px dashed #888;
+  background-color: #eee;
+}
+.dropped_div{
+  height:100%;
+}
+.dropped_img{
+  padding:6px;
+  border:1px solid #ccc;
+  box-shadow: 5px 5px 5px #aaa;
+}
+.warning_img {
+  text-align:center;
+  width:auto;
+  color:red;
+  font-weight:bold;
+  border:2px solid red;
+  border-radius: 5px;
+  padding:5px;
 }
 /*bottol creator content end*/
