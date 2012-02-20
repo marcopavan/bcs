@@ -34,8 +34,9 @@ function create_block(content){
         return block;
 }
 
+function addText(){add('last', create_block('text'))};
 function addDocument(){add('last', create_block('document'))};
-function addImage(){add('last', create_block('image'))};
+function addImage(){add('last', create_block('<div class="drop_zone"><p class="message">Drop image here!</p></div>'))};
 function addMovie(){add('last', create_block('movie'))};
 function addAudio(){add('last', create_block('audio'))};
 function addPicture(){add('last', create_block('picture'))};
