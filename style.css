@@ -241,10 +241,9 @@ a.prev {
 
 /*bottol creator content start*/
 .block{
-	width: 600px;
+	width: 100%;
 	margin: auto;
-	height: 150px;
-	background-color: #CCCCCC;
+	min-height: 150px;
 	margin: 20px auto;
 	position: relative;
 }
@@ -261,26 +260,27 @@ a.prev {
 	top: -15px;
 	width: 30px;
 	text-align: center;
+	height: 80%;
 }
-.modify > *{
+.modify img{
 	width: 30px;
 	height: 30px;
-	text-align: center;
-        cursor: pointer;
+    cursor: pointer;
 }
 .modify > .remove{
 	margin-bottom: 15px;
 }
+.modify .mod_controls{
+	position: relative;
+	top:50%;
+}
 .drop_zone {
-  margin-top:50px;
-  margin-bottom:50px;
   text-align:center;
   width:100%;
+  min-height:150px;
   border-radius:10px;
   border:2px dashed #ccc;
   color: #ccc;
-  padding-top:20px;
-  padding-bottom:20px;
 }
 .img_added{
    border:2px dashed transparent;
@@ -302,6 +302,7 @@ a.prev {
   padding:6px;
   border:1px solid #ccc;
   box-shadow: 5px 5px 5px #aaa;
+  max-width:100%;
 }
 .warning_img {
   text-align:center;
@@ -309,5 +310,8 @@ a.prev {
   color:red;
   font-weight:bold;
   padding:5px;
+}
+.message{
+	padding: 20px 0;
 }
 /*bottol creator content end*/

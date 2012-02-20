@@ -7,6 +7,7 @@
 <script type="text/javascript" language="javascript" src="js/jquery-ui-1.8.16.custom.min.js"></script>
 <script type="text/javascript" language="javascript" src="js/jquery.carouFredSel-5.5.0-packed.js"></script>
 <script type="text/javascript" src="js/blocks.js"></script>
+<script type="text/javascript" src="js/uploader.js"></script>
 <script type="text/javascript" language="javascript">
 	$(function() {
 		$('#elements').carouFredSel({
