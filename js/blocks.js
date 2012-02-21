@@ -119,8 +119,14 @@ var tinyconfig = {
 function webIFrame(textfield){
         var url = textfield.val();
         if(!(url.indexOf('http://') >= 0))
-                {}//url = 'http://' + url;
+                url = 'http://' + url;
         $.get(url, function(data){
-                textfield.parent().append('<iframe src="'+url+'" frameborder="0"></iframe>');
+                if(textfield.parent().find('iframe').size() > 0)
+                        textfield.parent().find('iframe').attr('src', url);
+                else
+                {
+                        textfield.parent().css('height', '600px');
+                        textfield.parent().append('<iframe src="'+url+'" frameborder="0"></iframe><div class="iframeSelector">Select</div>');
+                }
         });
 }
