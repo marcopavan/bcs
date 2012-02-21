@@ -42,7 +42,10 @@ p {
 	position: absolute;
 	top:0;
 	left:0;
-	padding-left: 60px;
+}
+
+#header > img{
+	margin-left: 60px;
 }
 
 #container {

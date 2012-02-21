@@ -37,9 +37,8 @@ function create_block(content){
 var textareaNum = 0;
 
 function addText(){
-        add('last', create_block('<textarea id="textarea' + (++textareaNum) + '"></textarea>'));
-        tinyMCE.settings = tinyconfig;
-        tinyMCE.execCommand('mceAddControl', true, 'textarea'+textareaNum);
+        add('last', create_block('<textarea id="textarea' + (++textareaNum) + '" class="tinyMCETextArea"></textarea>'));
+        createTextAreaTinyMCE('textarea'+textareaNum);
 }
 function addDocument(){add('last', create_block('document'))};
 function addImage(){add('last', create_block('<div class="drop_zone"><p class="message">Drop image here!</p></div>'));}
@@ -57,6 +56,10 @@ $('.move_up').live('click', function(){
 	myIndex--;
 		add(myIndex, cont.clone(), true);
         cont.remove();
+
+        if(cont.find('.tinyMCETextArea').size() == 1)
+                updateTextAreaTinyMCE(cont.find('.tinyMCETextArea').attr('id'));
+
         return false;
 });
 
@@ -66,6 +69,10 @@ $('.move_down').live('click', function(){
         myIndex++;
         add(myIndex, cont.clone());
         cont.remove();
+
+        if(cont.find('.tinyMCETextArea').size() == 1)
+                updateTextAreaTinyMCE(cont.find('.tinyMCETextArea').attr('id'));
+
         return false;
 });
 
@@ -77,11 +84,24 @@ $('.block').live('mousedown', function(){
 $(function(){
         $('#blocks_content').sortable({
                 revert: true,
-                distance: 10
+                distance: 10,
+                stop: function(event, ui){
+                        if(ui.item.find('.tinyMCETextArea').size() == 1)
+                                updateTextAreaTinyMCE(ui.item.find('.tinyMCETextArea').attr('id'));
+                }
         });
 
         tinyMCE.init(tinyconfig);
 });
+
+function createTextAreaTinyMCE(textAreaId){
+        tinyMCE.settings = tinyconfig;
+        tinyMCE.execCommand('mceAddControl', true, textAreaId);
+}
+function updateTextAreaTinyMCE(textAreaId){
+        tinyMCE.execCommand('mceRemoveControl', true, textAreaId);
+        createTextAreaTinyMCE(textAreaId)
+}
 
 var tinyconfig = {
        theme : "advanced",
