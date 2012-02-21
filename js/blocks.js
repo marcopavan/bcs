@@ -45,6 +45,7 @@ function addImage(){add('last', create_block('<div class="drop_zone"><p class="m
 function addMovie(){add('last', create_block('movie'));}
 function addAudio(){add('last', create_block('audio'));}
 function addPicture(){add('last', create_block('picture'));}
+function addLink(){add('last', create_block('<div class="webPage"><input type="text" placeholder="Insert an url" oninput="webIFrame($(this));"/></div>'));}
 
 $('.remove').live('click', function(){
 	$(this).parent().parent().remove();
@@ -113,4 +114,13 @@ var tinyconfig = {
        theme_advanced_buttons4: "",
        theme_advanced_toolbar_location : "top",
        theme_advanced_toolbar_align : "left"
-}          
+}
+
+function webIFrame(textfield){
+        var url = textfield.val();
+        if(!(url.indexOf('http://') >= 0))
+                {}//url = 'http://' + url;
+        $.get(url, function(data){
+                textfield.parent().append('<iframe src="'+url+'" frameborder="0"></iframe>');
+        });
+}

@@ -59,7 +59,7 @@
 					<div class="element" onclick="addAudio()">
 						<img src="img/music.png"/>
 					</div>
-					<div class="element">
+					<div class="element" onclick="addLink()">
 						<img src="img/webpage.png"/>
 					</div>
 					<div class="element" onclick="addDocument()">
