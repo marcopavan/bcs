@@ -53,29 +53,29 @@
 					<div class="element" onclick="addImage()">
 						<img src="img/image.png"/>
 					</div>
-					<div class="element" onclick="addMovie()">
+					<div class="element" onclick="addNotAvailable()">
 						<img src="img/video.png"/>
 					</div>
-					<div class="element" onclick="addAudio()">
+					<div class="element" onclick="addNotAvailable()">
 						<img src="img/music.png"/>
 					</div>
 					<div class="element" onclick="addLink()">
 						<img src="img/webpage.png"/>
 					</div>
-					<div class="element" onclick="addDocument()">
+					<div class="element" onclick="addNotAvailable()">
 						<img src="img/document.png"/>
 					</div>
 					<!-- layout icons -->
-					<div class="element">
+					<div class="element" onclick="addNotAvailable()">
 						<img src="img/2x2.png"/>
 					</div>
-					<div class="element">
+					<div class="element" onclick="addNotAvailable()">
 						<img src="img/3x1.png"/>
 					</div>
-					<div class="element">
+					<div class="element" onclick="addNotAvailable()">
 						<img src="img/3x2.png"/>
 					</div>
-					<div class="element">
+					<div class="element" onclick="addNotAvailable()">
 						<img src="img/3x3.png"/>
 					</div>
 					<!-- fine layout icons -->

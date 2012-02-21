@@ -383,4 +383,14 @@ a.prev {
 	filter:alpha(opacity=0);
 }
 /*link end*/
+
+.notAvailable{
+	text-align: center;
+	padding: 60px 0;
+	min-height: 0;
+	background-color: #EEEEEE;
+	color: #888888;
+	border: 2px dashed #888888;
+	border-radius: 10px;
+}
 /*bottol creator content end*/

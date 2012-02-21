@@ -46,6 +46,7 @@ function addMovie(){add('last', create_block('movie'));}
 function addAudio(){add('last', create_block('audio'));}
 function addPicture(){add('last', create_block('picture'));}
 function addLink(){add('last', create_block('<div class="webPage"><input type="text" placeholder="Insert an url" oninput="webIFrame($(this));"/></div>'));}
+function addNotAvailable(){add('last', create_block('<p class="notAvailable">Not available yet...</p>'));}
 
 $('.remove').live('click', function(){
 	$(this).parent().parent().remove();
@@ -126,7 +127,7 @@ function webIFrame(textfield){
                 else
                 {
                         textfield.parent().css('height', '600px');
-                        textfield.parent().append('<iframe src="'+url+'" frameborder="0"></iframe><div class="iframeSelector">Select</div>');
+                        textfield.parent().append('<iframe src="'+url+'" frameborder="0"></iframe><div class="iframeSelector">SELECT<br/>OR DRAG</div>');
                 }
         });
 }
