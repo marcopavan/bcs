@@ -16,7 +16,7 @@
         actual_drop_zone.find('.message').html('<p class="warning_img">Max image size: 5MB<strong>');
         break;
       }
-      alert(f.size);
+      
       var reader = new FileReader();
       reader.onload = (function(theFile) {
         return function(e) {

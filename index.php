@@ -53,7 +53,7 @@
 					<div class="element" onclick="addImage()">
 						<img src="img/image.png"/>
 					</div>
-					<div class="element" onclick="addNotAvailable()">
+					<div class="element" onclick="addVideo()">
 						<img src="img/video.png"/>
 					</div>
 					<div class="element" onclick="addNotAvailable()">

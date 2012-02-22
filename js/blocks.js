@@ -42,7 +42,7 @@ function addText(){
 }
 function addDocument(){add('last', create_block('document'))};
 function addImage(){add('last', create_block('<div class="drop_zone"><p class="message">Drop image here!</p></div>'));}
-function addMovie(){add('last', create_block('movie'));}
+function addVideo(){add('last', create_block('<div class="video"><input type="text" placeholder="Your video url ('+supportedVideoDomains.join(', ')+')" oninput="videoSearch($(this));"/></div>'));}
 function addAudio(){add('last', create_block('audio'));}
 function addPicture(){add('last', create_block('picture'));}
 function addLink(){add('last', create_block('<div class="webPage"><input type="text" placeholder="Insert an url" oninput="webIFrame($(this));"/></div>'));}
@@ -118,16 +118,58 @@ var tinyconfig = {
 }
 
 function webIFrame(textfield){
-        var url = textfield.val();
-        if(!(url.indexOf('http://') >= 0))
-                url = 'http://' + url;
-        $.get(url, function(data){
-                if(textfield.parent().find('iframe').size() > 0)
-                        textfield.parent().find('iframe').attr('src', url);
-                else
-                {
-                        textfield.parent().css('height', '600px');
-                        textfield.parent().append('<iframe src="'+url+'" frameborder="0"></iframe><div class="iframeSelector">SELECT<br/>OR DRAG</div>');
+        var pageurl = textfield.val();
+        if(pageurl == '' || pageurl == 'http://')
+                return;
+        if(!(pageurl.indexOf('http://') == 0))
+                pageurl = 'http://' + pageurl;
+
+        $.ajax({
+                type: "GET",
+                url: pageurl,
+                dataType: "jsonp",
+                complete: function(){
+                        if(textfield.parent().find('iframe').size() > 0)
+                                textfield.parent().find('iframe').attr('src', pageurl);
+                        else
+                        {
+                                textfield.parent().css('height', '600px');
+                                textfield.parent().append('<iframe src="'+pageurl+'" frameborder="0"></iframe><div class="iframeSelector">SELECT<br/>OR DRAG</div>');
+                        }
+                }
+        });
+}
+
+var supportedVideoDomains = new Array('youtube');
+
+function videoSearch(textfield){
+        var pageurl = textfield.val();
+
+        var i;
+        var flag = true;
+        for(i in supportedVideoDomains)
+                if(pageurl.indexOf(supportedVideoDomains[i]) >= 0)
+                        flag = false;
+        if(flag) return;
+        
+        if(!(pageurl.indexOf('http://') == 0))
+                pageurl = 'http://' + pageurl;
+
+        $.ajax({
+                type: "GET",
+                url: pageurl,
+                dataType: "jsonp",
+                complete: function(){
+                        var id = pageurl.replace(/^[^v]+v.(.{11}).*/,"$1");
+                        pageurl = 'http://www.youtube.com/embed/'+id;
+
+                        if(textfield.parent().find('iframe').size() > 0)
+                                textfield.parent().find('iframe').attr('src', pageurl);
+                        else
+                        {
+                                textfield.parent().css('height', '350px');
+                                textfield.parent().append('<iframe src="'+pageurl+'" frameborder="0" allowfullscreen></iframe>');
+                        }
                 }
         });
 }
