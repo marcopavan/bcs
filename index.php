@@ -62,7 +62,7 @@
 					<div class="element" onclick="addLink()">
 						<img src="img/webpage.png"/>
 					</div>
-					<div class="element" onclick="addNotAvailable()">
+					<div class="element" onclick="addDocument()">
 						<img src="img/document.png"/>
 					</div>
 					<!-- layout icons -->

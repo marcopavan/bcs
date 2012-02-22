@@ -40,8 +40,8 @@ function addText(){
         add('last', create_block('<textarea id="textarea' + (++textareaNum) + '" class="tinyMCETextArea"></textarea>'));
         createTextAreaTinyMCE('textarea'+textareaNum);
 }
-function addDocument(){add('last', create_block('document'))};
-function addImage(){add('last', create_block('<div class="drop_zone"><p class="message">Drop image here!</p></div>'));}
+function addDocument(){add('last', create_block('<div class="drop_zone document"><p class="message">Drop document here!</p></div>'))};
+function addImage(){add('last', create_block('<div class="drop_zone image"><p class="message">Drop image here!</p></div>'));}
 function addVideo(){add('last', create_block('<div class="video"><input type="text" placeholder="Your video url ('+supportedVideoDomains.join(', ')+')" oninput="videoSearch($(this));"/></div>'));}
 function addAudio(){add('last', create_block('audio'));}
 function addPicture(){add('last', create_block('picture'));}
