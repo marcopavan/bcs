@@ -47,7 +47,11 @@ function addAudio(){add('last', create_block('audio'));}
 function addPicture(){add('last', create_block('picture'));}
 function addLink(){add('last', create_block('<div class="webPage"><input type="text" placeholder="Insert an url" oninput="webIFrame($(this));"/></div>'));}
 function addNotAvailable(){add('last', create_block('<p class="notAvailable">Not available yet...</p>'));}
-function addTwoElements(){add('last', create_block('<div id="container_layout"><a class="select_block new_add_menu"href="#hidden_menu"><p class="message_layout"></p></a><a class="select_block new_add_menu" href="#hidden_menu"><p class="message_layout"></p></a></div>'));}
+function addMM(){add('last', create_block('<div id="container_layout"><a class="medium new_add_menu"href="#hidden_menu"><p class="message_layout"></p></a><a class="medium new_add_menu" href="#hidden_menu"><p class="message_layout"></p></a></div>'));}
+function addSSS(){add('last', create_block('<div id="container_layout"><a class="small new_add_menu"href="#hidden_menu"><p class="message_layout"></p></a><a class="small new_add_menu" href="#hidden_menu"><p class="message_layout"></p></a><a class="small new_add_menu"href="#hidden_menu"><p class="message_layout"></p></a></div>'));}
+function addSL(){add('last', create_block('<div id="container_layout"><a class="small new_add_menu"href="#hidden_menu"><p class="message_layout"></p></a><a class="large new_add_menu" href="#hidden_menu"><p class="message_layout"></p></a></div>'));}
+function addLS(){add('last', create_block('<div id="container_layout"><a class="large new_add_menu"href="#hidden_menu"><p class="message_layout"></p></a><a class="small new_add_menu" href="#hidden_menu"><p class="message_layout"></p></a></div>'));}
+function addXL(){add('last', create_block('<div id="container_layout"><a class="largest new_add_menu"href="#hidden_menu"><p class="message_layout"></p></a></div>'));}
 
 $('.new_add_menu').live('click',function(){
         $(this).fancybox();

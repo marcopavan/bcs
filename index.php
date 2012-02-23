@@ -69,20 +69,20 @@
 						<img src="img/document.png"/>
 					</div>
 					<!-- layout icons -->
-					<div class="element" onclick="addTwoElements()">
+					<div class="element" onclick="addMM()">
 						<img src="img/2x2.png"/>
 					</div>
-					<div class="element" onclick="addNotAvailable()">
-						<img src="img/3x1.png"/>
+					<div class="element" onclick="addSSS()">
+						<img src="img/3x3.png"/>
 					</div>
-					<div class="element" onclick="addNotAvailable()">
+					<div class="element" onclick="addSL()">
 						<img src="img/3x2.png"/>
 					</div>
-					<div class="element" onclick="addNotAvailable()">
+					<div class="element" onclick="addLS()">
 						<img src="img/3x2r.png"/>
 					</div>
-					<div class="element" onclick="addNotAvailable()">
-						<img src="img/3x3.png"/>
+					<div class="element" onclick="addXL()">
+						<img src="img/3x1.png"/>
 					</div>
 					<!-- fine layout icons -->
 				</div>
