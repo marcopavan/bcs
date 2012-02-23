@@ -324,7 +324,20 @@ a.prev {
   padding:5px;
 }
 .message{
-	padding: 20px 0;
+	padding-top:30px;
+	text-align:center;
+}
+#drop_document {
+	background: url(img/dropdoc40pt.png) top no-repeat;
+	width:100%;
+	height:30px;
+	margin-top:60px;
+}
+#drop_image {
+	background: url(img/drop40pt.png) top no-repeat;
+	width:100%;
+	height:30px;
+	margin-top:60px;
 }
 /*image drop end*/
 
