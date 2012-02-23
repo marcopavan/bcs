@@ -47,14 +47,13 @@ function addAudio(){add('last', create_block('audio'));}
 function addPicture(){add('last', create_block('picture'));}
 function addLink(){add('last', create_block('<div class="webPage"><input type="text" placeholder="Insert an url" oninput="webIFrame($(this));"/></div>'));}
 function addNotAvailable(){add('last', create_block('<p class="notAvailable">Not available yet...</p>'));}
-function addTwoElements(){add('last', create_block('<div id="container_layout"><a class="select_block add_menu"href="#data"><p class="message_layout"></p></a><a class="select_block add_menu" href="#data"><p class="message_layout"></p></a><div style="display:none"><div id="data"><img src="img/text.png"/><img src="img/image.png"/><img src="img/video.png"/><img src="img/music.png"/><img src="img/webpage.png"/><img src="img/document.png"/></div></div></div>'));}
+function addTwoElements(){add('last', create_block('<div id="container_layout"><a class="select_block new_add_menu"href="#hidden_menu"><p class="message_layout"></p></a><a class="select_block new_add_menu" href="#hidden_menu"><p class="message_layout"></p></a></div>'));}
 
-$(".addmenu").live('click',function(){
-
+$('.new_add_menu').live('click',function(){
         $(this).fancybox();
-        $(this).click();
-        $(this).attr("id","");
-
+        $(this).removeClass('new_add_menu');
+        $(this).addClass('add_menu');
+        return(!$(this).click());
 });
 
 $('.remove').live('click', function(){

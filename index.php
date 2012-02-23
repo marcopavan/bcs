@@ -91,6 +91,18 @@
 
 			<!-- End jcarousel -->
 
+			<!-- hidden menu -->
+			<div style="display: none;">
+				<div id="hidden_menu">
+					<img src="img/text.png"/>
+					<img src="img/image.png"/>
+					<img src="img/video.png"/>
+					<img src="img/music.png"/>
+					<img src="img/webpage.png"/>
+					<img src="img/document.png"/>
+				</div>
+			</div>
+
 			<!-- Content bottle creation -->
 			<div id="blocks_content"></div>
 

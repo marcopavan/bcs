@@ -48,8 +48,8 @@
             // Render dropped image.
             var dropArea = actual_drop_zone;
             var base64_string = e.target.result;
-            $.post('tmp/saveTemp.php', {base64: base64_string, name: escape(theFile.name)}, function(urlToGDocs){
-              dropArea.html(['<div class="dropped_div"><iframe id="document_frame" src="http://docs.google.com/gview?url='+urlToGDocs+'" embedded="true" style="width:100%; height:600px;" frameborder="0"></iframe></div>'].join(''));
+            $.post('tmp/saveTemp.php', {base64: base64_string, name: theFile.name}, function(urlToGDocs){
+              dropArea.html('<div class="dropped_div"><iframe id="document_frame" src="http://docs.google.com/gview?url='+urlToGDocs+'" embedded="true" style="width:100%; height:600px;" frameborder="0"></iframe></div>');
               actual_drop_zone.addClass('img_added');
             });         
           };
