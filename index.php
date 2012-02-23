@@ -79,6 +79,9 @@
 						<img src="img/3x2.png"/>
 					</div>
 					<div class="element" onclick="addNotAvailable()">
+						<img src="img/3x2r.png"/>
+					</div>
+					<div class="element" onclick="addNotAvailable()">
 						<img src="img/3x3.png"/>
 					</div>
 					<!-- fine layout icons -->

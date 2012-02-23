@@ -10,7 +10,7 @@
     for (var i = 0, f; f = files[i]; i++) {
       if (actual_drop_zone.hasClass("image")) {
         if (!f.type.match('image.*')) {
-        actual_drop_zone.find('.message').html('<p class="warning_img">Only image file can be uploaded!<strong>');
+        actual_drop_zone.find('.message').html('<p class="warning_img">Only images can be uploaded!<strong>');
         break;
         }
         if (f.size > 5242880) {
@@ -34,7 +34,7 @@
 
       if (actual_drop_zone.hasClass("document")) {
         if (!f.type.match('application.*')) {
-        actual_drop_zone.find('.message').html('<p class="warning_img">Only image document can be uploaded!<strong>');
+        actual_drop_zone.find('.message').html('<p class="warning_img">Only documents can be uploaded!<strong>');
         break;
         }
         if (f.size > 5242880) {
