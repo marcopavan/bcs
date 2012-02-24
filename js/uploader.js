@@ -19,6 +19,15 @@
         }
       
         var reader = new FileReader();
+        //shows a spinner
+        reader.onloadstart = function(e) {
+          actual_drop_zone.find('.message').html(spinner + '<div class="percentLoaded"></div>');
+        };
+        //change percentage
+        reader.onprogress = function(e) {
+          actual_drop_zone.find('.percentLoaded').html(Math.round((evt.loaded / evt.total) * 100) + '%');
+        };
+        //loads image anteprima
         reader.onload = (function(theFile) {
           return function(e) {
             // Render dropped image.
@@ -43,6 +52,15 @@
         }
       
         var reader = new FileReader();
+        //shows a spinner
+        reader.onloadstart = function(e) {
+          actual_drop_zone.find('.message').html(spinner + '<div class="percentLoaded"></div>');
+        };
+        //change percentage
+        reader.onprogress = function(e) {
+          actual_drop_zone.find('.percentLoaded').html(Math.round((evt.loaded / evt.total) * 100) + '%');
+        };
+        //loads file and save for googledocs
         reader.onload = (function(theFile) {
           return function(e) {
             // Render dropped image.
@@ -77,4 +95,6 @@
     handleFileSelect(event.originalEvent, $(this));
   });
 
+
+var spinner = '<div class="spinner"><div class="bar1"></div><div class="bar2"></div><div class="bar3"></div><div class="bar4"></div><div class="bar5"></div><div class="bar6"></div><div class="bar7"></div><div class="bar8"></div><div class="bar9"></div><div class="bar10"></div><div class="bar11"></div><div class="bar12"></div></div>';
   
