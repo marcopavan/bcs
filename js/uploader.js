@@ -50,7 +50,7 @@
             var base64_string = e.target.result;
             base64_string = base64_string.substring(base64_string.indexOf('base64,') + 7);
             $.post('tmp/saveTemp.php', {base64: base64_string, name: theFile.name}, function(urlToGDocs){
-              dropArea.html('<div class="dropped_div"><iframe id="document_frame" src="http://docs.google.com/gview?url='+escape(urlToGDocs)+'" embedded="true" style="width:100%; height:600px;" frameborder="0"></iframe></div>');
+              dropArea.html('<div class="dropped_div"><iframe id="document_frame" src="http://docs.google.com/gview?url='+escape(urlToGDocs)+'&embedded=true" style="width:100%; height:600px;" frameborder="0"></iframe></div>');
               actual_drop_zone.addClass('img_added');
             });         
           };
