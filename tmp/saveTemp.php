@@ -7,5 +7,5 @@
 	
 	file_put_contents($name, base64_decode($base64));
 
-	echo 'http://localhost'.str_replace('saveTemp.php', '', $_SERVER['PHP_SELF']).$name;
+	echo 'http://'.$_SERVER['SERVER_NAME'].str_replace('saveTemp.php', '', $_SERVER['PHP_SELF']).$name;
 ?>
