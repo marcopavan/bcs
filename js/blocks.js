@@ -36,6 +36,8 @@ function create_block(content){
 
 var textareaNum = 0;
 
+// Function add new element block
+
 function addText(){
         add('last', create_block('<textarea id="textarea' + (++textareaNum) + '" class="tinyMCETextArea"></textarea>'));
         createTextAreaTinyMCE('textarea'+textareaNum);
@@ -44,19 +46,33 @@ function addDocument(){add('last', create_block('<div class="drop_zone document"
 function addImage(){add('last', create_block('<div class="drop_zone image"><p class="message" id="drop_image"></p></div>'));}
 function addVideo(){add('last', create_block('<div class="video"><input type="text" placeholder="Your video url ('+supportedVideoDomains.join(', ')+')" oninput="videoSearch($(this));"/></div>'));}
 function addAudio(){add('last', create_block('audio'));}
-function addPicture(){add('last', create_block('picture'));}
 function addLink(){add('last', create_block('<div class="webPage"><input type="text" placeholder="Insert an url" oninput="webIFrame($(this));"/></div>'));}
 function addNotAvailable(){add('last', create_block('<p class="notAvailable">Not available yet...</p>'));}
-function addMM(){add('last', create_block('<div id="container_layout"><a class="medium new_add_menu"href="#hidden_menu"><p class="message_layout"></p></a><a class="medium new_add_menu" href="#hidden_menu"><p class="message_layout"></p></a></div>'));}
-function addSSS(){add('last', create_block('<div id="container_layout"><a class="small new_add_menu"href="#hidden_menu"><p class="message_layout"></p></a><a class="small new_add_menu" href="#hidden_menu"><p class="message_layout"></p></a><a class="small new_add_menu"href="#hidden_menu"><p class="message_layout"></p></a></div>'));}
-function addSL(){add('last', create_block('<div id="container_layout"><a class="small new_add_menu"href="#hidden_menu"><p class="message_layout"></p></a><a class="large new_add_menu" href="#hidden_menu"><p class="message_layout"></p></a></div>'));}
-function addLS(){add('last', create_block('<div id="container_layout"><a class="large new_add_menu"href="#hidden_menu"><p class="message_layout"></p></a><a class="small new_add_menu" href="#hidden_menu"><p class="message_layout"></p></a></div>'));}
-function addXL(){add('last', create_block('<div id="container_layout"><a class="largest new_add_menu"href="#hidden_menu"><p class="message_layout"></p></a></div>'));}
+
+function addMM(){add('last', create_block('<div class="medium"><a class="new_add_menu" href="#hidden_menu"><p class="message_layout"></p></a></div><div class="medium"><a class="new_add_menu" href="#hidden_menu"><p class="message_layout"></p></a></div>'));}
+function addSSS(){add('last', create_block('<div class="small"><a class="new_add_menu"href="#hidden_menu"><p class="message_layout"></p></a></div><div class="small"><a class="new_add_menu" href="#hidden_menu"><p class="message_layout"></p></a></div><div class="small"><a class="new_add_menu" href="#hidden_menu"><p class="message_layout"></p></a></div>'));}
+function addSL(){add('last', create_block('<div class="small"><a class="new_add_menu" href="#hidden_menu"><p class="message_layout"></p></a></div><div class="large"><a class="new_add_menu" href="#hidden_menu"><p class="message_layout"></p></a></div>'));}
+function addLS(){add('last', create_block('<div class="large"><a class="new_add_menu" href="#hidden_menu"><p class="message_layout"></p></a></div><div class="small"><a class="new_add_menu" href="#hidden_menu"><p class="message_layout"></p></a></div>'));}
+function addXL(){add('last', create_block('<div class="largest"><a class="new_add_menu" href="#hidden_menu"><p class="message_layout"></p></a></div>'));}
+
+// End add new element
+
+// Fuction add element
+
+function appendText(){$('.select').html('<textarea id="textarea' + (++textareaNum) + '" class="tinyMCETextArea"></textarea>');createTextAreaTinyMCE('textarea'+textareaNum);$('.select').removeClass('select');}
+function appendDocument(){$('.select').html('<div class="drop_zone document"><p class="message" id="drop_document"></p></div>');$('.select').removeClass('select');}
+function appendImage(){$('.select').html('<div class="drop_zone image"><p class="message" id="drop_image"></p></div>');$('.select').removeClass('select');}
+function appendVideo(){$('.select').html('<div class="video"><input type="text" placeholder="Your video url ('+supportedVideoDomains.join(', ')+')" oninput="videoSearch($(this));"/></div>');$('.select').removeClass('select');}
+function appendAudio(){alert('testAudio');}
+function appendLink(){$('.select').html('<div class="webPage"><input type="text" placeholder="Insert an url" oninput="webIFrame($(this));"/></div>');$('.select').removeClass('select');}
+
+// End function add element
 
 $('.new_add_menu').live('click',function(){
-        $(this).fancybox();
+        $(this).fancybox({'hideOnContentClick' : true});
         $(this).removeClass('new_add_menu');
         $(this).addClass('add_menu');
+        $(this).parent().addClass('select');
         return(!$(this).click());
 });
 

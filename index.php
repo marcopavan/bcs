@@ -98,12 +98,25 @@
 			<!-- hidden menu -->
 			<div style="display: none;">
 				<div id="hidden_menu">
-					<img src="img/text.png"/>
-					<img src="img/image.png"/>
-					<img src="img/video.png"/>
-					<img src="img/music.png"/>
-					<img src="img/webpage.png"/>
-					<img src="img/document.png"/>
+					<div class="element_popup" onclick="appendText()">
+						<img src="img/text.png"/>
+					</div>
+					<div class="element_popup" onclick="appendImage()">
+						<img src="img/image.png"/>
+					</div>
+					<div class="element_popup" onclick="appendVideo()">
+						<img src="img/video.png"/>
+					</div>
+					<div class="element_popup" onclick="appendAudio()">
+						<img src="img/music.png"/>
+					</div>
+					<div class="element_popup" onclick="appendLink()">
+						<img src="img/webpage.png"/>
+					</div>
+					<div class="element_popup" onclick="appendDocument()">
+						<img src="img/document.png"/>
+					</div>
+					
 				</div>
 			</div>
 
