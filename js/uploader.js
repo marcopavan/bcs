@@ -17,7 +17,28 @@
           actual_drop_zone.find('.message').html('<p class="warning_img">Max image size: 5MB<strong>');
           break;
         }
-      
+
+        if(!window.FileReader){
+          var form = new FormData();
+          form.append('file', f);
+          $.ajax({
+              url: 'getBase64.php',
+              data: form,
+              cache: false,
+              contentType: false,
+              processData: false,
+              type: 'POST',
+              beforeSend: function(){
+                actual_drop_zone.find('.message').html(spinner);
+              },
+              success: function(data){
+                var dropArea = actual_drop_zone;
+                dropArea.html(['<div class="dropped_div"><img class="dropped_img" src="', 'data:image/', f.type, ';base64,', data, '" title="', f.name, '"/></div>'].join(''));
+                actual_drop_zone.addClass('img_added');
+              }
+          });
+          break;
+        }
         var reader = new FileReader();
         //shows a spinner
         reader.onloadstart = function(e) {
@@ -32,7 +53,8 @@
           return function(e) {
             // Render dropped image.
             var dropArea = actual_drop_zone;
-            dropArea.html(['<div class="dropped_div"><img class="dropped_img" src="', e.target.result, '" title="', escape(theFile.name), '"/></div>'].join(''));
+            dropArea.html('pippa');
+            //dropArea.html(['<div class="dropped_div"><img class="dropped_img" src="', e.target.result, '" title="', escape(theFile.name), '"/></div>'].join(''));
             actual_drop_zone.addClass('img_added');
           };
         })(f);
@@ -51,6 +73,29 @@
           break;
         }
       
+
+        if(!window.FileReader){
+          var form = new FormData();
+          form.append('file', f);
+          $.ajax({
+              url: 'getBase64.php',
+              data: form,
+              cache: false,
+              contentType: false,
+              processData: false,
+              type: 'POST',
+              beforeSend: function(){
+                actual_drop_zone.find('.message').html(spinner);
+              },
+              success: function(data){
+                $.post('tmp/saveTemp.php', {base64: data, name: f.name}, function(urlToGDocs){
+                  actual_drop_zone.html('<div class="dropped_div"><iframe id="document_frame" src="http://docs.google.com/gview?url='+escape(urlToGDocs)+'&embedded=true" style="width:100%; height:600px;" frameborder="0"></iframe></div>');
+                  actual_drop_zone.addClass('img_added');
+                });
+              }
+          });
+          break;
+        }
         var reader = new FileReader();
         //shows a spinner
         reader.onloadstart = function(e) {
