@@ -487,10 +487,15 @@ a.prev {
 .element_popup{
 	padding:5px;
 	float:left;
+	cursor: pointer;
 }
 .element_popup:hover{
 	opacity:0.4;
 	filter:alpha(opacity=4);
+}
+.percentLoaded {
+	font-weight:bold;
+	color:black;
 }
 
 /*bottol creator content end*/

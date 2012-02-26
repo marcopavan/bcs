@@ -29,7 +29,10 @@
               processData: false,
               type: 'POST',
               beforeSend: function(){
-                actual_drop_zone.find('.message').html(spinner);
+                //actual_drop_zone.find('.message').html(spinner);
+                actual_drop_zone.html(spinner);
+                actual_drop_zone.html(spinner + '<div class="percentLoaded"></div>');
+                actual_drop_zone.find('.percentLoaded').html('Creating preview...');
               },
               success: function(data){
                 var dropArea = actual_drop_zone;
@@ -42,7 +45,8 @@
         var reader = new FileReader();
         //shows a spinner
         reader.onloadstart = function(e) {
-          actual_drop_zone.find('.message').html(spinner + '<div class="percentLoaded"></div>');
+          //actual_drop_zone.find('.message').html(spinner + '<div class="percentLoaded"></div>');
+          actual_drop_zone.html(spinner + '<div class="percentLoaded"></div>');
         };
         //change percentage
         reader.onprogress = function(e) {
@@ -53,8 +57,8 @@
           return function(e) {
             // Render dropped image.
             var dropArea = actual_drop_zone;
-            dropArea.html('pippa');
-            //dropArea.html(['<div class="dropped_div"><img class="dropped_img" src="', e.target.result, '" title="', escape(theFile.name), '"/></div>'].join(''));
+            //dropArea.html('pippa');
+            dropArea.html(['<div class="dropped_div"><img class="dropped_img" src="', e.target.result, '" title="', escape(theFile.name), '"/></div>'].join(''));
             actual_drop_zone.addClass('img_added');
           };
         })(f);
@@ -85,7 +89,10 @@
               processData: false,
               type: 'POST',
               beforeSend: function(){
-                actual_drop_zone.find('.message').html(spinner);
+                //actual_drop_zone.find('.message').html(spinner);
+                actual_drop_zone.html(spinner);
+                actual_drop_zone.html(spinner + '<div class="percentLoaded"></div>');
+                actual_drop_zone.find('.percentLoaded').html('Creating preview...');
               },
               success: function(data){
                 $.post('tmp/saveTemp.php', {base64: data, name: f.name}, function(urlToGDocs){
@@ -99,7 +106,8 @@
         var reader = new FileReader();
         //shows a spinner
         reader.onloadstart = function(e) {
-          actual_drop_zone.find('.message').html(spinner + '<div class="percentLoaded"></div>');
+          //actual_drop_zone.find('.message').html(spinner + '<div class="percentLoaded"></div>');
+          actual_drop_zone.html(spinner + '<div class="percentLoaded"></div>');
         };
         //change percentage
         reader.onprogress = function(e) {

@@ -53,18 +53,14 @@ function addMM(){add('last', create_block('<div class="medium"><a class="new_add
 function addSSS(){add('last', create_block('<div class="small"><a class="new_add_menu"href="#hidden_menu"><p class="message_layout"></p></a></div><div class="small"><a class="new_add_menu" href="#hidden_menu"><p class="message_layout"></p></a></div><div class="small"><a class="new_add_menu" href="#hidden_menu"><p class="message_layout"></p></a></div>'));}
 function addSL(){add('last', create_block('<div class="small"><a class="new_add_menu" href="#hidden_menu"><p class="message_layout"></p></a></div><div class="large"><a class="new_add_menu" href="#hidden_menu"><p class="message_layout"></p></a></div>'));}
 function addLS(){add('last', create_block('<div class="large"><a class="new_add_menu" href="#hidden_menu"><p class="message_layout"></p></a></div><div class="small"><a class="new_add_menu" href="#hidden_menu"><p class="message_layout"></p></a></div>'));}
-function addXL(){add('last', create_block('<div class="largest"><a class="new_add_menu" href="#hidden_menu"><p class="message_layout"></p></a></div>'));}
 
 // End add new element
 
 // Fuction add element
 
 function appendText(){$('.select').html('<textarea id="textarea' + (++textareaNum) + '" class="tinyMCETextArea"></textarea>');createTextAreaTinyMCE('textarea'+textareaNum);$('.select').removeClass('select');}
-function appendDocument(){$('.select').html('<div class="drop_zone document"><p class="message" id="drop_document"></p></div>');$('.select').removeClass('select');}
 function appendImage(){$('.select').html('<div class="drop_zone image"><p class="message" id="drop_image"></p></div>');$('.select').removeClass('select');}
 function appendVideo(){$('.select').html('<div class="video"><input type="text" placeholder="Your video url ('+supportedVideoDomains.join(', ')+')" oninput="videoSearch($(this));"/></div>');$('.select').removeClass('select');}
-function appendAudio(){alert('testAudio');}
-function appendLink(){$('.select').html('<div class="webPage"><input type="text" placeholder="Insert an url" oninput="webIFrame($(this));"/></div>');$('.select').removeClass('select');}
 
 // End function add element
 

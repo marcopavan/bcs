@@ -82,9 +82,6 @@
 					<div class="element" onclick="addLS()">
 						<img src="img/3x2r.png"/>
 					</div>
-					<div class="element" onclick="addXL()">
-						<img src="img/3x1.png"/>
-					</div>
 					<!-- fine layout icons -->
 				</div>
 				<div class="clearfix"></div>
@@ -107,16 +104,6 @@
 					<div class="element_popup" onclick="appendVideo()">
 						<img src="img/video.png"/>
 					</div>
-					<div class="element_popup" onclick="appendAudio()">
-						<img src="img/music.png"/>
-					</div>
-					<div class="element_popup" onclick="appendLink()">
-						<img src="img/webpage.png"/>
-					</div>
-					<div class="element_popup" onclick="appendDocument()">
-						<img src="img/document.png"/>
-					</div>
-					
 				</div>
 			</div>
 
