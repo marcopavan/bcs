@@ -327,17 +327,11 @@ a.prev {
 	padding-top:30px;
 	text-align:center;
 }
-#drop_document {
-	background: url(img/dropdoc40pt.png) top no-repeat;
-	width:100%;
-	height:30px;
-	margin-top:60px;
+.document {
+	background: url(img/dropdoc40pt.png) center no-repeat;
 }
-#drop_image {
-	background: url(img/drop40pt.png) top no-repeat;
-	width:100%;
-	height:30px;
-	margin-top:60px;
+.image {
+	background: url(img/drop40pt.png) center no-repeat;
 }
 /*image drop end*/
 
@@ -496,6 +490,9 @@ a.prev {
 .percentLoaded {
 	font-weight:bold;
 	color:black;
+}
+.small>.drop_zone {
+	background: url(img/drop_small.png) center no-repeat;
 }
 
 /*bottol creator content end*/
