@@ -42,7 +42,7 @@ var textareaNum = 0;
 // Function add new element block
 
 function addText(){
-        add('last', create_block('<textarea id="textarea' + (++textareaNum) + '" class="tinyMCETextArea"></textarea>'));
+        add('last', create_block('<div class="largest"><textarea id="textarea' + (++textareaNum) + '" class="tinyMCETextArea"></textarea></div>'));
         createTextAreaTinyMCE('textarea'+textareaNum);
 }
 function addDocument(){add('last', create_block('<div class="drop_zone document"><p class="message" id="drop_document"></p></div>'))};
@@ -124,12 +124,20 @@ $(function(){
                                 updateTextAreaTinyMCE(ui.item.find('.tinyMCETextArea').attr('id'));
                 }
         });
-
-        tinyMCE.init(tinyconfig);
 });
 
 function createTextAreaTinyMCE(textAreaId){
-        tinyMCE.settings = tinyconfig;
+        var ta = $('#'+textAreaId);
+
+        if(ta.parents('.small').size() > 0)
+                tinyMCE.settings = tinyconfigS;
+        if(ta.parents('.medium').size() > 0)
+                tinyMCE.settings = tinyconfigM;
+        if(ta.closest('.large').size() > 0)
+                tinyMCE.init(tinyconfigL);
+        if(ta.parents('.largest').size() > 0)
+                tinyMCE.settings = tinyconfigXL;
+
         tinyMCE.execCommand('mceAddControl', true, textAreaId);
 }
 function updateTextAreaTinyMCE(textAreaId){
@@ -137,9 +145,8 @@ function updateTextAreaTinyMCE(textAreaId){
         createTextAreaTinyMCE(textAreaId)
 }
 
-var tinyconfig = {
+var tinyconfigXL = {
        theme : "advanced",
-       width: "100",
        mode : "specific_textareas",
        editor_selector : "mceEditor",
        theme_advanced_buttons1 : "bold,italic,underline,strikethrough,|,justifyleft,justifycenter,justifyright,justifyfull,|,bullist,numlist,undo,redo,|,formatselect,fontselect,fontsizeselect,|,forecolor,backcolor",
@@ -147,7 +154,48 @@ var tinyconfig = {
        theme_advanced_buttons3: "",
        theme_advanced_buttons4: "",
        theme_advanced_toolbar_location : "top",
-       theme_advanced_toolbar_align : "left"
+       theme_advanced_toolbar_align : "left",
+       width: '100%',
+       height: '203'
+}
+var tinyconfigL = {
+       theme : "advanced",
+       mode : "specific_textareas",
+       editor_selector : "mceEditor",
+       theme_advanced_buttons1 : "bold,italic,underline,strikethrough,|,justifyleft,justifycenter,justifyright,justifyfull,|,forecolor,backcolor,|,bullist,numlist,undo,redo",
+       theme_advanced_buttons2: "formatselect,fontselect,fontsizeselect",
+       theme_advanced_buttons3: "",
+       theme_advanced_buttons4: "",
+       theme_advanced_toolbar_location : "top",
+       theme_advanced_toolbar_align : "left",
+       width: '100%',
+       height: '200'
+}
+var tinyconfigM = {
+       theme : "advanced",
+       mode : "specific_textareas",
+       editor_selector : "mceEditor",
+       theme_advanced_buttons1 : "bold,italic,underline,strikethrough,|,justifyleft,justifycenter,justifyright,justifyfull,|,bullist,numlist,undo,redo,|,forecolor,backcolor",
+       theme_advanced_buttons2: "formatselect,fontselect,fontsizeselect",
+       theme_advanced_buttons3: "",
+       theme_advanced_buttons4: "",
+       theme_advanced_toolbar_location : "top",
+       theme_advanced_toolbar_align : "left",
+       width: '100%',
+       height: '200'
+}
+var tinyconfigS = {
+       theme : "advanced",
+       mode : "specific_textareas",
+       editor_selector : "mceEditor",
+       theme_advanced_buttons1 : "bold,italic,underline,strikethrough,|,justifyleft,justifycenter,justifyright,justifyfull,|,bullist,numlist",
+       theme_advanced_buttons2: "undo,redo,|,formatselect,fontselect",
+       theme_advanced_buttons3: "fontsizeselect,|,forecolor,backcolor",
+       theme_advanced_buttons4: "",
+       theme_advanced_toolbar_location : "top",
+       theme_advanced_toolbar_align : "left",
+       width: '100%',
+       height: '197'
 }
 
 function webIFrame(textfield){
@@ -199,10 +247,7 @@ function videoSearch(textfield){
                         if(textfield.parent().find('iframe').size() > 0)
                                 textfield.parent().find('iframe').attr('src', pageurl);
                         else
-                        {
-                                //textfield.parent().css('height', '350px');
                                 textfield.parent().append('<iframe src="'+pageurl+'" frameborder="0" allowfullscreen></iframe>');
-                        }
                 }
         });
 }
