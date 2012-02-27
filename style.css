@@ -500,6 +500,14 @@ a.prev {
 	font-weight:bold;
 	color:black;
 }
+.uploading_status {
+	background-color: #eee;
+	border-radius: 5px;
+	border: 2px solid #ccc;
+	padding: 10px;
+	margin: 20px auto;
+	width: 200px;
+}
 .small>.drop_zone {
 	background: url(img/drop_small.png) center no-repeat;
 }

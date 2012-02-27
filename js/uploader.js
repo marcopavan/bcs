@@ -30,8 +30,7 @@
               type: 'POST',
               beforeSend: function(){
                 //actual_drop_zone.find('.message').html(spinner);
-                actual_drop_zone.html(spinner);
-                actual_drop_zone.html(spinner + '<div class="percentLoaded"></div>');
+                actual_drop_zone.html('<div class="uploading_status">'+spinner + '<div class="percentLoaded"></div></div>');
                 actual_drop_zone.find('.percentLoaded').html('Creating preview...');
               },
               success: function(data){
@@ -89,8 +88,7 @@
             processData: false,
             type: 'POST',
             beforeSend: function(){
-              actual_drop_zone.html(spinner);
-              actual_drop_zone.html(spinner + '<div class="percentLoaded"></div>');
+              actual_drop_zone.html('<div class="uploading_status">'+spinner + '<div class="percentLoaded"></div></div>');
               actual_drop_zone.find('.percentLoaded').html('Creating preview...');
             },
             success: function(urlToGDocs){

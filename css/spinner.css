@@ -3,6 +3,9 @@ div.spinner {
   width: 54px;
   height: 54px;
   display: inline-block;
+  background-color: #ddd;
+  border-radius:5px;
+  border: 2px solid #ccc;
 }
 
 div.spinner div {
