@@ -562,18 +562,7 @@ a.prev {
 	position: relative;
 	z-index: 1;
 }
-.block .small .generic_link > div {
-	height:170px;
-}
-.block .medium .generic_link > div {
-	height:260px;
-}
-.block .large .generic_link > div {
-	height:350px;
-}
-.block .largest .generic_link > div {
-	height:520px;
-}
+
 .block#active .generic_link > div {
 	opacity: 0.4;
 	-moz-opacity: 0.4;

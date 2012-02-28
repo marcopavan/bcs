@@ -250,23 +250,38 @@ function videoSearch(textfield){
                                 textfield.parent().append('<iframe src="'+pageurl+'" frameborder="0" allowfullscreen></iframe><div class="overlay"></div>');
                 }
         });
+}
+
+
 
 function embedURL(textfield) {
-  var genericUrl = textfield.val();
+        var genericUrl = textfield.val();
+        if(!(genericUrl.indexOf('http://') == 0)) {
+          genericUrl = 'http://' + genericUrl;
+        }
 
-  if(!(genericUrl.indexOf('http://') == 0)) {
-    genericUrl = 'http://' + genericUrl;
-  }
-    
-  $.ajax({
-    type: "GET",
-    url: genericUrl,
-    dataType: "jsonp",
-    complete: function(){
-      $('#hidden_link').attr('href',genericUrl);
-    }
-  });
-
-
+        $.ajax({
+          type: "GET",
+          url: genericUrl,
+          dataType: "jsonp",
+          complete: function(){
+            textfield.parent().find('a').attr('href',genericUrl);
+            var max = textfield.parent().width();
+            $(textfield.parent()).embedly({
+              maxWidth: max,
+              //key: 'abb3e3165efb11e195364040d3dc5c07',
+              wmode: 'transparent',
+              method: 'after'
+            });
+          }
+        });
 }
-}
+
+
+
+
+
+
+
+
+
