@@ -532,5 +532,15 @@ a.prev {
 	min-height:0;
 	height:0;
 }
-
+#counter_blocks {
+	color:red;
+	font-weight:bold;
+	text-align:center;
+}
+#counter_blocks > p {
+	position: absolute;
+	z-index: 1;
+	top: -15%;
+	left: 29%;
+}
 /*bottol creator content end*/

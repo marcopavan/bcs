@@ -70,7 +70,7 @@ function checkNumberOfBlocksInserted() {
     currentBlocks++;
     return true;
   }else{
-    //$('#counter_blocks').html('<p>'+'You can add only 10 blocks</p>');
+    $('#counter_blocks').html('<p>'+'You can add only 10 blocks</p>');
     return false;
   }
 }
