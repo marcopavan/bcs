@@ -38,20 +38,22 @@ function create_block(content){
 }
 
 var textareaNum = 0;
+var maximumBlocks = 10;
+var currentBlocks = 0;
 
 // Function add new element block
 
-function addText(){add('last', create_block('<div class="largest select"></div>')); appendText();}
-function addDocument(){add('last', create_block('<div class="largest"><div class="drop_zone document"><p class="message" id="drop_document"></p></div></div>'))};
-function addImage(){add('last', create_block('<div class="largest select"></div>')); appendImage();}
-function addVideo(){add('last', create_block('<div class="largest select"></div>')); appendVideo();}
-function addLink(){add('last', create_block('<div class="largest"><div class="webPage"><input type="text" placeholder="Insert an url" oninput="webIFrame($(this));"/></div></div>'));}
-function addNotAvailable(){add('last', create_block('<div class="largest"><p class="notAvailable">Not available yet...</p></div>'));}
+function addText(){if(checkNumberOfBlocksInserted())add('last', create_block('<div class="largest select"></div>')); appendText();}
+function addDocument(){if(checkNumberOfBlocksInserted())add('last', create_block('<div class="largest"><div class="drop_zone document"><p class="message" id="drop_document"></p></div></div>'))};
+function addImage(){if(checkNumberOfBlocksInserted())add('last', create_block('<div class="largest select"></div>')); appendImage();}
+function addVideo(){if(checkNumberOfBlocksInserted())add('last', create_block('<div class="largest select"></div>')); appendVideo();}
+function addLink(){if(checkNumberOfBlocksInserted())add('last', create_block('<div class="largest"><div class="webPage"><input type="text" placeholder="Insert an url" oninput="webIFrame($(this));"/></div></div>'));}
+function addNotAvailable(){if(checkNumberOfBlocksInserted())add('last', create_block('<div class="largest"><p class="notAvailable">Not available yet...</p></div>'));}
 
-function addMM(){add('last', create_block(medium+medium+'<div class="fixed"></div>'));}
-function addSSS(){add('last', create_block(small+small+small+'<div class="fixed"></div>'));}
-function addSL(){add('last', create_block(small+large+'<div class="fixed"></div>'));}
-function addLS(){add('last', create_block(large+small+'<div class="fixed"></div>'));}
+function addMM(){if(checkNumberOfBlocksInserted())add('last', create_block(medium+medium+'<div class="fixed"></div>'));}
+function addSSS(){if(checkNumberOfBlocksInserted())add('last', create_block(small+small+small+'<div class="fixed"></div>'));}
+function addSL(){if(checkNumberOfBlocksInserted())add('last', create_block(small+large+'<div class="fixed"></div>'));}
+function addLS(){if(checkNumberOfBlocksInserted())add('last', create_block(large+small+'<div class="fixed"></div>'));}
 
 // End add new element
 
@@ -62,6 +64,16 @@ function appendImage(){$('.select').html('<div class="drop_zone image"><p class=
 function appendVideo(){$('.select').html('<div class="video"><input type="text" placeholder="Your video url ('+supportedVideoDomains.join(', ')+')" oninput="videoSearch($(this));"/></div>');$('.select').removeClass('select');}
 
 // End function add element
+
+function checkNumberOfBlocksInserted() {
+  if (currentBlocks < maximumBlocks) {
+    currentBlocks++;
+    return true;
+  }else{
+    //$('#counter_blocks').html('<p>'+'You can add only 10 blocks</p>');
+    return false;
+  }
+}
 
 $('.new_add_menu').live('click',function(){
         $(this).fancybox({
@@ -78,6 +90,8 @@ $('.new_add_menu').live('click',function(){
 
 $('.remove').live('click', function(){
 	$(this).parent().parent().remove();
+  currentBlocks--;
+  $('#counter_blocks').html('<p></p>');
 });
 
 $('.move_up').live('click', function(){

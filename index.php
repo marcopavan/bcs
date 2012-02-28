@@ -47,8 +47,9 @@
 			<label>Subtitle:</label><br/>
 			<input type="text" name="topic_subtitle" id="topic_subtitle" value="" autocomplete="off" maxlength="80" /><!-- <span class="asterisco">*</span> --><br/>
 
+			<!--<div id='counter_blocks' style="z-index:1; color:red; font-weight:bold; text-align:center;"></div>-->
+			
 			<!-- Start jcarousel -->
-
 			<div class="list_carousel">
 				<div id="elements">
 					<div class="element" onclick="addText()">
