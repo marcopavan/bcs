@@ -603,4 +603,49 @@ a.prev {
 }
 
 /*generic link end*/
+
+/* resize block - start */
+.block > .resize_controls{
+	height: 16px;
+	width: 75px;
+	position: absolute;
+	top: -12px;
+	right: 50px;
+	min-height: 0;
+	background-color: black;
+	border-radius: 10px;
+	padding-top: 4px;
+	border: 2px solid white;
+	box-shadow: 2px 2px 2px #888;
+	font-size: 0.8em;
+	display: none;
+	z-index: 3;
+}
+.block#active > .resize_controls{
+	display: block;
+}
+.block > .resize_controls > *{
+	display: inline;
+	padding: 4px;
+	cursor: pointer;
+}
+.block > .resize_controls > .selected{
+	color: white;
+}
+.block > .resize_controls > *:hover{
+	color: white;
+}
+.block > .resize.small{
+	margin: 0 33.5%;
+}
+.block > .resize.medium{
+	margin: 0 25%;
+}
+.block > .resize.large{
+	margin: 0 17%;
+}
+.block > .resize.largest{
+	margin: 0 0.5%;
+}
+/* resize block - end */
 /*bottol creator content end*/

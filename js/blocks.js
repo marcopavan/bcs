@@ -3,6 +3,7 @@ var modifyer = '<div class="modify"><img class="remove" src="img/close.png"/><di
 var small = '<div class="small"><a class="new_add_menu"href="#hidden_menu"><p class="message_layout"></p></a></div>';
 var medium = '<div class="medium"><a class="new_add_menu" href="#hidden_menu"><p class="message_layout"></p></a></div>';
 var large = '<div class="large"><a class="new_add_menu" href="#hidden_menu"><p class="message_layout"></p></a></div>';
+var resizeControls = '<div class="resize_controls"><p rel="small">S</p><p rel="medium">M</p><p rel="large">L</p><p class="selected" rel="largest">XL</p></div>';
 
 function add(index, content, before){
         before = before && !(before == null);
@@ -43,10 +44,10 @@ var currentBlocks = 0;
 
 // Function add new element block
 
-function addText(){if(checkNumberOfBlocksInserted())add('last', create_block('<div class="largest select"></div>')); appendText();}
+function addText(){if(checkNumberOfBlocksInserted())add('last', create_block(resizeControls+'<div class="largest resize select"></div><div class="fixed"></div>')); appendText();}
 function addDocument(){if(checkNumberOfBlocksInserted())add('last', create_block('<div class="largest"><div class="drop_zone document"><p class="message" id="drop_document"></p></div></div>'))};
-function addImage(){if(checkNumberOfBlocksInserted())add('last', create_block('<div class="largest select"></div>')); appendImage();}
-function addVideo(){if(checkNumberOfBlocksInserted())add('last', create_block('<div class="largest select"></div>')); appendVideo();}
+function addImage(){if(checkNumberOfBlocksInserted())add('last', create_block(resizeControls+'<div class="largest resize select"></div><div class="fixed"></div>')); appendImage();}
+function addVideo(){if(checkNumberOfBlocksInserted())add('last', create_block(resizeControls+'<div class="largest resize select"></div><div class="fixed"></div>')); appendVideo();}
 function addLink(){if(checkNumberOfBlocksInserted())add('last', create_block('<div class="largest"><div class="webPage"><input type="text" placeholder="Insert an url" oninput="webIFrame($(this));"/></div></div>'));}
 function addNotAvailable(){if(checkNumberOfBlocksInserted())add('last', create_block('<div class="largest"><p class="notAvailable">Not available yet...</p></div>'));}
 function addGenericLink(){if(checkNumberOfBlocksInserted())add('last', create_block('<div class="largest select"></div>')); appendGenericLink();}
@@ -120,6 +121,20 @@ $('.move_down').live('click', function(){
         tinyTextareas.each(function(){updateTextAreaTinyMCE($(this).attr('id'));});
 
         return false;
+});
+
+$('.resize_controls > *').live('click', function(){
+  var resizer = $(this).parent();
+  var selected = resizer.find('.selected');
+  var size = selected.attr('rel');
+  selected.removeClass('selected');
+  $(this).addClass('selected');
+  var toResize = resizer.siblings('.resize');
+  toResize.removeClass(size);
+  toResize.addClass($(this).attr('rel'));
+
+  var tinyTextareas = toResize.find('.tinyMCETextArea');
+  tinyTextareas.each(function(){updateTextAreaTinyMCE($(this).attr('id'), $(this).attr('rel'));});
 });
 
 $('.block').live('mousedown', function(){
