@@ -47,9 +47,9 @@ function addText(){
 }
 function addDocument(){add('last', create_block('<div class="drop_zone document"><p class="message" id="drop_document"></p></div>'))};
 function addImage(){add('last', create_block('<div class="drop_zone image"><p class="message" id="drop_image"></p></div>'));}
-function addVideo(){add('last', create_block('<div class="video"><input type="text" placeholder="Your video url ('+supportedVideoDomains.join(', ')+')" oninput="videoSearch($(this));"/></div>'));}
+function addVideo(){add('last', create_block('<div class="largest"><div class="video"><input type="text" placeholder="Your video url ('+supportedVideoDomains.join(', ')+')" oninput="videoSearch($(this));"/></div></div>'));}
 function addAudio(){add('last', create_block('audio'));}
-function addLink(){add('last', create_block('<div class="webPage"><input type="text" placeholder="Insert an url" oninput="webIFrame($(this));"/></div>'));}
+function addLink(){add('last', create_block('<div class="largest"><div class="webPage"><input type="text" placeholder="Insert an url" oninput="webIFrame($(this));"/></div></div>'));}
 function addNotAvailable(){add('last', create_block('<p class="notAvailable">Not available yet...</p>'));}
 
 function addMM(){add('last', create_block(medium+medium+'<div class="fixed"></div>'));}
@@ -215,7 +215,7 @@ function webIFrame(textfield){
                         else
                         {
                                 textfield.parent().css('height', '600px');
-                                textfield.parent().append('<iframe src="'+pageurl+'" frameborder="0"></iframe><div class="iframeSelector">SELECT<br/>OR DRAG</div>');
+                                textfield.parent().append('<iframe src="'+pageurl+'" frameborder="0"></iframe><div class="overlay"></div>');
                         }
                 }
         });
@@ -247,7 +247,7 @@ function videoSearch(textfield){
                         if(textfield.parent().find('iframe').size() > 0)
                                 textfield.parent().find('iframe').attr('src', pageurl);
                         else
-                                textfield.parent().append('<iframe src="'+pageurl+'" frameborder="0" allowfullscreen></iframe>');
+                                textfield.parent().append('<iframe src="'+pageurl+'" frameborder="0" allowfullscreen></iframe><div class="overlay"></div>');
                 }
         });
 }
