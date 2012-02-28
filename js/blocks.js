@@ -49,6 +49,8 @@ function addImage(){if(checkNumberOfBlocksInserted())add('last', create_block('<
 function addVideo(){if(checkNumberOfBlocksInserted())add('last', create_block('<div class="largest select"></div>')); appendVideo();}
 function addLink(){if(checkNumberOfBlocksInserted())add('last', create_block('<div class="largest"><div class="webPage"><input type="text" placeholder="Insert an url" oninput="webIFrame($(this));"/></div></div>'));}
 function addNotAvailable(){if(checkNumberOfBlocksInserted())add('last', create_block('<div class="largest"><p class="notAvailable">Not available yet...</p></div>'));}
+function addGenericLink(){if(checkNumberOfBlocksInserted())add('last', create_block('<div class="largest select"></div>')); appendGenericLink();}
+
 
 function addMM(){if(checkNumberOfBlocksInserted())add('last', create_block(medium+medium+'<div class="fixed"></div>'));}
 function addSSS(){if(checkNumberOfBlocksInserted())add('last', create_block(small+small+small+'<div class="fixed"></div>'));}
@@ -62,7 +64,7 @@ function addLS(){if(checkNumberOfBlocksInserted())add('last', create_block(large
 function appendText(){$('.select').html('<textarea id="textarea' + (++textareaNum) + '" class="tinyMCETextArea"></textarea>');createTextAreaTinyMCE('textarea'+textareaNum);$('.select').removeClass('select');}
 function appendImage(){$('.select').html('<div class="drop_zone image"><p class="message" id="drop_image"></p></div>');$('.select').removeClass('select');}
 function appendVideo(){$('.select').html('<div class="video"><input type="text" placeholder="Your video url ('+supportedVideoDomains.join(', ')+')" oninput="videoSearch($(this));"/></div>');$('.select').removeClass('select');}
-
+function appendGenericLink(){$('.select').html('<div class="generic_link"><input type="text" placeholder="Enter a link" oninput="embedURL($(this));"/><a id="hidden_link" href=""></a></div>');$('.select').removeClass('select');}
 // End function add element
 
 function checkNumberOfBlocksInserted() {
@@ -248,4 +250,23 @@ function videoSearch(textfield){
                                 textfield.parent().append('<iframe src="'+pageurl+'" frameborder="0" allowfullscreen></iframe><div class="overlay"></div>');
                 }
         });
+
+function embedURL(textfield) {
+  var genericUrl = textfield.val();
+
+  if(!(genericUrl.indexOf('http://') == 0)) {
+    genericUrl = 'http://' + genericUrl;
+  }
+    
+  $.ajax({
+    type: "GET",
+    url: genericUrl,
+    dataType: "jsonp",
+    complete: function(){
+      $('#hidden_link').attr('href',genericUrl);
+    }
+  });
+
+
+}
 }

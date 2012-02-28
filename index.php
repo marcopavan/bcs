@@ -12,6 +12,7 @@
 <script type="text/javascript" src="js/blocks.js"></script>
 <script type="text/javascript" src="js/uploader.js"></script>
 <script type="text/javascript" src="js/fancybox/jquery.fancybox-1.3.4.pack.js"></script>
+<script type="text/javascript" src="js/jquery.embedly.js"></script>
 
 <script type="text/javascript" language="javascript">
 	$(function() {
@@ -53,38 +54,45 @@
 			<div class="list_carousel">
 				<div id='counter_blocks'></div>
 				<div id="elements">
-					<div class="element" onclick="addText()">
+					<div class="element" onclick="addText()" title="Embed Text">
 						<img src="img/text.png"/>
 					</div>
-					<div class="element" onclick="addImage()">
+					<div class="element" onclick="addImage()" title="Embed Image">
 						<img src="img/image.png"/>
 					</div>
-					<div class="element" onclick="addVideo()">
+					<div class="element" onclick="addVideo()" title="Embed Video">
 						<img src="img/video.png"/>
 					</div>
-					<div class="element" onclick="addNotAvailable()">
+					<!--<div class="element" onclick="addNotAvailable()" title="Embed audio">
 						<img src="img/music.png"/>
+					</div>-->
+					<div class="element" onclick="addGenericLink()" title="Embed Web Link">
+						<img src="img/link.png"/>
 					</div>
-					<div class="element" onclick="addLink()">
+					<div class="element" onclick="addLink()" title="Embed Web Page">
 						<img src="img/webpage.png"/>
 					</div>
-					<div class="element" onclick="addDocument()">
+					<div class="element" onclick="addDocument()" title="Embed Document">
 						<img src="img/document.png"/>
 					</div>
+
 					<!-- layout icons -->
-					<div class="element" onclick="addMM()">
+
+					<div class="element" onclick="addMM()" title="Add two medium slots">
 						<img src="img/2x2.png"/>
 					</div>
-					<div class="element" onclick="addSSS()">
+					<div class="element" onclick="addSSS()" title="Add three small slots">
 						<img src="img/3x3.png"/>
 					</div>
-					<div class="element" onclick="addSL()">
+					<div class="element" onclick="addSL()" title="Add a small and a large slot">
 						<img src="img/3x2.png"/>
 					</div>
-					<div class="element" onclick="addLS()">
+					<div class="element" onclick="addLS()" title="Add a large and a small slot">
 						<img src="img/3x2r.png"/>
 					</div>
+
 					<!-- fine layout icons -->
+					
 				</div>
 				<div class="clearfix"></div>
 				<a class="prev" id="elements_prev" href="#"><img src="img/left.png" alt=""></a>

@@ -543,4 +543,75 @@ a.prev {
 	top: -15%;
 	left: 29%;
 }
+
+/*generic link start*/
+
+.block .generic_link{
+	min-height: 150px;
+	position: relative;
+	text-align: center;
+	border:2px dashed transparent;
+}
+.block#active .generic_link{
+	background-color: #EEEEEE;
+	border-radius:10px;
+	border:2px dashed #ccc;
+}
+.block .generic_link > div{
+	width: 100%;
+	position: relative;
+	z-index: 1;
+}
+.block .small .generic_link > div {
+	height:170px;
+}
+.block .medium .generic_link > div {
+	height:260px;
+}
+.block .large .generic_link > div {
+	height:350px;
+}
+.block .largest .generic_link > div {
+	height:520px;
+}
+.block#active .generic_link > div {
+	opacity: 0.4;
+	-moz-opacity: 0.4;
+	filter:alpha(opacity=4);
+	z-index: 0;
+}
+.block .generic_link > input{
+	position: absolute;
+	top: 60px;
+	width: 80%;
+	left:10%;
+	z-index: 0;
+}
+.block#active .generic_link > input{
+	z-index: 2;
+}
+.block .generic_link > .overlay{
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	z-index: 2;
+}
+.block .small .generic_link > .overlay{
+	height:170px;
+}
+.block .medium .generic_link > .overlay {
+	height:260px;
+}
+.block .large .generic_link > .overlay {
+	height:350px;
+}
+.block .largest .generic_link > .overlay {
+	height:520px;
+}
+.block#active .generic_link > .overlay{
+	z-index: 1;
+}
+
+/*generic link end*/
 /*bottol creator content end*/
