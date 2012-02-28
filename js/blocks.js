@@ -41,16 +41,12 @@ var textareaNum = 0;
 
 // Function add new element block
 
-function addText(){
-        add('last', create_block('<div class="largest"><textarea id="textarea' + (++textareaNum) + '" class="tinyMCETextArea"></textarea></div>'));
-        createTextAreaTinyMCE('textarea'+textareaNum);
-}
-function addDocument(){add('last', create_block('<div class="drop_zone document"><p class="message" id="drop_document"></p></div>'))};
-function addImage(){add('last', create_block('<div class="drop_zone image"><p class="message" id="drop_image"></p></div>'));}
-function addVideo(){add('last', create_block('<div class="largest"><div class="video"><input type="text" placeholder="Your video url ('+supportedVideoDomains.join(', ')+')" oninput="videoSearch($(this));"/></div></div>'));}
-function addAudio(){add('last', create_block('audio'));}
+function addText(){add('last', create_block('<div class="largest select"></div>')); appendText();}
+function addDocument(){add('last', create_block('<div class="largest"><div class="drop_zone document"><p class="message" id="drop_document"></p></div></div>'))};
+function addImage(){add('last', create_block('<div class="largest select"></div>')); appendImage();}
+function addVideo(){add('last', create_block('<div class="largest select"></div>')); appendVideo();}
 function addLink(){add('last', create_block('<div class="largest"><div class="webPage"><input type="text" placeholder="Insert an url" oninput="webIFrame($(this));"/></div></div>'));}
-function addNotAvailable(){add('last', create_block('<p class="notAvailable">Not available yet...</p>'));}
+function addNotAvailable(){add('last', create_block('<div class="largest"><p class="notAvailable">Not available yet...</p></div>'));}
 
 function addMM(){add('last', create_block(medium+medium+'<div class="fixed"></div>'));}
 function addSSS(){add('last', create_block(small+small+small+'<div class="fixed"></div>'));}
@@ -158,19 +154,6 @@ var tinyconfigXL = {
        width: '100%',
        height: '203'
 }
-var tinyconfigL = {
-       theme : "advanced",
-       mode : "specific_textareas",
-       editor_selector : "mceEditor",
-       theme_advanced_buttons1 : "bold,italic,underline,strikethrough,|,justifyleft,justifycenter,justifyright,justifyfull,|,forecolor,backcolor,|,bullist,numlist,undo,redo",
-       theme_advanced_buttons2: "formatselect,fontselect,fontsizeselect",
-       theme_advanced_buttons3: "",
-       theme_advanced_buttons4: "",
-       theme_advanced_toolbar_location : "top",
-       theme_advanced_toolbar_align : "left",
-       width: '100%',
-       height: '200'
-}
 var tinyconfigM = {
        theme : "advanced",
        mode : "specific_textareas",
@@ -184,13 +167,14 @@ var tinyconfigM = {
        width: '100%',
        height: '200'
 }
+var tinyconfigL = tinyconfigM;
 var tinyconfigS = {
        theme : "advanced",
        mode : "specific_textareas",
        editor_selector : "mceEditor",
        theme_advanced_buttons1 : "bold,italic,underline,strikethrough,|,justifyleft,justifycenter,justifyright,justifyfull,|,bullist,numlist",
-       theme_advanced_buttons2: "undo,redo,|,formatselect,fontselect",
-       theme_advanced_buttons3: "fontsizeselect,|,forecolor,backcolor",
+       theme_advanced_buttons2: "undo,redo,|,forecolor,backcolor,formatselect",
+       theme_advanced_buttons3: "fontselect,fontsizeselect",
        theme_advanced_buttons4: "",
        theme_advanced_toolbar_location : "top",
        theme_advanced_toolbar_align : "left",

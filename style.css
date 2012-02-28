@@ -408,7 +408,7 @@ a.prev {
 	height:350px;
 }
 .block .largest .video > iframe {
-	height:530px;
+	height:520px;
 }
 .block#active .video > iframe{
 	opacity: 0.4;
@@ -443,7 +443,7 @@ a.prev {
 	height:350px;
 }
 .block .largest .video > .overlay {
-	height:530px;
+	height:520px;
 }
 .block#active .video > .overlay{
 	z-index: 1;
