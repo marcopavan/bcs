@@ -87,8 +87,8 @@ $('.move_up').live('click', function(){
 		add(myIndex, cont.clone(), true);
         cont.remove();
 
-        if(cont.find('.tinyMCETextArea').size() == 1)
-                updateTextAreaTinyMCE(cont.find('.tinyMCETextArea').attr('id'));
+        var tinyTextareas = cont.find('.tinyMCETextArea');
+        tinyTextareas.each(function(){updateTextAreaTinyMCE($(this).attr('id'));});
 
         return false;
 });
@@ -100,8 +100,8 @@ $('.move_down').live('click', function(){
         add(myIndex, cont.clone());
         cont.remove();
 
-        if(cont.find('.tinyMCETextArea').size() == 1)
-                updateTextAreaTinyMCE(cont.find('.tinyMCETextArea').attr('id'));
+        var tinyTextareas = cont.find('.tinyMCETextArea');
+        tinyTextareas.each(function(){updateTextAreaTinyMCE($(this).attr('id'));});
 
         return false;
 });
@@ -116,8 +116,8 @@ $(function(){
                 revert: true,
                 distance: 10,
                 stop: function(event, ui){
-                        if(ui.item.find('.tinyMCETextArea').size() == 1)
-                                updateTextAreaTinyMCE(ui.item.find('.tinyMCETextArea').attr('id'));
+                        var tinyTextareas = ui.item.find('.tinyMCETextArea');
+                        tinyTextareas.each(function(){updateTextAreaTinyMCE($(this).attr('id'));});
                 }
         });
 });
@@ -138,7 +138,7 @@ function createTextAreaTinyMCE(textAreaId){
 }
 function updateTextAreaTinyMCE(textAreaId){
         tinyMCE.execCommand('mceRemoveControl', true, textAreaId);
-        createTextAreaTinyMCE(textAreaId)
+        createTextAreaTinyMCE(textAreaId);
 }
 
 var tinyconfigXL = {
