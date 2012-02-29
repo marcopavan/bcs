@@ -650,4 +650,40 @@ a.prev {
 	margin: 0 0.5%;
 }
 /* resize block - end */
+
+/* edit option - start*/
+.block > .edit_block{
+	min-height: 0;
+	height: 50%;
+	width: 0;
+	position: absolute;
+	right: 0.5%;
+	top: 0;
+	display: none;
+}
+.block > .edit_block > p{
+	height: 16px;
+	width: 30px;
+	position: absolute;
+	bottom: -10px;
+	left: 0;
+	background-color: black;
+	border-top-right-radius: 10px;
+	border-bottom-right-radius: 10px;
+	padding: 4px;
+	cursor: pointer;
+	border-width: 2px 2px 2px 0;
+	border-style: solid;
+	border-color: white;
+	box-shadow: 2px 2px 2px #888;
+	font-size: 0.8em;
+	color: white;
+}
+.block:hover > .edit_block{
+	display: block;
+}
+.block#active:hover > .edit_block{
+	display: none;
+}
+/* edit option - end*/
 /*bottol creator content end*/

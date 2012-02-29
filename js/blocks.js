@@ -1,5 +1,5 @@
 
-var modifyer = '<div class="modify"><img class="remove" src="img/close.png"/><div class="mod_controls"><img class="move_up" src="img/up.png"/><img class="move_down" src="img/down.png"/></div></div>';
+var modifyer = '<div class="modify"><img class="remove" src="img/close.png"/><div class="mod_controls"><img class="move_up" src="img/up.png"/><img class="move_down" src="img/down.png"/></div></div><div class="edit_block"><p>Edit</p></div>';
 var small = '<div class="small"><a class="new_add_menu"href="#hidden_menu"><p class="message_layout"></p></a></div>';
 var medium = '<div class="medium"><a class="new_add_menu" href="#hidden_menu"><p class="message_layout"></p></a></div>';
 var large = '<div class="large"><a class="new_add_menu" href="#hidden_menu"><p class="message_layout"></p></a></div>';
@@ -135,7 +135,7 @@ $('.resize_controls > *').live('click', function(){
   var tinyTextareas = toResize.find('.tinyMCETextArea');
   tinyTextareas.each(function(){updateTextAreaTinyMCE($(this).attr('id'), $(this).attr('rel'));});
 
-  
+
   var max = toResize.width();
   $(toResize.find('.embed')).remove();
   $(toResize.find('.hidden_link')).embedly({
