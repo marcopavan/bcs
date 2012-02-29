@@ -236,17 +236,26 @@ function webIFrame(textfield){
         });
 }
 
-var supportedVideoDomains = new Array('youtube');
+var supportedVideoDomains = new Array('youtube', 'vimeo');
+
+var regexVideoDomains = new Array(
+  /*youtube*/ Array((/(\=|\/|\&)?[a-zA-Z0-9-_]{11}(\&|$)/), (/[a-zA-Z0-9-_]{11}/)),
+  /*vimeo*/   Array(/\d{8}?$/)
+);
+
+var theEmbedUrl = new Array('http://www.youtube.com/embed/', 'http://player.vimeo.com/video/');
+var lastDigit = 0;
+var canSend = false;
 
 function videoSearch(textfield){
         var pageurl = textfield.val();
 
         var i;
-        var flag = true;
+        var domain = -1;
         for(i in supportedVideoDomains)
                 if(pageurl.indexOf(supportedVideoDomains[i]) >= 0)
-                        flag = false;
-        if(flag) return;
+                        domain = i;
+        if(domain == -1) return;
         
         if(!(pageurl.indexOf('http://') == 0))
                 pageurl = 'http://' + pageurl;
@@ -256,8 +265,11 @@ function videoSearch(textfield){
                 url: pageurl,
                 dataType: "jsonp",
                 complete: function(){
-                        var id = pageurl.replace(/^[^v]+v.(.{11}).*/,"$1");
-                        pageurl = 'http://www.youtube.com/embed/'+id;
+                        var id = pageurl;
+                        for(i in regexVideoDomains[domain])
+                          id = regexVideoDomains[domain][i].exec(id);
+
+                        pageurl = theEmbedUrl[domain]+id;
 
                         if(textfield.parent().find('iframe').size() > 0)
                                 textfield.parent().find('iframe').attr('src', pageurl);
