@@ -292,9 +292,10 @@ function embedURL(textfield) {
           url: genericUrl,
           dataType: "jsonp",
           complete: function(){
-            textfield.parent().find('a').attr('href',genericUrl);
+            textfield.parent().find('#hidden_link').attr('href',genericUrl);
             var max = textfield.parent().width();
-            $(textfield.parent()).embedly({
+            $(textfield.parent().find('.embed')).remove();
+            $(textfield.parent().find('#hidden_link')).embedly({
               maxWidth: max,
               //key: 'abb3e3165efb11e195364040d3dc5c07',
               wmode: 'transparent',
