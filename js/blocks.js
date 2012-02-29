@@ -283,7 +283,7 @@ function videoSearch(textfield){
 
 function embedURL(textfield) {
         var genericUrl = textfield.val();
-        if(!(genericUrl.indexOf('http://') == 0)) {
+        if(!(genericUrl.indexOf('http://')  == 0) && !(genericUrl.indexOf('https://')  == 0)) {
           genericUrl = 'http://' + genericUrl;
         }
 
