@@ -114,6 +114,9 @@
 					<div class="element_popup" onclick="appendVideo()">
 						<img src="img/video.png"/>
 					</div>
+					<div class="element_popup" onclick="appendGenericLink()">
+						<img src="img/link.png"/>
+					</div>
 				</div>
 			</div>
 
