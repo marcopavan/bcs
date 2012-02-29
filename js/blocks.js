@@ -48,9 +48,8 @@ function addText(){if(checkNumberOfBlocksInserted())add('last', create_block(res
 function addDocument(){if(checkNumberOfBlocksInserted())add('last', create_block('<div class="largest"><div class="drop_zone document"><p class="message" id="drop_document"></p></div></div>'))};
 function addImage(){if(checkNumberOfBlocksInserted())add('last', create_block(resizeControls+'<div class="largest resize select"></div><div class="fixed"></div>')); appendImage();}
 function addVideo(){if(checkNumberOfBlocksInserted())add('last', create_block(resizeControls+'<div class="largest resize select"></div><div class="fixed"></div>')); appendVideo();}
-function addLink(){if(checkNumberOfBlocksInserted())add('last', create_block('<div class="largest"><div class="webPage"><input type="text" placeholder="Insert an url" oninput="webIFrame($(this));"/></div></div>'));}
-function addNotAvailable(){if(checkNumberOfBlocksInserted())add('last', create_block('<div class="largest"><p class="notAvailable">Not available yet...</p></div>'));}
-function addGenericLink(){if(checkNumberOfBlocksInserted())add('last', create_block('<div class="largest select"></div>')); appendGenericLink();}
+function addLink(){if(checkNumberOfBlocksInserted())add('last', create_block('<div class="largest"><div class="webPage"><input type="text" placeholder="Insert an url" oninput="webPageType($(this));"/></div></div>'));}
+function addGenericLink(){if(checkNumberOfBlocksInserted())add('last', create_block(resizeControls+'<div class="largest resize select"></div><div class="fixed"></div>')); appendGenericLink();}
 
 
 function addMM(){if(checkNumberOfBlocksInserted())add('last', create_block(medium+medium+'<div class="fixed"></div>'));}
@@ -64,8 +63,8 @@ function addLS(){if(checkNumberOfBlocksInserted())add('last', create_block(large
 
 function appendText(){$('.select').html('<textarea id="textarea' + (++textareaNum) + '" class="tinyMCETextArea"></textarea>');createTextAreaTinyMCE('textarea'+textareaNum);$('.select').removeClass('select');}
 function appendImage(){$('.select').html('<div class="drop_zone image"><p class="message" id="drop_image"></p></div>');$('.select').removeClass('select');}
-function appendVideo(){$('.select').html('<div class="video"><input type="text" placeholder="Your video url ('+supportedVideoDomains.join(', ')+')" oninput="videoSearch($(this));"/></div>');$('.select').removeClass('select');}
-function appendGenericLink(){$('.select').html('<div class="generic_link"><input type="text" placeholder="Enter a link" oninput="embedURL($(this));"/><a id="hidden_link" href=""></a></div>');$('.select').removeClass('select');}
+function appendVideo(){$('.select').html('<div class="video"><input type="text" placeholder="Your video url ('+supportedVideoDomains.join(', ')+')" oninput="videoType($(this));"/></div>');$('.select').removeClass('select');}
+function appendGenericLink(){$('.select').html('<div class="generic_link"><input type="text" placeholder="Enter a link" oninput="embedType($(this));"/><a class="hidden_link" href=""></a></div>');$('.select').removeClass('select');}
 // End function add element
 
 function checkNumberOfBlocksInserted() {
@@ -135,6 +134,16 @@ $('.resize_controls > *').live('click', function(){
 
   var tinyTextareas = toResize.find('.tinyMCETextArea');
   tinyTextareas.each(function(){updateTextAreaTinyMCE($(this).attr('id'), $(this).attr('rel'));});
+
+  
+  var max = toResize.width();
+  $(toResize.find('.embed')).remove();
+  $(toResize.find('.hidden_link')).embedly({
+    maxWidth: max,
+    //key: 'abb3e3165efb11e195364040d3dc5c07',
+    wmode: 'transparent',
+    method: 'after'
+  });
 });
 
 $('.block').live('mousedown', function(){
@@ -213,6 +222,14 @@ var tinyconfigS = {
        height: '197'
 }
 
+var lastTyped = 0;
+
+function webPageType(textfield){
+  var now = new Date();
+  lastTyped = now;
+  setTimeout(function(){if(now == lastTyped) webIFrame(textfield);}, 2000);
+}
+
 function webIFrame(textfield){
         var pageurl = textfield.val();
         if(pageurl == '' || pageurl == 'http://')
@@ -244,8 +261,12 @@ var regexVideoDomains = new Array(
 );
 
 var theEmbedUrl = new Array('http://www.youtube.com/embed/', 'http://player.vimeo.com/video/');
-var lastDigit = 0;
-var canSend = false;
+
+function videoType(textfield){
+  var now = new Date();
+  lastTyped = now;
+  setTimeout(function(){if(now == lastTyped) videoSearch(textfield);}, 2000);
+}
 
 function videoSearch(textfield){
         var pageurl = textfield.val();
@@ -280,6 +301,11 @@ function videoSearch(textfield){
 }
 
 
+function embedType(textfield){
+  var now = new Date();
+  lastTyped = now;
+  setTimeout(function(){if(now == lastTyped) embedURL(textfield);}, 2000);
+}
 
 function embedURL(textfield) {
         var genericUrl = textfield.val();
@@ -292,10 +318,10 @@ function embedURL(textfield) {
           url: genericUrl,
           dataType: "jsonp",
           complete: function(){
-            textfield.parent().find('#hidden_link').attr('href',genericUrl);
+            textfield.parent().find('.hidden_link').attr('href',genericUrl);
             var max = textfield.parent().width();
             $(textfield.parent().find('.embed')).remove();
-            $(textfield.parent().find('#hidden_link')).embedly({
+            $(textfield.parent().find('.hidden_link')).embedly({
               maxWidth: max,
               //key: 'abb3e3165efb11e195364040d3dc5c07',
               wmode: 'transparent',
@@ -304,12 +330,3 @@ function embedURL(textfield) {
           }
         });
 }
-
-
-
-
-
-
-
-
-
