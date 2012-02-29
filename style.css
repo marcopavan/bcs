@@ -575,9 +575,11 @@ a.prev {
 	width: 80%;
 	left:10%;
 	z-index: 0;
+	display: none;
 }
 .block#active .generic_link > input{
 	z-index: 2;
+	display: block;
 }
 .block .generic_link > .overlay{
 	position: absolute;
