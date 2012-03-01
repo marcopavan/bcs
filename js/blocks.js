@@ -330,3 +330,5 @@ function embedURL(textfield) {
           }
         });
 }
+//prevent send from input text
+$('#forum-topic-form input[type=text]').live('keydown', function(e){if(e.keyCode == 13) return false;});
