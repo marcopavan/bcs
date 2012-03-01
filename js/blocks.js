@@ -181,6 +181,23 @@ function updateTextAreaTinyMCE(textAreaId){
         createTextAreaTinyMCE(textAreaId);
 }
 
+//manage max char number
+var lastTinyMCEEdited;
+function onTinyMCEChange() {
+    var maxChars = 10000;
+    var x = tinymce.activeEditor.getContent();
+    var regex = /<[^>]*>/gi;
+    var outputstr = x.replace(regex,"");
+    if(outputstr.length > maxChars){
+      tinymce.activeEditor.setContent(lastTinyMCEEdited);
+      $('#maxCharsReach').fancybox();
+      $('#maxCharsReach').attr('id', 'maxCharsReachFancy');
+      $('#maxCharsReachFancy').click();
+    }
+    else
+      lastTinyMCEEdited = x;
+}
+
 var tinyconfigXL = {
        theme : "advanced",
        mode : "specific_textareas",
@@ -192,7 +209,8 @@ var tinyconfigXL = {
        theme_advanced_toolbar_location : "top",
        theme_advanced_toolbar_align : "left",
        width: '100%',
-       height: '203'
+       height: '203',
+       handle_event_callback: "onTinyMCEChange"
 }
 var tinyconfigM = {
        theme : "advanced",
@@ -205,7 +223,8 @@ var tinyconfigM = {
        theme_advanced_toolbar_location : "top",
        theme_advanced_toolbar_align : "left",
        width: '100%',
-       height: '200'
+       height: '200',
+       handle_event_callback: "onTinyMCEChange"
 }
 var tinyconfigL = tinyconfigM;
 var tinyconfigS = {
@@ -219,7 +238,8 @@ var tinyconfigS = {
        theme_advanced_toolbar_location : "top",
        theme_advanced_toolbar_align : "left",
        width: '100%',
-       height: '197'
+       height: '197',
+       handle_event_callback: "onTinyMCEChange"
 }
 
 var lastTyped = 0;

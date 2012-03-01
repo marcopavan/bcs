@@ -120,6 +120,14 @@
 				</div>
 			</div>
 
+			<!-- max chars reached message-->
+			<a href="#maxCharsReachMsg" id="maxCharsReach" class="fancybox"></a>
+			<div style="display:none">
+				<div id="maxCharsReachMsg">
+					Sorry but you can enter a maximum of 10000 characters...
+				</div>
+			</div>
+
 			<!-- Content bottle creation -->
 			<div id="blocks_content"></div>
 
