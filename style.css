@@ -727,3 +727,6 @@ a.prev {
 	height: 150px;
 	background: url(img/empty.png) center no-repeat;
 }
+.img_fancy {
+	display: block;
+}
