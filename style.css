@@ -387,17 +387,6 @@ a.prev {
 	z-index: 0;
 }
 .block#active .webPage > input{
-	z-index: 2;
-}
-.block .webPage > .overlay{
-	position: absolute;
-	top: 0;
-	left: 0;
-	width: 100%;
-	height: 600px;
-	z-index: 2;
-}
-.block#active .webPage > .overlay{
 	z-index: 1;
 }
 /*link end*/
@@ -445,28 +434,6 @@ a.prev {
 	z-index: 0;
 }
 .block#active .video > input{
-	z-index: 2;
-}
-.block .video > .overlay{
-	position: absolute;
-	top: 0;
-	left: 0;
-	width: 100%;
-	z-index: 2;
-}
-.block .small .video > .overlay{
-	height:170px;
-}
-.block .medium .video > .overlay {
-	height:260px;
-}
-.block .large .video > .overlay {
-	height:350px;
-}
-.block .largest .video > .overlay {
-	height:520px;
-}
-.block#active .video > .overlay{
 	z-index: 1;
 }
 /*video end*/
@@ -743,3 +710,20 @@ a.prev {
 }
 
 /* fine tabella */
+
+.block .tinyMCETextArea{
+	height: 0;
+	width: 0;
+	visibility: hidden;
+}
+.block .tinyMCETextAreaDisplay{
+	display: block;
+	min-height: 0;
+}
+.block#active .tinyMCETextAreaDisplay{
+	display: none;
+}
+.block .emptyTiny{
+	height: 150px;
+	background: url(img/empty.png) center no-repeat;
+}
