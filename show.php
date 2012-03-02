@@ -44,13 +44,373 @@ while ($values=mysql_fetch_array($query)) {
 			if(mysql_num_rows($query)==0){
 				break;
 			}
+
+			$template_id=0;
+			$resource_position=array();
+			$resource_type=array();
+			$resource=array();
+
 			while ($values=mysql_fetch_array($query)) {
 				$template_id=$values["template_id"];
-				$resource_position=$values["resource_position"];
-				$resource_type=$values["resource_type"];
-				$resource=$values["resource"];
-				echo $template_id.' - '.$resource_position.' - '.$resource_type.'<br/>';
+				$resource_position[].=$values["resource_position"];
+				$resource_type[].=$values["resource_type"];
+				$resource[].=$values["resource"];
 			}
+			?>
+			<div id="blocks_content">
+				<div class="block">
+					<?php
+					switch ($template_id) {
+						case 1:
+							?>
+							<div class="largest">
+								<?php echo $resource[0]; ?>
+							</div>
+							<?php
+							break;
+						case 2:
+							?>
+							<div class="largest">
+								<img class="dropped_img" src="<?php echo $resource[0]; ?>"/>
+							</div>
+							<?php
+							break;
+						case 3:
+							?>
+							<div class="largest">
+								<div class="video">
+									<iframe src="<?php echo $resource[0]; ?>" frameborder="0" allowfullscreen></iframe>
+								</div>
+							</div>
+							<?php
+							break;
+						case 4:
+							?>
+							<div class="largest">
+								<div class="generic_link">
+									<div class="embed">
+										<?php echo $resource[0]; ?>
+									</div>
+								</div>
+							</div>
+							<?php
+							break;
+						case 5:
+							?>
+							<div class="largest">
+								<div class="webPage" style="height: 600px;">
+									<iframe src="<?php echo $resource[0]; ?>" frameborder="0"></iframe>
+								</div>
+							</div>
+							<?php
+							break;
+						case 6:
+							?>
+							<div class="largest">
+								<iframe src="<?php echo $resource[0]; ?>" frameborder="0" id="document_frame" style="height: 600px; width: 100%;"></iframe>
+							</div>
+							<?php
+							break;
+						case 7:
+							?>
+							<div class="medium">
+								<?php
+								$key = array_search(1,$resource_position);
+									switch ($resource_type[$key]) {
+										case 't':
+											echo $resource[$key];
+											break;
+										case 'i':
+										?>
+											<img class="dropped_img" src="<?php echo $resource[$key]; ?>"/>
+										<?php
+											break;
+										case 'v':
+										?>
+											<div class="video">
+												<iframe src="<?php echo $resource[$key]; ?>" frameborder="0" allowfullscreen></iframe>
+											</div>
+										<?php
+											break;
+										case 'e':
+										?>
+											<div class="generic_link">
+												<div class="embed">
+													<?php echo $resource[$key]; ?>
+												</div>
+											</div>
+										<?php
+											break;
+									}
+								?>
+							</div>
+							<div class="medium">
+								<?php
+								$key = array_search(2,$resource_position);
+									switch ($resource_type[$key]) {
+										case 't':
+											echo $resource[$key];
+											break;
+										case 'i':
+										?>
+											<img class="dropped_img" src="<?php echo $resource[$key]; ?>"/>
+										<?php
+											break;
+										case 'v':
+										?>
+											<div class="video">
+												<iframe src="<?php echo $resource[$key]; ?>" frameborder="0" allowfullscreen></iframe>
+											</div>
+										<?php
+											break;
+										case 'e':
+										?>
+											<div class="generic_link">
+												<div class="embed">
+													<?php echo $resource[$key]; ?>
+												</div>
+											</div>
+										<?php
+											break;
+									}
+								?>
+							</div>
+							<?php
+							break;
+						case 8:
+							?>
+							<div class="small">
+								<?php
+								$key = array_search(1,$resource_position);
+									switch ($resource_type[$key]) {
+										case 't':
+											echo $resource[$key];
+											break;
+										case 'i':
+										?>
+											<img class="dropped_img" src="<?php echo $resource[$key]; ?>"/>
+										<?php
+											break;
+										case 'v':
+										?>
+											<div class="video">
+												<iframe src="<?php echo $resource[$key]; ?>" frameborder="0" allowfullscreen></iframe>
+											</div>
+										<?php
+											break;
+										case 'e':
+										?>
+											<div class="generic_link">
+												<div class="embed">
+													<?php echo $resource[$key]; ?>
+												</div>
+											</div>
+										<?php
+											break;
+									}
+								?>
+							</div>
+							<div class="small">
+								<?php
+								$key = array_search(2,$resource_position);
+									switch ($resource_type[$key]) {
+										case 't':
+											echo $resource[$key];
+											break;
+										case 'i':
+										?>
+											<img class="dropped_img" src="<?php echo $resource[$key]; ?>"/>
+										<?php
+											break;
+										case 'v':
+										?>
+											<div class="video">
+												<iframe src="<?php echo $resource[$key]; ?>" frameborder="0" allowfullscreen></iframe>
+											</div>
+										<?php
+											break;
+										case 'e':
+										?>
+											<div class="generic_link">
+												<div class="embed">
+													<?php echo $resource[$key]; ?>
+												</div>
+											</div>
+										<?php
+											break;
+									}
+								?>
+							</div>
+							<div class="small">
+								<?php
+								$key = array_search(3,$resource_position);
+									switch ($resource_type[$key]) {
+										case 't':
+											echo $resource[$key];
+											break;
+										case 'i':
+										?>
+											<img class="dropped_img" src="<?php echo $resource[$key]; ?>"/>
+										<?php
+											break;
+										case 'v':
+										?>
+											<div class="video">
+												<iframe src="<?php echo $resource[$key]; ?>" frameborder="0" allowfullscreen></iframe>
+											</div>
+										<?php
+											break;
+										case 'e':
+										?>
+											<div class="generic_link">
+												<div class="embed">
+													<?php echo $resource[$key]; ?>
+												</div>
+											</div>
+										<?php
+											break;
+									}
+								?>
+							</div>
+							<?php
+							break;
+						case 9:
+							?>
+							<div class="small">
+								<?php
+								$key = array_search(1,$resource_position);
+									switch ($resource_type[$key]) {
+										case 't':
+											echo $resource[$key];
+											break;
+										case 'i':
+										?>
+											<img class="dropped_img" src="<?php echo $resource[$key]; ?>"/>
+										<?php
+											break;
+										case 'v':
+										?>
+											<div class="video">
+												<iframe src="<?php echo $resource[$key]; ?>" frameborder="0" allowfullscreen></iframe>
+											</div>
+										<?php
+											break;
+										case 'e':
+										?>
+											<div class="generic_link">
+												<div class="embed">
+													<?php echo $resource[$key]; ?>
+												</div>
+											</div>
+										<?php
+											break;
+									}
+								?>
+							</div>
+							<div class="large">
+								<?php
+								$key = array_search(2,$resource_position);
+									switch ($resource_type[$key]) {
+										case 't':
+											echo $resource[$key];
+											break;
+										case 'i':
+										?>
+											<img class="dropped_img" src="<?php echo $resource[$key]; ?>"/>
+										<?php
+											break;
+										case 'v':
+										?>
+											<div class="video">
+												<iframe src="<?php echo $resource[$key]; ?>" frameborder="0" allowfullscreen></iframe>
+											</div>
+										<?php
+											break;
+										case 'e':
+										?>
+											<div class="generic_link">
+												<div class="embed">
+													<?php echo $resource[$key]; ?>
+												</div>
+											</div>
+										<?php
+											break;
+									}
+								?>
+							</div>
+							<?php
+							break;
+						case 10:
+							?>
+							<div class="large">
+								<?php
+								$key = array_search(1,$resource_position);
+									switch ($resource_type[$key]) {
+										case 't':
+											echo $resource[$key];
+											break;
+										case 'i':
+										?>
+											<img class="dropped_img" src="<?php echo $resource[$key]; ?>"/>
+										<?php
+											break;
+										case 'v':
+										?>
+											<div class="video">
+												<iframe src="<?php echo $resource[$key]; ?>" frameborder="0" allowfullscreen></iframe>
+											</div>
+										<?php
+											break;
+										case 'e':
+										?>
+											<div class="generic_link">
+												<div class="embed">
+													<?php echo $resource[$key]; ?>
+												</div>
+											</div>
+										<?php
+											break;
+									}
+								?>
+							</div>
+							<div class="small">
+								<?php
+								$key = array_search(2,$resource_position);
+									switch ($resource_type[$key]) {
+										case 't':
+											echo $resource[$key];
+											break;
+										case 'i':
+										?>
+											<img class="dropped_img" src="<?php echo $resource[$key]; ?>"/>
+										<?php
+											break;
+										case 'v':
+										?>
+											<div class="video">
+												<iframe src="<?php echo $resource[$key]; ?>" frameborder="0" allowfullscreen></iframe>
+											</div>
+										<?php
+											break;
+										case 'e':
+										?>
+											<div class="generic_link">
+												<div class="embed">
+													<?php echo $resource[$key]; ?>
+												</div>
+											</div>
+										<?php
+											break;
+									}
+								?>
+							</div>
+							<?php
+							break;
+					}
+					?>
+				</div>
+			</div>
+			<?php
 		}
 		?>
 
