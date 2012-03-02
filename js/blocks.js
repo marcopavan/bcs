@@ -1,9 +1,12 @@
 
 var modifyer = '<div class="modify"><img class="remove" src="img/close.png"/><div class="mod_controls"><img class="move_up" src="img/up.png"/><img class="move_down" src="img/down.png"/></div></div><div class="edit_block"><p>edit</p></div>';
+var resizeControls = '<div class="resize_controls"><p rel="small">S</p><p rel="medium">M</p><p rel="large">L</p><p class="selected" rel="largest">XL</p></div>';
+var inputs = '<input type="hidden" name="component_position" class="element_data"/><input type="hidden" name="template_id" class="element_data"/><input type="hidden" name="resource_position" class="element_data"/><input type="hidden" name="resource_type" class="element_data"/><input type="hidden" name="resource" class="element_data"/>';
+
 var small = '<div class="small"><a class="new_add_menu"href="#hidden_menu"><p class="message_layout"></p></a></div>';
 var medium = '<div class="medium"><a class="new_add_menu" href="#hidden_menu"><p class="message_layout"></p></a></div>';
 var large = '<div class="large"><a class="new_add_menu" href="#hidden_menu"><p class="message_layout"></p></a></div>';
-var resizeControls = '<div class="resize_controls"><p rel="small">S</p><p rel="medium">M</p><p rel="large">L</p><p class="selected" rel="largest">XL</p></div>';
+var largest = resizeControls+'<div class="largest resize select"></div>';
 
 function add(index, content, before){
         before = before && !(before == null);
@@ -52,35 +55,35 @@ var currentBlocks = 0;
 function addText(){
   if(!checkNumberOfBlocksInserted()) return;
   removeActiveTiny();
-  add('last', create_block(resizeControls+'<div class="largest resize select"></div><div class="fixed"></div>'));
+  add('last', create_block(largest+'<div class="fixed"></div>'));
   appendText();
 }
 function addDocument(){
   if(!checkNumberOfBlocksInserted()) return;
   removeActiveTiny();
-  add('last', create_block('<div class="largest"><div class="drop_zone document"><p class="message" id="drop_document"></p></div></div>'));
+  add('last', create_block('<div class="largest"><div class="drop_zone document"><p class="message" id="drop_document"></p></div>'+inputs+'</div>'));
 }
 function addImage(){
   if(!checkNumberOfBlocksInserted()) return;
   removeActiveTiny();
-  add('last', create_block(resizeControls+'<div class="largest resize select"></div><div class="fixed"></div>'));
+  add('last', create_block(largest+'<div class="fixed"></div>'));
   appendImage();
 }
 function addVideo(){
   if(!checkNumberOfBlocksInserted()) return;
   removeActiveTiny();
-  add('last', create_block(resizeControls+'<div class="largest resize select"></div><div class="fixed"></div>'));
+  add('last', create_block(largest+'<div class="fixed"></div>'));
   appendVideo();
 }
 function addLink(){
   if(!checkNumberOfBlocksInserted()) return;
   removeActiveTiny();
-  add('last', create_block('<div class="largest"><div class="webPage"><input type="text" placeholder="Insert an url" oninput="webPageType($(this));"/></div></div>'));
+  add('last', create_block('<div class="largest"><div class="webPage"><input type="text" placeholder="Insert an url" oninput="webPageType($(this));"/></div>'+inputs+'</div>'));
 }
 function addGenericLink(){
   if(!checkNumberOfBlocksInserted()) return;
   removeActiveTiny();
-  add('last', create_block(resizeControls+'<div class="largest resize select"></div><div class="fixed"></div>'));
+  add('last', create_block(largest+'<div class="fixed"></div>'));
   appendGenericLink();
 }
 
@@ -110,10 +113,10 @@ function addLS(){
 
 // Fuction add element
 
-function appendText(){$('.select').html('<textarea id="textarea' + (++textareaNum) + '" class="tinyMCETextArea"></textarea><div class="tinyMCETextAreaDisplay"></div>');createTextAreaTinyMCE('textarea'+textareaNum);$('.select').removeClass('select');}
-function appendImage(){$('.select').html('<div class="drop_zone image"><p class="message" id="drop_image"></p></div>');$('.select').removeClass('select');}
-function appendVideo(){$('.select').html('<div class="video"><input type="text" placeholder="Your video url ('+supportedVideoDomains.join(', ')+')" oninput="videoType($(this));"/></div>');$('.select').removeClass('select');}
-function appendGenericLink(){$('.select').html('<div class="generic_link"><input type="text" placeholder="Enter a link" oninput="embedType($(this));"/><a class="hidden_link" href=""></a></div>');$('.select').removeClass('select');}
+function appendText(){$('.select').html('<textarea id="textarea' + (++textareaNum) + '" class="tinyMCETextArea"></textarea><div class="tinyMCETextAreaDisplay"></div>'+inputs);createTextAreaTinyMCE('textarea'+textareaNum);$('.select').removeClass('select');}
+function appendImage(){$('.select').html('<div class="drop_zone image"><p class="message" id="drop_image"></p></div>'+inputs);$('.select').removeClass('select');}
+function appendVideo(){$('.select').html('<div class="video"><input type="text" placeholder="Your video url ('+supportedVideoDomains.join(', ')+')" oninput="videoType($(this));"/></div>'+inputs);$('.select').removeClass('select');}
+function appendGenericLink(){$('.select').html('<div class="generic_link"><input type="text" placeholder="Enter a link" oninput="embedType($(this));"/><a class="hidden_link" href=""></a></div>'+inputs);$('.select').removeClass('select');}
 // End function add element
 
 function checkNumberOfBlocksInserted() {
@@ -195,7 +198,7 @@ $('.resize_controls > *').live('click', function(){
   });
 });
 
-$('.emptyTiny').live('mousedown', function(){return false;})
+$('.tinyMCETextAreaDisplay').live('mousedown', function(){return false;})
 
 $('.block').live('mousedown', function(){
         if($(this).attr('id') == 'active')
@@ -210,6 +213,7 @@ $('.block').live('mousedown', function(){
         tinyTextareas.each(function(){createTextAreaTinyMCE($(this).attr('id'));});
 });
 
+var elementId = -1;
 $(function(){
         $('#blocks_content').sortable({
                 revert: true,
@@ -218,6 +222,65 @@ $(function(){
                         var tinyTextareas = ui.item.find('.tinyMCETextArea');
                         tinyTextareas.each(function(){updateTextAreaTinyMCE($(this).attr('id'));});
                 }
+        });
+
+        $('#forum-topic-form').submit(function(){
+          $(this).find('.small, .medium, .large, .largest').each(function(){
+            elementId++;
+            var blockNumber = $('#blocks_content > .block').index($(this).parent());
+            var resourceNumber = $($(this).parent().find('.small, .medium, .large, .largest')).index($(this));
+            var template = '4';
+            if($(this).hasClass('resize')){
+              if($(this).hasClass('small')) template = 1;
+              if($(this).hasClass('medium')) template = 2;
+              if($(this).hasClass('large')) template = 3;
+            }
+            if($(this).siblings('.medium').size() == 1)
+              template = 5;
+            if($(this).siblings('.small').size() == 2)
+              template = 6;
+            if($(this).siblings('.small').size() == 1){
+              if(resourceNumber == 0)
+                template = 8;
+              else
+                template = 7;
+            }
+            if($(this).siblings('.large').size() == 1){
+              if(resourceNumber == 0)
+                template = 7;
+              else
+                template = 8;
+            }
+
+            var resourceType = '';
+            if($(this).find('.document').size() > 0) resourceType = 'd';
+            if($(this).find('.webPage').size() > 0) resourceType = 'w';
+            if($(this).find('.tinyMCETextArea') > 0) resourceType = 't';
+            if($(this).find('.image').size() > 0) resourceType = 'i';
+            if($(this).find('.video').size() > 0) resourceType = 'v';
+            if($(this).find('.generic_link') > 0) resourceType = 'e';
+
+            var resourceContent = '';
+
+            var actualInputName;
+            $(this).find('.element_data').each(function(){
+              actualInputName = $(this).attr('name');
+
+              if(actualInputName == 'component_position')
+                $(this).val(blockNumber);
+              if(actualInputName == 'resource_position')
+                $(this).val(resourceNumber);
+              if(actualInputName == 'template_id')
+                $(this).val(template);
+              if(actualInputName == 'resource_type')
+                $(this).val(resourceType);
+              if(actualInputName == 'resource')
+                $(this).val(resourceContent);
+
+              $(this).attr('name', 'element' + elementId + '_' + actualInputName);
+            });
+          });
+          return false;
         });
 });
 
@@ -242,11 +305,11 @@ function updateTextAreaTinyMCE(textAreaId){
 function removeTextAreaTinyMCE(textAreaId){
         tinyMCE.execCommand('mceRemoveControl', true, textAreaId);
 
+        var textArea = $('#'+textAreaId);
+
         var newHTML = '<div class="emptyTiny"></div>';
         var newMin = '150px';
         var regex = /<[^>]*>/gi;
-
-        var textArea = $('#'+textAreaId);
 
         if(textArea.val().replace(regex,"") != ''){
           newHTML = textArea.val();
