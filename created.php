@@ -53,7 +53,7 @@ include('db_config.php');
 
 				<tr id="<?php echo $id; ?>">
 					<td><?php echo $id; ?></td>
-					<td><a href="http://localhost:8888/bcs/show.php?id=<?php echo $id; ?>"><?php echo $titolo; ?></a></td>
+					<td><a href="http://<?php echo $db_domain; ?>/show.php?id=<?php echo $id; ?>"><?php echo $titolo; ?></a></td>
 					<td><input type="button" id="remove_button" value="Remove" onclick="removeBottol(<?php echo $id; ?>);"/></td>
 				</tr>
 
