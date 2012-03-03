@@ -213,7 +213,7 @@ $('.block').live('mousedown', function(){
         tinyTextareas.each(function(){createTextAreaTinyMCE($(this).attr('id'));});
 });
 
-var elementId = -1;
+var elementId = 0;
 $(function(){
         $('#blocks_content').sortable({
                 revert: true,
@@ -228,7 +228,9 @@ $(function(){
           $(this).find('.small, .medium, .large, .largest').each(function(){
             elementId++;
             var blockNumber = $('#blocks_content > .block').index($(this).parent());
+            blockNumber++;
             var resourceNumber = $($(this).parent().find('.small, .medium, .large, .largest')).index($(this));
+            resourceNumber++;
             var template = '4';
             if($(this).hasClass('resize')){
               if($(this).hasClass('small')) template = 1;

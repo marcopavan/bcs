@@ -14,8 +14,46 @@
 </head>
 
 <body>
+
 <?php
+
 include('db_config.php');
+
+// scrivo nel db tutti i dati della bottiglia e al sua struttura
+
+if(isset($_POST['submit_bottol'])) {
+
+	$topic_title=$_POST['topic_title'];
+	$topic_subtitle=$_POST['topic_subtitle'];
+
+	$conn=mysql_connect($db_host,$db_user,$db_psw) or die ("db_connect error");
+	$var="INSERT INTO sharabelcom.wp_bb_topics (topic_title,topic_subtitle) VALUES ('$topic_title','$topic_subtitle')";
+	$query= mysql_query($var, $conn) or die ("db_query error");
+
+	$var="SELECT topic_id FROM sharabelcom.wp_bb_topics ORDER BY topic_id DESC LIMIT 1";
+	$query= mysql_query($var, $conn) or die ("db_query error");
+	while ($values=mysql_fetch_array($query)) {
+		$topic_id=$values['topic_id'];
+	}
+
+	for ($i=1; $i<=10 ; $i++) {
+		if(!$_POST['element'.$i.'_component_position']) {
+			break;
+		}
+		$component_position=$_POST['element'.$i.'_component_position'];
+		$template_id=$_POST['element'.$i.'_template_id'];
+		$resource_position=$_POST['element'.$i.'_resource_position'];
+		$resource_type=$_POST['element'.$i.'_resource_type'];
+		$resource=$_POST['element'.$i.'_resource'];
+
+		$conn=mysql_connect($db_host,$db_user,$db_psw) or die ("db_connect error");
+		$var="INSERT INTO sharabelcom.topic_component_resources (topic_id,component_position,template_id,resource_position,resource_type,resource) VALUES ('$topic_id','$component_position','$template_id','$resource_position','$resource_type','$resource')";
+		$query= mysql_query($var, $conn) or die ("db_query error");
+	}
+}
+
+// fine scrittura sul db
+
 ?>
 
 <div id="giveusfeedback-side">
@@ -54,7 +92,7 @@ include('db_config.php');
 				<tr id="<?php echo $id; ?>">
 					<td><?php echo $id; ?></td>
 					<td><a href="http://<?php echo $db_domain; ?>/show.php?id=<?php echo $id; ?>"><?php echo $titolo; ?></a></td>
-					<td><input type="button" id="remove_button" value="Remove" onclick="removeBottol(<?php echo $id; ?>);"/></td>
+					<td><input type="button" class="remove_button" value="Remove" onclick="removeBottol(<?php echo $id; ?>);"/></td>
 				</tr>
 
 				<?php } ?>

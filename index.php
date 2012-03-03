@@ -47,7 +47,7 @@ include('db_config.php');
 	<div id="content">
 		<h2 class="pagetitle">Create a New Bottol</h2>
 		<p id="create">Create a New Bottol: &nbsp;&nbsp;&nbsp; <span class="asterisco">* &nbsp; indicates required field</span></p>
-		<form action="" method="post" id="forum-topic-form" class="standard-form" enctype="multipart/form-data">
+		<form action="created.php" method="post" id="forum-topic-form" class="standard-form" enctype="multipart/form-data">
 			<label>Title:</label><br/>
 			<input type="text" name="topic_title" id="topic_title" value="" autocomplete="off" maxlength="50" /><span class="asterisco">*</span><br/>			
 			<label>Subtitle:</label><br/>

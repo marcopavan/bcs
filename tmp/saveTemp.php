@@ -1,6 +1,6 @@
 <?php
 	$name = $_POST['name'];
-
+	
 	while(file_exists($name))
 		$name = rand().$name;
 	

@@ -712,6 +712,10 @@ a.prev {
 	width: 590px;
 }
 
+.remove_button {
+	cursor: pointer;
+}
+
 /* fine tabella */
 
 .block .tinyMCETextArea{
