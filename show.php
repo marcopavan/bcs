@@ -23,6 +23,9 @@
 </head>
 
 <body>
+<?php
+include('db_config.php');
+?>
 
 <div id="giveusfeedback-side">
 	<span><a href="#"></a></span>
@@ -30,13 +33,15 @@
 
 <div id="header">
 	<img src="img/fakeadminbar.png" alt="">
+	<a id="adminbar_new" href="<?php echo 'http://'.$db_domain; ?>" title="Created A New Bottol"></a>
+	<a id="adminbar_created" href="<?php echo 'http://'.$db_domain.'/created.php'; ?>" title="Createed Bottols"></a>
 </div>
 
 <?php 
 
 $id = $_GET['id'];
 
-$conn=mysql_connect('localhost','root','root') or die ("db_connect error");
+$conn=mysql_connect($db_host,$db_user,$db_psw) or die ("db_connect error");
 $var="SELECT topic_title FROM sharabelcom.wp_bb_topics WHERE topic_id='$id'";
 $query= mysql_query($var, $conn) or die ("db_query error");
 while ($values=mysql_fetch_array($query)) {

@@ -708,6 +708,9 @@ a.prev {
 #bottolid {
 	width: 100px;
 }
+#bottoltitle {
+	width: 590px;
+}
 
 /* fine tabella */
 
@@ -729,4 +732,23 @@ a.prev {
 }
 .img_fancy {
 	display: block;
+}
+
+/* bottone new e created su admin bar */
+
+#adminbar_new {
+	position: fixed;
+	width: 53px;
+	height: 24px;
+	left: 672px;
+	top: 6px;
+	display: block;
+}
+
+#adminbar_created {
+	position: fixed;
+	width: 60px;
+	height: 24px;
+	left: 737px;
+	top: 6px;
 }

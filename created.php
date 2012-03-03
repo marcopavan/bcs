@@ -3,9 +3,20 @@
 <head>
 <title>The New Bottol Creation System</title>
 <link rel="stylesheet" href="style.css" type="text/css" media="screen, print" />
+<script type="text/javascript" language="javascript" src="js/jquery-1.7.1.min.js"></script>
+<script type="text/javascript">
+	function removeBottol(id) {
+		$('#'+id).remove();
+		$.post("remove.php", { id: id});
+
+   	}
+</script>
 </head>
 
 <body>
+<?php
+include('db_config.php');
+?>
 
 <div id="giveusfeedback-side">
 	<span><a href="#"></a></span>
@@ -13,6 +24,8 @@
 
 <div id="header">
 	<img src="img/fakeadminbar.png" alt="">
+	<a id="adminbar_new" href="<?php echo 'http://'.$db_domain; ?>" title="Created A New Bottol"></a>
+	<a id="adminbar_created" href="<?php echo 'http://'.$db_domain.'/created.php'; ?>" title="Createed Bottols"></a>
 </div>
 <div id="container">
 	<div id="content">
@@ -24,12 +37,13 @@
 			<thead>
 				<tr>
 					<th id="bottolid">ID</th>
-					<th>Title</th>
+					<th id="bottoltitle">Title</th>
+					<th></th>
 				</tr>
 			</thead>
 			<tbody>
 				<?php
-				$conn=mysql_connect('localhost','root','root') or die ("db_connect error");
+				$conn=mysql_connect($db_host,$db_user,$db_psw) or die ("db_connect error");
 				$var="SELECT * FROM sharabelcom.wp_bb_topics";
 				$query= mysql_query($var, $conn) or die ("db_query error");
 				while ($values=mysql_fetch_array($query)) {
@@ -37,9 +51,10 @@
 					$titolo=$values["topic_title"];
 				?>	
 
-				<tr>
+				<tr id="<?php echo $id; ?>">
 					<td><?php echo $id; ?></td>
 					<td><a href="http://localhost:8888/bcs/show.php?id=<?php echo $id; ?>"><?php echo $titolo; ?></a></td>
+					<td><input type="button" id="remove_button" value="Remove" onclick="removeBottol(<?php echo $id; ?>);"/></td>
 				</tr>
 
 				<?php } ?>
