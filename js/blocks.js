@@ -255,12 +255,20 @@ $(function(){
             var resourceType = '';
             if($(this).find('.document').size() > 0) resourceType = 'd';
             if($(this).find('.webPage').size() > 0) resourceType = 'w';
-            if($(this).find('.tinyMCETextArea') > 0) resourceType = 't';
+            if($(this).find('.tinyMCETextArea').size() > 0) resourceType = 't';
             if($(this).find('.image').size() > 0) resourceType = 'i';
             if($(this).find('.video').size() > 0) resourceType = 'v';
-            if($(this).find('.generic_link') > 0) resourceType = 'e';
+            if($(this).find('.generic_link').size() > 0) resourceType = 'e';
 
             var resourceContent = '';
+            switch(resourceType){
+              case 'd': resourceContent = $(this).find('.document .document_path').val(); break;
+              case 'w': resourceContent = $(this).find('.webPage iframe').attr('src'); break;
+              case 't': resourceContent = $(this).find('.tinyMCETextArea').val(); break;
+              case 'i': resourceContent = $(this).find('.image .img_path').val(); break;
+              case 'v': resourceContent = $(this).find('.video iframe').attr('src'); break;
+              case 'e': resourceContent = $(this).find('.generic_link .embed').html(); break;
+            }
 
             var actualInputName;
             $(this).find('.element_data').each(function(){
@@ -280,7 +288,6 @@ $(function(){
               $(this).attr('name', 'element' + elementId + '_' + actualInputName);
             });
           });
-          return false;
         });
 });
 

@@ -8,6 +8,7 @@
     // files is a FileList of File objects. List some properties.
 
     for (var i = 0, f; f = files[i]; i++) {
+      //IMAGES
       if (actual_drop_zone.hasClass("image")) {
         if (!f.type.match('image.*')) {
         actual_drop_zone.find('.message').html('<p class="warning_img">Only images can be uploaded!<strong>');
@@ -37,10 +38,11 @@
                 var dropArea = actual_drop_zone;
                 dropArea.html(['<div class="dropped_div"><img class="dropped_img" src="', 'data:image/', f.type, ';base64,', data, '" title="', f.name, '"/></div>'].join(''));
                 actual_drop_zone.addClass('img_added');
+                saveImage(f, actual_drop_zone);
               }
-          });
-          break;
+          });break;
         }
+
         var reader = new FileReader();
         //shows a spinner
         reader.onloadstart = function(e) {
@@ -64,8 +66,12 @@
 
         // Read in the image file as a data URL.
         reader.readAsDataURL(f);
+
+        saveImage(f, actual_drop_zone);
+
       }
 
+      //DOCUMENTS
       if (actual_drop_zone.hasClass("document")) {
         if (!f.type.match('application.*')) {
         actual_drop_zone.find('.message').html('<p class="warning_img">Only documents can be uploaded!<strong>');
@@ -92,13 +98,31 @@
               actual_drop_zone.find('.percentLoaded').html('Creating preview...');
             },
             success: function(urlToGDocs){
-              actual_drop_zone.html('<div class="dropped_div"><iframe id="document_frame" src="http://docs.google.com/gview?url='+escape(urlToGDocs)+'&embedded=true" style="width:100%; height:600px;" frameborder="0"></iframe></div>');
+              actual_drop_zone.html('<div class="dropped_div"><input type="hidden" class="document_path" value="'+urlToGDocs+'"/><iframe id="document_frame" src="http://docs.google.com/gview?url='+escape(urlToGDocs)+'&embedded=true" style="width:100%; height:600px;" frameborder="0"></iframe></div>');
               actual_drop_zone.addClass('img_added');
             }
         });
       }
     }
   }
+
+function saveImage(file, actual_drop_zone){
+  var sendForm = new FormData();
+  sendForm.append('file', file);
+  sendForm.append('name', file.name);
+  $.ajax({
+    url: 'tmp/saveTemp.php',
+    data: sendForm,
+    cache: false,
+    contentType: false,
+    processData: false,
+    type: 'POST',
+    success: function(urlToSend){
+      actual_drop_zone.find('.img_path').remove();
+      actual_drop_zone.append('<input type="hidden" class="img_path" value="'+urlToSend+'"/>');
+    }
+  });
+}
 
   function handleDragOver(evt, actual_drop_zone) {
     evt.stopPropagation();
