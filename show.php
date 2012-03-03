@@ -4,15 +4,8 @@
 <title>The New Bottol Creation System</title>
 <link rel="stylesheet" href="style.css" type="text/css" media="screen, print" />
 <link rel="stylesheet" href="js/fancybox/jquery.fancybox-1.3.4.css" type="text/css" media="screen" />
-<link rel="stylesheet" type="text/css" href="css/spinner.css">
 <script type="text/javascript" language="javascript" src="js/jquery-1.7.1.min.js"></script>
-<script type="text/javascript" language="javascript" src="js/jquery-ui-1.8.16.custom.min.js"></script>
-<script type="text/javascript" language="javascript" src="js/jquery.carouFredSel-5.5.0-packed.js"></script>
-<script type="text/javascript" language="javascript" src="js/tiny_mce/tiny_mce.js"></script>
-<script type="text/javascript" src="js/blocks.js"></script>
-<script type="text/javascript" src="js/uploader.js"></script>
 <script type="text/javascript" src="js/fancybox/jquery.fancybox-1.3.4.pack.js"></script>
-<script type="text/javascript" src="js/jquery.embedly.js"></script>
 
 <script type="text/javascript">
 	$(document).ready(function() {
