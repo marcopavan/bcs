@@ -77,27 +77,32 @@ while ($values=mysql_fetch_array($query)) {
 					switch ($template_id) {
 						case 1:
 							?>
-							<div class="small">
+							<div class="resize small">
 							<?php
 								switch ($resource_type[0]) {
 									case 't':
 										echo $resource[0];
 										break;
 									case 'i':
+									if ($resource[0]) {
 									?>
 										<a class="img_fancy" href="<?php echo $resource[0]; ?>">
 											<img class="dropped_img" src="<?php echo $resource[0]; ?>"/>
 										</a>
 									<?php
+									}
 										break;
 									case 'v':
+									if ($resource[0]) {
 									?>
 										<div class="video">
 											<iframe src="<?php echo $resource[0]; ?>" frameborder="0" allowfullscreen></iframe>
 										</div>
 									<?php
+									}
 										break;
 									case 'e':
+									if ($resource[0]) {
 									?>
 										<div class="generic_link">
 											<div class="embed">
@@ -105,35 +110,42 @@ while ($values=mysql_fetch_array($query)) {
 											</div>
 										</div>
 									<?php
+									}
 										break;
 								}
 							?>
 							</div>
+							<div class="fixed"></div>
 							<?php
 							break;
 						case 2:
 							?>
-							<div class="medium">
+							<div class="resize medium">
 							<?php
 								switch ($resource_type[0]) {
 									case 't':
 										echo $resource[0];
 										break;
 									case 'i':
+									if ($resource[0]) {
 									?>
 										<a class="img_fancy" href="<?php echo $resource[0]; ?>">
 											<img class="dropped_img" src="<?php echo $resource[0]; ?>"/>
 										</a>
 									<?php
+									}
 										break;
 									case 'v':
+									if ($resource[0]) {
 									?>
 										<div class="video">
 											<iframe src="<?php echo $resource[0]; ?>" frameborder="0" allowfullscreen></iframe>
 										</div>
 									<?php
+									}
 										break;
 									case 'e':
+									if ($resource[0]) {
 									?>
 										<div class="generic_link">
 											<div class="embed">
@@ -141,35 +153,42 @@ while ($values=mysql_fetch_array($query)) {
 											</div>
 										</div>
 									<?php
+									}
 										break;
 								}
 							?>
 							</div>
+							<div class="fixed"></div>
 							<?php
 							break;
 						case 3:
 							?>
-							<div class="large">
+							<div class="resize large">
 							<?php
 								switch ($resource_type[0]) {
 									case 't':
 										echo $resource[0];
 										break;
 									case 'i':
+									if ($resource[0]) {
 									?>
 										<a class="img_fancy" href="<?php echo $resource[0]; ?>">
 											<img class="dropped_img" src="<?php echo $resource[0]; ?>"/>
 										</a>
 									<?php
+									}
 										break;
 									case 'v':
+									if ($resource[0]) {
 									?>
 										<div class="video">
 											<iframe src="<?php echo $resource[0]; ?>" frameborder="0" allowfullscreen></iframe>
 										</div>
 									<?php
+									}
 										break;
 									case 'e':
+									if ($resource[0]) {
 									?>
 										<div class="generic_link">
 											<div class="embed">
@@ -177,35 +196,42 @@ while ($values=mysql_fetch_array($query)) {
 											</div>
 										</div>
 									<?php
+									}
 										break;
 								}
 							?>
 							</div>
+							<div class="fixed"></div>
 							<?php
 							break;
 						case 4:
 							?>
-							<div class="largest">
+							<div class="resize largest">
 							<?php
 								switch ($resource_type[0]) {
 									case 't':
 										echo $resource[0];
 										break;
 									case 'i':
+									if ($resource[0]) {
 									?>
 										<a class="img_fancy" href="<?php echo $resource[0]; ?>">
 											<img class="dropped_img" src="<?php echo $resource[0]; ?>"/>
 										</a>
 									<?php
+									}
 										break;
 									case 'v':
+									if ($resource[0]) {
 									?>
 										<div class="video">
 											<iframe src="<?php echo $resource[0]; ?>" frameborder="0" allowfullscreen></iframe>
 										</div>
 									<?php
+									}
 										break;
 									case 'e':
+									if ($resource[0]) {
 									?>
 										<div class="generic_link">
 											<div class="embed">
@@ -213,22 +239,28 @@ while ($values=mysql_fetch_array($query)) {
 											</div>
 										</div>
 									<?php
+									}
 										break;
 									case 'w':
+									if ($resource[0]) {
 									?>
 										<div class="webPage" style="height: 600px;">
 											<iframe src="<?php echo $resource[0]; ?>" frameborder="0"></iframe>
 										</div>
 									<?php
+									}
 										break;
 									case 'd':
+									if ($resource[0]) {
 									?>
 										<iframe src="<?php echo $resource[0]; ?>" frameborder="0" id="document_frame" style="height: 600px; width: 100%;"></iframe>
 									<?php
+									}
 										break;
 								}
 							?>
 							</div>
+							<div class="fixed"></div>
 							<?php
 							break;
 						case 5:
@@ -241,20 +273,25 @@ while ($values=mysql_fetch_array($query)) {
 											echo $resource[$key];
 											break;
 										case 'i':
+										if ($resource[$key]) {
 										?>
 											<a class="img_fancy" href="<?php echo $resource[$key]; ?>">
 												<img class="dropped_img" src="<?php echo $resource[$key]; ?>"/>
 											</a>
 										<?php
+										}
 											break;
 										case 'v':
+										if ($resource[$key]) {
 										?>
 											<div class="video">
 												<iframe src="<?php echo $resource[$key]; ?>" frameborder="0" allowfullscreen></iframe>
 											</div>
 										<?php
+										}
 											break;
 										case 'e':
+										if ($resource[$key]) {
 										?>
 											<div class="generic_link">
 												<div class="embed">
@@ -262,6 +299,7 @@ while ($values=mysql_fetch_array($query)) {
 												</div>
 											</div>
 										<?php
+										}
 											break;
 									}
 								?>
@@ -274,20 +312,25 @@ while ($values=mysql_fetch_array($query)) {
 											echo $resource[$key];
 											break;
 										case 'i':
+										if ($resource[$key]) {
 										?>
 											<a class="img_fancy" href="<?php echo $resource[$key]; ?>">
 												<img class="dropped_img" src="<?php echo $resource[$key]; ?>"/>
 											</a>
 										<?php
+										}
 											break;
 										case 'v':
+										if ($resource[$key]) {
 										?>
 											<div class="video">
 												<iframe src="<?php echo $resource[$key]; ?>" frameborder="0" allowfullscreen></iframe>
 											</div>
 										<?php
+										}
 											break;
 										case 'e':
+										if ($resource[$key]) {
 										?>
 											<div class="generic_link">
 												<div class="embed">
@@ -295,6 +338,7 @@ while ($values=mysql_fetch_array($query)) {
 												</div>
 											</div>
 										<?php
+										}
 											break;
 									}
 								?>
@@ -312,20 +356,25 @@ while ($values=mysql_fetch_array($query)) {
 											echo $resource[$key];
 											break;
 										case 'i':
+										if ($resource[$key]) {
 										?>
 											<a class="img_fancy" href="<?php echo $resource[$key]; ?>">
 												<img class="dropped_img" src="<?php echo $resource[$key]; ?>"/>
 											</a>
 										<?php
+										}
 											break;
 										case 'v':
+										if ($resource[$key]) {
 										?>
 											<div class="video">
 												<iframe src="<?php echo $resource[$key]; ?>" frameborder="0" allowfullscreen></iframe>
 											</div>
 										<?php
+										}
 											break;
 										case 'e':
+										if ($resource[$key]) {
 										?>
 											<div class="generic_link">
 												<div class="embed">
@@ -333,6 +382,7 @@ while ($values=mysql_fetch_array($query)) {
 												</div>
 											</div>
 										<?php
+										}
 											break;
 									}
 								?>
@@ -345,20 +395,25 @@ while ($values=mysql_fetch_array($query)) {
 											echo $resource[$key];
 											break;
 										case 'i':
+										if ($resource[$key]) {
 										?>
 											<a class="img_fancy" href="<?php echo $resource[$key]; ?>">
 												<img class="dropped_img" src="<?php echo $resource[$key]; ?>"/>
 											</a>
 										<?php
+										}
 											break;
 										case 'v':
+										if ($resource[$key]) {
 										?>
 											<div class="video">
 												<iframe src="<?php echo $resource[$key]; ?>" frameborder="0" allowfullscreen></iframe>
 											</div>
 										<?php
+										}
 											break;
 										case 'e':
+										if ($resource[$key]) {
 										?>
 											<div class="generic_link">
 												<div class="embed">
@@ -366,6 +421,7 @@ while ($values=mysql_fetch_array($query)) {
 												</div>
 											</div>
 										<?php
+										}
 											break;
 									}
 								?>
@@ -378,20 +434,25 @@ while ($values=mysql_fetch_array($query)) {
 											echo $resource[$key];
 											break;
 										case 'i':
+										if ($resource[$key]) {
 										?>
 											<a class="img_fancy" href="<?php echo $resource[$key]; ?>">
 												<img class="dropped_img" src="<?php echo $resource[$key]; ?>"/>
 											</a>
 										<?php
+										}
 											break;
 										case 'v':
+										if ($resource[$key]) {
 										?>
 											<div class="video">
 												<iframe src="<?php echo $resource[$key]; ?>" frameborder="0" allowfullscreen></iframe>
 											</div>
 										<?php
+										}
 											break;
 										case 'e':
+										if ($resource[$key]) {
 										?>
 											<div class="generic_link">
 												<div class="embed">
@@ -399,6 +460,7 @@ while ($values=mysql_fetch_array($query)) {
 												</div>
 											</div>
 										<?php
+										}
 											break;
 									}
 								?>
@@ -416,20 +478,25 @@ while ($values=mysql_fetch_array($query)) {
 											echo $resource[$key];
 											break;
 										case 'i':
+										if ($resource[$key]) {
 										?>
 											<a class="img_fancy" href="<?php echo $resource[$key]; ?>">
 												<img class="dropped_img" src="<?php echo $resource[$key]; ?>"/>
 											</a>
 										<?php
+										}
 											break;
 										case 'v':
+										if ($resource[$key]) {
 										?>
 											<div class="video">
 												<iframe src="<?php echo $resource[$key]; ?>" frameborder="0" allowfullscreen></iframe>
 											</div>
 										<?php
+										}
 											break;
 										case 'e':
+										if ($resource[$key]) {
 										?>
 											<div class="generic_link">
 												<div class="embed">
@@ -437,6 +504,7 @@ while ($values=mysql_fetch_array($query)) {
 												</div>
 											</div>
 										<?php
+										}
 											break;
 									}
 								?>
@@ -449,20 +517,25 @@ while ($values=mysql_fetch_array($query)) {
 											echo $resource[$key];
 											break;
 										case 'i':
+										if ($resource[$key]) {
 										?>
 											<a class="img_fancy" href="<?php echo $resource[$key]; ?>">
 												<img class="dropped_img" src="<?php echo $resource[$key]; ?>"/>
 											</a>
 										<?php
+										}
 											break;
 										case 'v':
+										if ($resource[$key]) {
 										?>
 											<div class="video">
 												<iframe src="<?php echo $resource[$key]; ?>" frameborder="0" allowfullscreen></iframe>
 											</div>
 										<?php
+										}
 											break;
 										case 'e':
+										if ($resource[$key]) {
 										?>
 											<div class="generic_link">
 												<div class="embed">
@@ -470,6 +543,7 @@ while ($values=mysql_fetch_array($query)) {
 												</div>
 											</div>
 										<?php
+										}
 											break;
 									}
 								?>
@@ -487,20 +561,25 @@ while ($values=mysql_fetch_array($query)) {
 											echo $resource[$key];
 											break;
 										case 'i':
+										if ($resource[$key]) {
 										?>
 											<a class="img_fancy" href="<?php echo $resource[$key]; ?>">
 												<img class="dropped_img" src="<?php echo $resource[$key]; ?>"/>
 											</a>
 										<?php
+										}
 											break;
 										case 'v':
+										if ($resource[$key]) {
 										?>
 											<div class="video">
 												<iframe src="<?php echo $resource[$key]; ?>" frameborder="0" allowfullscreen></iframe>
 											</div>
 										<?php
+										}
 											break;
 										case 'e':
+										if ($resource[$key]) {
 										?>
 											<div class="generic_link">
 												<div class="embed">
@@ -508,6 +587,7 @@ while ($values=mysql_fetch_array($query)) {
 												</div>
 											</div>
 										<?php
+										}
 											break;
 									}
 								?>
@@ -520,20 +600,25 @@ while ($values=mysql_fetch_array($query)) {
 											echo $resource[$key];
 											break;
 										case 'i':
+										if ($resource[$key]) {
 										?>
 											<a class="img_fancy" href="<?php echo $resource[$key]; ?>">
 												<img class="dropped_img" src="<?php echo $resource[$key]; ?>"/>
 											</a>
 										<?php
+										}
 											break;
 										case 'v':
+										if ($resource[$key]) {
 										?>
 											<div class="video">
 												<iframe src="<?php echo $resource[$key]; ?>" frameborder="0" allowfullscreen></iframe>
 											</div>
 										<?php
+										}
 											break;
 										case 'e':
+										if ($resource[$key]) {
 										?>
 											<div class="generic_link">
 												<div class="embed">
@@ -541,6 +626,7 @@ while ($values=mysql_fetch_array($query)) {
 												</div>
 											</div>
 										<?php
+										}
 											break;
 									}
 								?>
