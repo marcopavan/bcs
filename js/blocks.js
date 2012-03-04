@@ -276,6 +276,8 @@ $(function(){
         });
 
         $('#forum-topic-form').submit(function(){
+          removeActiveTiny();
+          $('#active').attr('id', '');
           $(this).find('.small, .medium, .large, .largest').each(function(){
             elementId++;
             var blockNumber = $('#blocks_content > .block').index($(this).parent());
