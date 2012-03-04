@@ -1,5 +1,5 @@
 body {
-	background: url(img/background.png);
+	background: url(../img/background.png);
 	padding-left: 50px;
 	font-family: Arial, Tahoma, Verdana, sans-serif;
 	color: #555;
@@ -19,7 +19,7 @@ p {
 	-moz-border-bottom-right-radius: 15px;
 	border-bottom-right-radius: 15px;
 	background-color: #0077a3;
-	background-image: url(img/giveusfeedbackside22.png);
+	background-image: url(../img/giveusfeedbackside22.png);
 	position: fixed;
 	top: 40%;
 	left: 0px;
@@ -73,7 +73,7 @@ p {
 	height: 57px;
 	color: #fff;
 	margin: 0px;
-	background: url(img/nastro.png) no-repeat !important;
+	background: url(../img/nastro.png) no-repeat !important;
 	padding: 10px 0px 0px 35px;
 	margin-left: -42px;	
 }
@@ -84,7 +84,7 @@ p {
 	height: 57px;
 	color: #fff;
 	margin: 0px;
-	background: url(img/nastro2.png) no-repeat !important;
+	background: url(../img/nastro2.png) no-repeat !important;
 	padding: 12px 0px 0px 35px;
 	margin-left: -40px;
 	font-size: 24px !important;
@@ -92,7 +92,7 @@ p {
 
 #bottoltitle-wrapper {
 	margin: 0px;
-	background: url(img/nastro-line.png) repeat-x -50px 0px !important;
+	background: url(../img/nastro-line.png) repeat-x -50px 0px !important;
 	height: 57px;
 	width: 620px;
 }
@@ -349,10 +349,10 @@ a.prev {
 	text-align:center;
 }
 .document {
-	background: url(img/dropdoc40pt.png) center no-repeat;
+	background: url(../img/dropdoc40pt.png) center no-repeat;
 }
 .image {
-	background: url(img/drop40pt.png) center no-repeat;
+	background: url(../img/drop40pt.png) center no-repeat;
 }
 /*image drop end*/
 
@@ -476,7 +476,7 @@ a.prev {
 .new_add_menu {
 }
 .message_layout {
-  background: url(img/addelement.png) center no-repeat;
+  background: url(../img/addelement.png) center no-repeat;
   min-height: 150px;
   border:2px dashed #ccc;
   border-radius:10px;
@@ -510,7 +510,7 @@ a.prev {
 	width: 200px;
 }
 .small>.drop_zone {
-	background: url(img/drop_small.png) center no-repeat;
+	background: url(../img/drop_small.png) center no-repeat;
 }
 #blocks_content{
 	height:100%;
@@ -732,7 +732,7 @@ a.prev {
 }
 .block .emptyTiny{
 	height: 150px;
-	background: url(img/empty.png) center no-repeat;
+	background: url(../img/empty.png) center no-repeat;
 }
 .img_fancy {
 	display: block;
