@@ -87,7 +87,7 @@
         form.append('file', f);
         form.append('name', f.name);
         $.ajax({
-            url: 'tmp/saveTemp.php',
+            url: 'saveTemp.php',
             data: form,
             cache: false,
             contentType: false,
@@ -111,7 +111,7 @@ function saveImage(file, actual_drop_zone){
   sendForm.append('file', file);
   sendForm.append('name', file.name);
   $.ajax({
-    url: 'tmp/saveTemp.php',
+    url: 'saveTemp.php',
     data: sendForm,
     cache: false,
     contentType: false,

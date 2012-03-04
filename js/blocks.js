@@ -290,6 +290,7 @@ $(function(){
               $(this).attr('name', 'element' + elementId + '_' + actualInputName);
             });
           });
+        return true;
         });
 });
 
