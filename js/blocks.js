@@ -6,7 +6,7 @@ var inputs = '<input type="hidden" name="component_position" class="element_data
 var small = '<div class="small"><a class="new_add_menu"href="#hidden_menu"><p class="message_layout"></p></a></div>';
 var medium = '<div class="medium"><a class="new_add_menu" href="#hidden_menu"><p class="message_layout"></p></a></div>';
 var large = '<div class="large"><a class="new_add_menu" href="#hidden_menu"><p class="message_layout"></p></a></div>';
-var largest = resizeControls+'<div class="largest resize select"></div>';
+var largest = resizeControls+'<div class="largest resize"><a class="new_add_menu" href=""><p class="message_layout"></p></a></div>';
 
 function add(index, content, before){
         before = before && !(before == null);
@@ -51,7 +51,7 @@ var maximumBlocks = 10;
 var currentBlocks = 0;
 
 // Function add new element block
-
+/*
 function addText(){
   if(!checkNumberOfBlocksInserted()) return;
   removeActiveTiny();
@@ -86,7 +86,7 @@ function addGenericLink(){
   add('last', create_block(largest+'<div class="fixed"></div>'));
   appendGenericLink();
 }
-
+*/
 
 function addMM(){
   if(!checkNumberOfBlocksInserted()) return;
@@ -108,15 +108,42 @@ function addLS(){
   removeActiveTiny();
   add('last', create_block(large+small+'<div class="fixed"></div>'));
 }
+function addXL(){
+  if(!checkNumberOfBlocksInserted()) return;
+  removeActiveTiny();
+  add('last', create_block(largest+'<div class="fixed"></div>'));
+}
 
 // End add new element
 
 // Fuction add element
 
-function appendText(){$('.select').html('<textarea id="textarea' + (++textareaNum) + '" class="tinyMCETextArea"></textarea><div class="tinyMCETextAreaDisplay"></div>'+inputs);createTextAreaTinyMCE('textarea'+textareaNum);$('.select').removeClass('select');}
-function appendImage(){$('.select').html('<div class="drop_zone image"><p class="message" id="drop_image"></p></div>'+inputs);$('.select').removeClass('select');}
-function appendVideo(){$('.select').html('<div class="video"><input type="text" placeholder="Your video url ('+supportedVideoDomains.join(', ')+')" oninput="videoType($(this));"/></div>'+inputs);$('.select').removeClass('select');}
-function appendGenericLink(){$('.select').html('<div class="generic_link"><input type="text" placeholder="Enter a link" oninput="embedType($(this));"/><a class="hidden_link" href=""></a></div>'+inputs);$('.select').removeClass('select');}
+function appendText() {
+  $('.select').html('<textarea id="textarea' + (++textareaNum) + '" class="tinyMCETextArea"></textarea><div class="tinyMCETextAreaDisplay"></div>'+inputs);
+  createTextAreaTinyMCE('textarea'+textareaNum);$('.select').removeClass('select');
+}
+function appendImage() {
+  $('.select').html('<div class="drop_zone image"><p class="message" id="drop_image"></p></div>'+inputs);
+  $('.select').removeClass('select');
+}
+function appendVideo() {
+  $('.select').html('<div class="video"><input type="text" placeholder="Your video url ('+supportedVideoDomains.join(', ')+')" oninput="videoType($(this));"/></div>'+inputs);
+  $('.select').removeClass('select');
+}
+function appendGenericLink() {
+  $('.select').html('<div class="generic_link"><input type="text" placeholder="Enter a link" oninput="embedType($(this));"/><a class="hidden_link" href=""></a></div>'+inputs);
+  $('.select').removeClass('select');
+}
+function appendDocument() {
+  $('.select').html('<div class="drop_zone document"><p class="message" id="drop_document"></p></div>'+inputs);
+  $('.select').removeClass('select');
+  $('.resize_controls').remove();
+}
+function appendWebPage() {
+  $('.select').html('<div class="webPage"><input type="text" placeholder="Insert an url" oninput="webPageType($(this));"/></div>'+inputs);
+  $('.select').removeClass('select');
+  $('.resize_controls').remove();
+}
 // End function add element
 
 function checkNumberOfBlocksInserted() {
@@ -130,17 +157,27 @@ function checkNumberOfBlocksInserted() {
 }
 
 $('.new_add_menu').live('click',function(){
-        $(this).fancybox({
-                'hideOnContentClick' : true,
-                'onClosed' : function(){
-                $('.select').removeClass('select');
-                }
-        });
-        $(this).removeClass('new_add_menu');
-        $(this).addClass('add_menu');
-        $(this).parent().addClass('select');
-        return(!$(this).click());
+  if ($(this).parent().hasClass('largest')) {
+    $(this).attr('href','#hidden_menu_largest');
+  } else {
+    $(this).attr('href','#hidden_menu');
+  }
+  $(this).fancybox({
+    'hideOnContentClick' : true,
+    'onClosed' : function(){
+      $('.select').removeClass('select');
+    }
+  });
+  $(this).removeClass('new_add_menu');
+  $(this).addClass('add_menu');
+  $(this).parent().addClass('select');
+  return(!$(this).click());
 });
+
+$('.add_menu').live('click',function(){
+  $(this).parent().addClass('select');
+});
+
 
 $('.remove').live('click', function(){
 	$(this).parent().parent().remove();
@@ -182,7 +219,21 @@ $('.resize_controls > *').live('click', function(){
   $(this).addClass('selected');
   var toResize = resizer.siblings('.resize');
   toResize.removeClass(size);
+  $.fancybox.close();
   toResize.addClass($(this).attr('rel'));
+  if ($(this).attr('rel')=='largest') {
+    toResize.find('a').attr('href','#hidden_menu_largest');
+  } else {
+    toResize.find('a').attr('href','#hidden_menu');
+  }
+  toResize.find('a').fancybox({
+    'hideOnContentClick' : true,
+    'onClosed' : function(){
+      $('.select').removeClass('select');
+    }
+  });
+  toResize.find('a').removeClass('add_menu');
+  toResize.find('a').addClass('new_add_menu');
 
   var tinyTextareas = toResize.find('.tinyMCETextArea');
   tinyTextareas.each(function(){updateTextAreaTinyMCE($(this).attr('id'), $(this).attr('rel'));});

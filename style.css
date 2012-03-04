@@ -488,6 +488,9 @@ a.prev {
 #hidden_menu {
   width:360px;
 }
+#hidden_menu_largest {
+  width:540px;
+}
 .element_popup{
 	padding:5px;
 	float:left;

@@ -20,7 +20,6 @@
 include('db_config.php');
 
 // scrivo nel db tutti i dati della bottiglia e al sua struttura
-print_r($_POST);exit();
 if(isset($_POST['submit_bottol'])) {
 
 	$topic_title=$_POST['topic_title'];
