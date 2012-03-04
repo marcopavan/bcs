@@ -723,6 +723,7 @@ a.prev {
 	height: 0;
 	width: 0;
 	visibility: hidden;
+	display:none;
 }
 .block .tinyMCETextAreaDisplay{
 	display: block;
@@ -731,9 +732,16 @@ a.prev {
 .block#active .tinyMCETextAreaDisplay{
 	display: none;
 }
+.block#active .tinyMCETextArea{
+	display:block;
+}
+
+
 .block .emptyTiny{
 	height: 150px;
 	background: url(../img/empty.png) center no-repeat;
+	border: 2px dashed #CCC;
+	border-radius: 10px;
 }
 .img_fancy {
 	display: block;
