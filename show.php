@@ -95,7 +95,7 @@ while ($values=mysql_fetch_array($query)) {
 									case 'v':
 									if ($resource[0]) {
 									?>
-										<div class="video">
+										<div class="video content_inserted">
 											<iframe src="<?php echo $resource[0]; ?>" frameborder="0" allowfullscreen></iframe>
 										</div>
 									<?php
@@ -104,7 +104,7 @@ while ($values=mysql_fetch_array($query)) {
 									case 'e':
 									if ($resource[0]) {
 									?>
-										<div class="generic_link">
+										<div class="generic_link content_inserted">
 											<div class="embed">
 												<?php echo $resource[0]; ?>
 											</div>
@@ -138,7 +138,7 @@ while ($values=mysql_fetch_array($query)) {
 									case 'v':
 									if ($resource[0]) {
 									?>
-										<div class="video">
+										<div class="video content_inserted">
 											<iframe src="<?php echo $resource[0]; ?>" frameborder="0" allowfullscreen></iframe>
 										</div>
 									<?php
@@ -147,7 +147,7 @@ while ($values=mysql_fetch_array($query)) {
 									case 'e':
 									if ($resource[0]) {
 									?>
-										<div class="generic_link">
+										<div class="generic_link content_inserted">
 											<div class="embed">
 												<?php echo $resource[0]; ?>
 											</div>
@@ -181,7 +181,7 @@ while ($values=mysql_fetch_array($query)) {
 									case 'v':
 									if ($resource[0]) {
 									?>
-										<div class="video">
+										<div class="video content_inserted">
 											<iframe src="<?php echo $resource[0]; ?>" frameborder="0" allowfullscreen></iframe>
 										</div>
 									<?php
@@ -190,7 +190,7 @@ while ($values=mysql_fetch_array($query)) {
 									case 'e':
 									if ($resource[0]) {
 									?>
-										<div class="generic_link">
+										<div class="generic_link content_inserted">
 											<div class="embed">
 												<?php echo $resource[0]; ?>
 											</div>
@@ -224,7 +224,7 @@ while ($values=mysql_fetch_array($query)) {
 									case 'v':
 									if ($resource[0]) {
 									?>
-										<div class="video">
+										<div class="video content_inserted">
 											<iframe src="<?php echo $resource[0]; ?>" frameborder="0" allowfullscreen></iframe>
 										</div>
 									<?php
@@ -233,7 +233,7 @@ while ($values=mysql_fetch_array($query)) {
 									case 'e':
 									if ($resource[0]) {
 									?>
-										<div class="generic_link">
+										<div class="generic_link content_inserted">
 											<div class="embed">
 												<?php echo $resource[0]; ?>
 											</div>
@@ -284,7 +284,7 @@ while ($values=mysql_fetch_array($query)) {
 										case 'v':
 										if ($resource[$key]) {
 										?>
-											<div class="video">
+											<div class="video content_inserted">
 												<iframe src="<?php echo $resource[$key]; ?>" frameborder="0" allowfullscreen></iframe>
 											</div>
 										<?php
@@ -293,7 +293,7 @@ while ($values=mysql_fetch_array($query)) {
 										case 'e':
 										if ($resource[$key]) {
 										?>
-											<div class="generic_link">
+											<div class="generic_link content_inserted">
 												<div class="embed">
 													<?php echo $resource[$key]; ?>
 												</div>
@@ -323,7 +323,7 @@ while ($values=mysql_fetch_array($query)) {
 										case 'v':
 										if ($resource[$key]) {
 										?>
-											<div class="video">
+											<div class="video content_inserted">
 												<iframe src="<?php echo $resource[$key]; ?>" frameborder="0" allowfullscreen></iframe>
 											</div>
 										<?php
@@ -332,7 +332,7 @@ while ($values=mysql_fetch_array($query)) {
 										case 'e':
 										if ($resource[$key]) {
 										?>
-											<div class="generic_link">
+											<div class="generic_link content_inserted">
 												<div class="embed">
 													<?php echo $resource[$key]; ?>
 												</div>
@@ -367,7 +367,7 @@ while ($values=mysql_fetch_array($query)) {
 										case 'v':
 										if ($resource[$key]) {
 										?>
-											<div class="video">
+											<div class="video content_inserted">
 												<iframe src="<?php echo $resource[$key]; ?>" frameborder="0" allowfullscreen></iframe>
 											</div>
 										<?php
@@ -376,7 +376,7 @@ while ($values=mysql_fetch_array($query)) {
 										case 'e':
 										if ($resource[$key]) {
 										?>
-											<div class="generic_link">
+											<div class="generic_link content_inserted">
 												<div class="embed">
 													<?php echo $resource[$key]; ?>
 												</div>
@@ -406,7 +406,7 @@ while ($values=mysql_fetch_array($query)) {
 										case 'v':
 										if ($resource[$key]) {
 										?>
-											<div class="video">
+											<div class="video content_inserted">
 												<iframe src="<?php echo $resource[$key]; ?>" frameborder="0" allowfullscreen></iframe>
 											</div>
 										<?php
@@ -415,7 +415,7 @@ while ($values=mysql_fetch_array($query)) {
 										case 'e':
 										if ($resource[$key]) {
 										?>
-											<div class="generic_link">
+											<div class="generic_link content_inserted">
 												<div class="embed">
 													<?php echo $resource[$key]; ?>
 												</div>
@@ -445,7 +445,7 @@ while ($values=mysql_fetch_array($query)) {
 										case 'v':
 										if ($resource[$key]) {
 										?>
-											<div class="video">
+											<div class="video content_inserted">
 												<iframe src="<?php echo $resource[$key]; ?>" frameborder="0" allowfullscreen></iframe>
 											</div>
 										<?php
@@ -454,7 +454,7 @@ while ($values=mysql_fetch_array($query)) {
 										case 'e':
 										if ($resource[$key]) {
 										?>
-											<div class="generic_link">
+											<div class="generic_link content_inserted">
 												<div class="embed">
 													<?php echo $resource[$key]; ?>
 												</div>
@@ -489,7 +489,7 @@ while ($values=mysql_fetch_array($query)) {
 										case 'v':
 										if ($resource[$key]) {
 										?>
-											<div class="video">
+											<div class="video content_inserted">
 												<iframe src="<?php echo $resource[$key]; ?>" frameborder="0" allowfullscreen></iframe>
 											</div>
 										<?php
@@ -498,7 +498,7 @@ while ($values=mysql_fetch_array($query)) {
 										case 'e':
 										if ($resource[$key]) {
 										?>
-											<div class="generic_link">
+											<div class="generic_link content_inserted">
 												<div class="embed">
 													<?php echo $resource[$key]; ?>
 												</div>
@@ -528,7 +528,7 @@ while ($values=mysql_fetch_array($query)) {
 										case 'v':
 										if ($resource[$key]) {
 										?>
-											<div class="video">
+											<div class="video content_inserted">
 												<iframe src="<?php echo $resource[$key]; ?>" frameborder="0" allowfullscreen></iframe>
 											</div>
 										<?php
@@ -537,7 +537,7 @@ while ($values=mysql_fetch_array($query)) {
 										case 'e':
 										if ($resource[$key]) {
 										?>
-											<div class="generic_link">
+											<div class="generic_link content_inserted">
 												<div class="embed">
 													<?php echo $resource[$key]; ?>
 												</div>
@@ -572,7 +572,7 @@ while ($values=mysql_fetch_array($query)) {
 										case 'v':
 										if ($resource[$key]) {
 										?>
-											<div class="video">
+											<div class="video content_inserted">
 												<iframe src="<?php echo $resource[$key]; ?>" frameborder="0" allowfullscreen></iframe>
 											</div>
 										<?php
@@ -581,7 +581,7 @@ while ($values=mysql_fetch_array($query)) {
 										case 'e':
 										if ($resource[$key]) {
 										?>
-											<div class="generic_link">
+											<div class="generic_link content_inserted">
 												<div class="embed">
 													<?php echo $resource[$key]; ?>
 												</div>
@@ -611,7 +611,7 @@ while ($values=mysql_fetch_array($query)) {
 										case 'v':
 										if ($resource[$key]) {
 										?>
-											<div class="video">
+											<div class="video content_inserted">
 												<iframe src="<?php echo $resource[$key]; ?>" frameborder="0" allowfullscreen></iframe>
 											</div>
 										<?php
@@ -620,7 +620,7 @@ while ($values=mysql_fetch_array($query)) {
 										case 'e':
 										if ($resource[$key]) {
 										?>
-											<div class="generic_link">
+											<div class="generic_link content_inserted">
 												<div class="embed">
 													<?php echo $resource[$key]; ?>
 												</div>

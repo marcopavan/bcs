@@ -16,6 +16,9 @@
 <body>
 
 <?php
+if (isset($_POST['submit_bottol'])) {
+	print_r($_POST);
+}
 
 include('db_config.php');
 

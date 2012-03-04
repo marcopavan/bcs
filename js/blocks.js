@@ -3,10 +3,10 @@ var modifyer = '<div class="modify"><img class="remove" src="img/close.png"/><di
 var resizeControls = '<div class="resize_controls"><p rel="small">S</p><p rel="medium">M</p><p rel="large">L</p><p class="selected" rel="largest">XL</p></div>';
 var inputs = '<input type="hidden" name="component_position" class="element_data"/><input type="hidden" name="template_id" class="element_data"/><input type="hidden" name="resource_position" class="element_data"/><input type="hidden" name="resource_type" class="element_data"/><input type="hidden" name="resource" class="element_data"/>';
 
-var small = '<div class="small"><a class="new_add_menu"href="#hidden_menu"><p class="message_layout"></p></a></div>';
-var medium = '<div class="medium"><a class="new_add_menu" href="#hidden_menu"><p class="message_layout"></p></a></div>';
-var large = '<div class="large"><a class="new_add_menu" href="#hidden_menu"><p class="message_layout"></p></a></div>';
-var largest = resizeControls+'<div class="largest resize"><a class="new_add_menu" href=""><p class="message_layout"></p></a></div>';
+var small = '<div class="small"><a class="new_add_menu"href="#hidden_menu"><p class="message_layout"></p></a>'+inputs+'</div>';
+var medium = '<div class="medium"><a class="new_add_menu" href="#hidden_menu"><p class="message_layout"></p></a>'+inputs+'</div>';
+var large = '<div class="large"><a class="new_add_menu" href="#hidden_menu"><p class="message_layout"></p></a>'+inputs+'</div>';
+var largest = resizeControls+'<div class="largest resize"><a class="new_add_menu" href=""><p class="message_layout"></p></a>'+inputs+'</div>';
 
 function add(index, content, before){
         before = before && !(before == null);
@@ -312,6 +312,9 @@ $(function(){
             if($(this).find('.image').size() > 0) resourceType = 'i';
             if($(this).find('.video').size() > 0) resourceType = 'v';
             if($(this).find('.generic_link').size() > 0) resourceType = 'e';
+            if($(this).find('.new_add_menu').size() > 0) resourceType = 'x';
+            if($(this).find('.add_menu').size() > 0) resourceType = 'x';
+
 
             var resourceContent = '';
             switch(resourceType){
@@ -321,6 +324,8 @@ $(function(){
               case 'i': resourceContent = $(this).find('.image .img_path').val(); break;
               case 'v': resourceContent = $(this).find('.video iframe').attr('src'); break;
               case 'e': resourceContent = $(this).find('.generic_link .embed').html(); break;
+              case 'x': resourceContent = ''
+              break;
             }
 
             var actualInputName;
