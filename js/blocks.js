@@ -518,6 +518,7 @@ function videoSearch(textfield){
                                 textfield.parent().find('iframe').attr('src', pageurl);
                         else
                                 textfield.parent().append('<iframe src="'+pageurl+'" frameborder="0" allowfullscreen></iframe>');
+                $(textfield.parent()).addClass('content_inserted');
                 }
         });
 }
@@ -549,6 +550,7 @@ function embedURL(textfield) {
               wmode: 'transparent',
               method: 'after'
             });
+            $(textfield.parent()).addClass('content_inserted');
           }
         });
 }

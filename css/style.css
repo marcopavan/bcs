@@ -396,12 +396,12 @@ a.prev {
 	min-height: 150px;
 	position: relative;
 	text-align: center;
-	border:2px dashed transparent;
+	border:2px dashed #ccc;
+	border-radius: 10px;
 }
 .block#active .video{
 	background-color: #EEEEEE;
-	border-radius:10px;
-	border:2px dashed #ccc;
+	border:2px dashed #ccc !important;
 }
 .block .video > iframe{
 	width: 100%;
@@ -538,12 +538,12 @@ a.prev {
 	min-height: 150px;
 	position: relative;
 	text-align: center;
-	border:2px dashed transparent;
+	border:2px dashed #ccc;
+	border-radius: 10px;
 }
 .block#active .generic_link{
 	background-color: #EEEEEE;
-	border-radius:10px;
-	border:2px dashed #ccc;
+	border:2px dashed #ccc !important;
 }
 .block .generic_link > div{
 	width: 100%;
@@ -562,8 +562,9 @@ a.prev {
 	top: 60px;
 	width: 80%;
 	left:10%;
-	z-index: 0;
+	/*z-index: 0;
 	display: none;
+	*/
 }
 .block#active .generic_link > input{
 	z-index: 2;
@@ -736,6 +737,10 @@ a.prev {
 }
 .img_fancy {
 	display: block;
+}
+
+.content_inserted {
+	border: 2px dashed transparent !important;
 }
 
 /* bottone new e created su admin bar */
