@@ -289,7 +289,7 @@ $('.reset_item').live('click', function(){
         if(cont.hasClass('large'))
           cont.html($(large).html());
         if(cont.hasClass('largest'))
-          cont.html($(largest).html());
+          cont.html('<a class="new_add_menu" href=""><p class="message_layout"></p></a>'+inputs);
         return false;
 });
 
