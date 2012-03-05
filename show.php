@@ -81,7 +81,13 @@ while ($values=mysql_fetch_array($query)) {
 							<?php
 								switch ($resource_type[0]) {
 									case 't':
+										?>
+										<div class="default_text">
+										<?php
 										echo $resource[0];
+										?>
+										</div>
+										<?php
 										break;
 									case 'i':
 									if ($resource[0]) {
@@ -124,7 +130,13 @@ while ($values=mysql_fetch_array($query)) {
 							<?php
 								switch ($resource_type[0]) {
 									case 't':
+										?>
+										<div class="default_text">
+										<?php
 										echo $resource[0];
+										?>
+										</div>
+										<?php
 										break;
 									case 'i':
 									if ($resource[0]) {
@@ -167,7 +179,13 @@ while ($values=mysql_fetch_array($query)) {
 							<?php
 								switch ($resource_type[0]) {
 									case 't':
+										?>
+										<div class="default_text">
+										<?php
 										echo $resource[0];
+										?>
+										</div>
+										<?php
 										break;
 									case 'i':
 									if ($resource[0]) {
@@ -210,7 +228,13 @@ while ($values=mysql_fetch_array($query)) {
 							<?php
 								switch ($resource_type[0]) {
 									case 't':
+										?>
+										<div class="default_text">
+										<?php
 										echo $resource[0];
+										?>
+										</div>
+										<?php
 										break;
 									case 'i':
 									if ($resource[0]) {
@@ -270,7 +294,13 @@ while ($values=mysql_fetch_array($query)) {
 								$key = array_search(1,$resource_position);
 									switch ($resource_type[$key]) {
 										case 't':
+											?>
+											<div class="default_text">
+											<?php
 											echo $resource[$key];
+											?>
+											</div>
+											<?php
 											break;
 										case 'i':
 										if ($resource[$key]) {
@@ -309,7 +339,13 @@ while ($values=mysql_fetch_array($query)) {
 								$key = array_search(2,$resource_position);
 									switch ($resource_type[$key]) {
 										case 't':
+											?>
+											<div class="default_text">
+											<?php
 											echo $resource[$key];
+											?>
+											</div>
+											<?php
 											break;
 										case 'i':
 										if ($resource[$key]) {
@@ -353,7 +389,13 @@ while ($values=mysql_fetch_array($query)) {
 								$key = array_search(1,$resource_position);
 									switch ($resource_type[$key]) {
 										case 't':
+											?>
+											<div class="default_text">
+											<?php
 											echo $resource[$key];
+											?>
+											</div>
+											<?php
 											break;
 										case 'i':
 										if ($resource[$key]) {
@@ -392,7 +434,13 @@ while ($values=mysql_fetch_array($query)) {
 								$key = array_search(2,$resource_position);
 									switch ($resource_type[$key]) {
 										case 't':
+											?>
+											<div class="default_text">
+											<?php
 											echo $resource[$key];
+											?>
+											</div>
+											<?php
 											break;
 										case 'i':
 										if ($resource[$key]) {
@@ -431,7 +479,13 @@ while ($values=mysql_fetch_array($query)) {
 								$key = array_search(3,$resource_position);
 									switch ($resource_type[$key]) {
 										case 't':
+											?>
+											<div class="default_text">
+											<?php
 											echo $resource[$key];
+											?>
+											</div>
+											<?php
 											break;
 										case 'i':
 										if ($resource[$key]) {
@@ -475,7 +529,13 @@ while ($values=mysql_fetch_array($query)) {
 								$key = array_search(1,$resource_position);
 									switch ($resource_type[$key]) {
 										case 't':
+											?>
+											<div class="default_text">
+											<?php
 											echo $resource[$key];
+											?>
+											</div>
+											<?php
 											break;
 										case 'i':
 										if ($resource[$key]) {
@@ -514,7 +574,13 @@ while ($values=mysql_fetch_array($query)) {
 								$key = array_search(2,$resource_position);
 									switch ($resource_type[$key]) {
 										case 't':
+											?>
+											<div class="default_text">
+											<?php
 											echo $resource[$key];
+											?>
+											</div>
+											<?php
 											break;
 										case 'i':
 										if ($resource[$key]) {
@@ -558,7 +624,13 @@ while ($values=mysql_fetch_array($query)) {
 								$key = array_search(1,$resource_position);
 									switch ($resource_type[$key]) {
 										case 't':
+											?>
+											<div class="default_text">
+											<?php
 											echo $resource[$key];
+											?>
+											</div>
+											<?php
 											break;
 										case 'i':
 										if ($resource[$key]) {
@@ -597,7 +669,13 @@ while ($values=mysql_fetch_array($query)) {
 								$key = array_search(2,$resource_position);
 									switch ($resource_type[$key]) {
 										case 't':
+											?>
+											<div class="default_text">
+											<?php
 											echo $resource[$key];
+											?>
+											</div>
+											<?php
 											break;
 										case 'i':
 										if ($resource[$key]) {
