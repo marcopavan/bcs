@@ -16,10 +16,6 @@
 <body>
 
 <?php
-if (isset($_POST['submit_bottol'])) {
-	print_r($_POST);
-}
-
 include('db_config.php');
 
 // scrivo nel db tutti i dati della bottiglia e al sua struttura
