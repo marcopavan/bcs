@@ -244,7 +244,7 @@ while ($values=mysql_fetch_array($query)) {
 									case 'w':
 									if ($resource[0]) {
 									?>
-										<div class="webPage" style="height: 600px;">
+										<div class="webPage content_inserted" style="height: 600px;">
 											<iframe src="<?php echo $resource[0]; ?>" frameborder="0"></iframe>
 										</div>
 									<?php

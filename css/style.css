@@ -359,13 +359,13 @@ a.prev {
 /*link start*/
 .block .webPage{
 	text-align: center;
-	border:2px dashed transparent;
 	min-height: 150px;
+	border-radius:10px;
+	border:2px dashed #ccc;
 }
 .block#active .webPage{
 	background-color: #EEEEEE;
-	border-radius:10px;
-	border:2px dashed #ccc;
+	border:2px dashed #ccc !important;
 }
 .block .webPage > iframe{
 	width: 100%;
@@ -735,13 +735,14 @@ a.prev {
 .block#active .tinyMCETextArea{
 	display:block;
 }
-
-
 .block .emptyTiny{
 	height: 150px;
 	background: url(../img/empty.png) center no-repeat;
 	border: 2px dashed #CCC;
 	border-radius: 10px;
+}
+.block .small .emptyTiny {
+	background: url(../img/empty_small.png) center no-repeat;
 }
 .img_fancy {
 	display: block;

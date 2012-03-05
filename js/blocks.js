@@ -127,11 +127,11 @@ function appendImage() {
   $('.select').removeClass('select');
 }
 function appendVideo() {
-  $('.select').html('<div class="video"><input type="text" placeholder="Your video url ('+supportedVideoDomains.join(', ')+')" oninput="videoType($(this));"/></div>'+inputs);
+  $('.select').html('<div class="video"><input type="text" placeholder="Enter a Video link ('+supportedVideoDomains.join(', ')+')" oninput="videoType($(this));"/></div>'+inputs);
   $('.select').removeClass('select');
 }
 function appendGenericLink() {
-  $('.select').html('<div class="generic_link"><input type="text" placeholder="Enter a link" oninput="embedType($(this));"/><a class="hidden_link" href=""></a></div>'+inputs);
+  $('.select').html('<div class="generic_link"><input type="text" placeholder="Enter a link to embed" oninput="embedType($(this));"/><a class="hidden_link" href=""></a></div>'+inputs);
   $('.select').removeClass('select');
 }
 function appendDocument() {
@@ -140,7 +140,7 @@ function appendDocument() {
   $('.resize_controls').remove();
 }
 function appendWebPage() {
-  $('.select').html('<div class="webPage"><input type="text" placeholder="Insert an url" oninput="webPageType($(this));"/></div>'+inputs);
+  $('.select').html('<div class="webPage"><input type="text" placeholder="Enter a Web Page link" oninput="webPageType($(this));"/></div>'+inputs);
   $('.select').removeClass('select');
   $('.resize_controls').remove();
 }
@@ -478,6 +478,7 @@ function webIFrame(textfield){
                                 textfield.parent().css('height', '600px');
                                 textfield.parent().append('<iframe src="'+pageurl+'" frameborder="0"></iframe>');
                         }
+                textfield.parent().addClass('content_inserted');
                 }
         });
 }
