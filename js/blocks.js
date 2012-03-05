@@ -1,11 +1,12 @@
 
 var modifyer = '<div class="modify"><img class="remove" src="img/close.png"/><div class="mod_controls"><img class="move_up" src="img/up.png"/><img class="move_down" src="img/down.png"/></div></div><div class="edit_block"><p>edit</p></div>';
+var shifter = '<div class="shift"><div><img class="move_left" src="img/left.png"/><img class="move_right" src="img/right.png"/></div></div>';
 var resizeControls = '<div class="resize_controls"><p rel="small">S</p><p rel="medium">M</p><p rel="large">L</p><p class="selected" rel="largest">XL</p></div>';
 var inputs = '<input type="hidden" name="component_position" class="element_data"/><input type="hidden" name="template_id" class="element_data"/><input type="hidden" name="resource_position" class="element_data"/><input type="hidden" name="resource_type" class="element_data"/><input type="hidden" name="resource" class="element_data"/>';
 
-var small = '<div class="small"><a class="new_add_menu"href="#hidden_menu"><p class="message_layout"></p></a>'+inputs+'</div>';
-var medium = '<div class="medium"><a class="new_add_menu" href="#hidden_menu"><p class="message_layout"></p></a>'+inputs+'</div>';
-var large = '<div class="large"><a class="new_add_menu" href="#hidden_menu"><p class="message_layout"></p></a>'+inputs+'</div>';
+var small = '<div class="small">'+shifter+'<a class="new_add_menu"href="#hidden_menu"><p class="message_layout"></p></a>'+inputs+'</div>';
+var medium = '<div class="medium">'+shifter+'<a class="new_add_menu" href="#hidden_menu"><p class="message_layout"></p></a>'+inputs+'</div>';
+var large = '<div class="large">'+shifter+'<a class="new_add_menu" href="#hidden_menu"><p class="message_layout"></p></a>'+inputs+'</div>';
 var largest = resizeControls+'<div class="largest resize"><a class="new_add_menu" href=""><p class="message_layout"></p></a>'+inputs+'</div>';
 
 function add(index, content, before){
@@ -29,6 +30,10 @@ function add(index, content, before){
                 else
                         $('#blocks_content > .block').eq(index).after(content);
         }
+}
+
+function moveShifted(){
+  
 }
 
 function removeActiveTiny(){
@@ -119,20 +124,37 @@ function addXL(){
 // Fuction add element
 
 function appendText() {
-  $('.select').html('<textarea id="textarea' + (++textareaNum) + '" class="tinyMCETextArea"></textarea><div class="tinyMCETextAreaDisplay"></div>'+inputs);
-  createTextAreaTinyMCE('textarea'+textareaNum);$('.select').removeClass('select');
+  var currentItem = $('.select');
+  if(currentItem.hasClass('resize'))
+    currentItem.html('<textarea id="textarea' + (++textareaNum) + '" class="tinyMCETextArea"></textarea><div class="tinyMCETextAreaDisplay"></div>'+inputs);
+  else
+    currentItem.html(shifter + '<textarea id="textarea' + (++textareaNum) + '" class="tinyMCETextArea"></textarea><div class="tinyMCETextAreaDisplay"></div>'+inputs);
+  createTextAreaTinyMCE('textarea'+textareaNum);
+  currentItem.removeClass('select');
 }
 function appendImage() {
-  $('.select').html('<div class="drop_zone image"><p class="message" id="drop_image"></p></div>'+inputs);
-  $('.select').removeClass('select');
+  var currentItem = $('.select');
+  if(currentItem.hasClass('resize'))
+    currentItem.html('<div class="drop_zone image"><p class="message" id="drop_image"></p></div>'+inputs);
+  else
+    currentItem.html(shifter + '<div class="drop_zone image"><p class="message" id="drop_image"></p></div>'+inputs);
+  currentItem.removeClass('select');
 }
 function appendVideo() {
-  $('.select').html('<div class="video"><input type="text" placeholder="Enter a Video link ('+supportedVideoDomains.join(', ')+')" oninput="videoType($(this));"/></div>'+inputs);
-  $('.select').removeClass('select');
+  var currentItem = $('.select');
+  if(currentItem.hasClass('resize'))
+    currentItem.html('<div class="video"><input type="text" placeholder="Enter a Video link ('+supportedVideoDomains.join(', ')+')" oninput="videoType($(this));"/></div>'+inputs);
+  else
+    currentItem.html(shifter + '<div class="video"><input type="text" placeholder="Enter a Video link ('+supportedVideoDomains.join(', ')+')" oninput="videoType($(this));"/></div>'+inputs);
+  currentItem.removeClass('select');
 }
 function appendGenericLink() {
-  $('.select').html('<div class="generic_link"><input type="text" placeholder="Enter a link to embed" oninput="embedType($(this));"/><a class="hidden_link" href=""></a></div>'+inputs);
-  $('.select').removeClass('select');
+  var currentItem = $('.select');
+  if(currentItem.hasClass('resize'))
+    currentItem.html('<div class="generic_link"><input type="text" placeholder="Enter a link to embed" oninput="embedType($(this));"/><a class="hidden_link" href=""></a></div>'+inputs);
+  else
+    currentItem.html(shifter + '<div class="generic_link"><input type="text" placeholder="Enter a link to embed" oninput="embedType($(this));"/><a class="hidden_link" href=""></a></div>'+inputs);
+  currentItem.removeClass('select');
 }
 function appendDocument() {
   $('.select').html('<div class="drop_zone document"><p class="message" id="drop_document"></p></div>'+inputs);
@@ -202,6 +224,19 @@ $('.move_down').live('click', function(){
         var cont = $(this).parent().parent().parent();
         var myIndex = $('#blocks_content > .block').index(cont);
         myIndex++;
+        add(myIndex, cont.clone());
+        cont.remove();
+
+        var tinyTextareas = cont.find('.tinyMCETextArea');
+        tinyTextareas.each(function(){updateTextAreaTinyMCE($(this).attr('id'));});
+
+        return false;
+});
+
+$('.move_left').live('click', function(){
+        var cont = $(this).parent().parent().parent();
+        var myIndex = cont.find('.small, .medium, .large').index(cont);
+        myIndex--;
         add(myIndex, cont.clone());
         cont.remove();
 

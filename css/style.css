@@ -300,10 +300,33 @@ a.prev {
 	position:absolute;
 	bottom: -45px;
 }
+.block .shift{
+	display: none;
+	position: absolute;
+	bottom: -15px;
+	left: 0;
+	width: 50%;
+	text-align: right;
+	cursor: pointer;
+	z-index: 10;
+}
+.block#active > div:hover > .shift{
+	display: block;
+}
+.block .shift > div{
+	position: relative;
+	right: -32px;
+}
+.block .shift img{
+	height: 30px;
+	width: auto;
+}
+
 /*side controls end*/
 .block > *{
 	width: 100%;
   	min-height:150px;
+  	position: relative;
 }
 
 /*image drop start*/
