@@ -1,6 +1,7 @@
 
 var modifyer = '<div class="modify"><img class="remove" src="img/close.png"/><div class="mod_controls"><img class="move_up" src="img/up.png"/><img class="move_down" src="img/down.png"/></div></div><div class="edit_block"><p>edit</p></div>';
-var shifter = '<div class="shift"><div><img class="move_left" src="img/left.png"/><img class="move_right" src="img/right.png"/></div></div>';
+var shifter = '<div class="shift_remove_item"><div><img class="move_left" src="img/left.png"/><img class="reset_item" src="img/remove.png"/><img class="move_right" src="img/right.png"/></div></div>';
+var remover = '<div class="remove_item"><img class="reset_item" src="img/remove.png"/></div>';
 var resizeControls = '<div class="resize_controls"><p rel="small">S</p><p rel="medium">M</p><p rel="large">L</p><p class="selected" rel="largest">XL</p></div>';
 var inputs = '<input type="hidden" name="component_position" class="element_data"/><input type="hidden" name="template_id" class="element_data"/><input type="hidden" name="resource_position" class="element_data"/><input type="hidden" name="resource_type" class="element_data"/><input type="hidden" name="resource" class="element_data"/>';
 
@@ -140,7 +141,7 @@ function addXL(){
 function appendText() {
   var currentItem = $('.select');
   if(currentItem.hasClass('resize'))
-    currentItem.html('<textarea id="textarea' + (++textareaNum) + '" class="tinyMCETextArea"></textarea><div class="tinyMCETextAreaDisplay"></div>'+inputs);
+    currentItem.html(remover + '<textarea id="textarea' + (++textareaNum) + '" class="tinyMCETextArea"></textarea><div class="tinyMCETextAreaDisplay"></div>'+inputs);
   else
     currentItem.html(shifter + '<textarea id="textarea' + (++textareaNum) + '" class="tinyMCETextArea"></textarea><div class="tinyMCETextAreaDisplay"></div>'+inputs);
   createTextAreaTinyMCE('textarea'+textareaNum);
@@ -149,7 +150,7 @@ function appendText() {
 function appendImage() {
   var currentItem = $('.select');
   if(currentItem.hasClass('resize'))
-    currentItem.html('<div class="drop_zone image"><p class="message" id="drop_image"></p></div>'+inputs);
+    currentItem.html(remover + '<div class="drop_zone image"><p class="message" id="drop_image"></p></div>'+inputs);
   else
     currentItem.html(shifter + '<div class="drop_zone image"><p class="message" id="drop_image"></p></div>'+inputs);
   currentItem.removeClass('select');
@@ -157,7 +158,7 @@ function appendImage() {
 function appendVideo() {
   var currentItem = $('.select');
   if(currentItem.hasClass('resize'))
-    currentItem.html('<div class="video"><input type="text" placeholder="Enter a Video link ('+supportedVideoDomains.join(', ')+')" oninput="videoType($(this));"/></div>'+inputs);
+    currentItem.html(remover + '<div class="video"><input type="text" placeholder="Enter a Video link ('+supportedVideoDomains.join(', ')+')" oninput="videoType($(this));"/></div>'+inputs);
   else
     currentItem.html(shifter + '<div class="video"><input type="text" placeholder="Enter a Video link ('+supportedVideoDomains.join(', ')+')" oninput="videoType($(this));"/></div>'+inputs);
   currentItem.removeClass('select');
@@ -165,19 +166,21 @@ function appendVideo() {
 function appendGenericLink() {
   var currentItem = $('.select');
   if(currentItem.hasClass('resize'))
-    currentItem.html('<div class="generic_link"><input type="text" placeholder="Enter a link to embed" oninput="embedType($(this));"/><a class="hidden_link" href=""></a></div>'+inputs);
+    currentItem.html(remover + '<div class="generic_link"><input type="text" placeholder="Enter a link to embed" oninput="embedType($(this));"/><a class="hidden_link" href=""></a></div>'+inputs);
   else
     currentItem.html(shifter + '<div class="generic_link"><input type="text" placeholder="Enter a link to embed" oninput="embedType($(this));"/><a class="hidden_link" href=""></a></div>'+inputs);
   currentItem.removeClass('select');
 }
 function appendDocument() {
-  $('.select').html('<div class="drop_zone document"><p class="message" id="drop_document"></p></div>'+inputs);
-  $('.select').removeClass('select');
+  var currentItem = $('.select');
+  currentItem.html(remover + '<div class="drop_zone document"><p class="message" id="drop_document"></p></div>'+inputs);
+  currentItem.removeClass('select');
   $('.resize_controls').remove();
 }
 function appendWebPage() {
-  $('.select').html('<div class="webPage"><input type="text" placeholder="Enter a Web Page link" oninput="webPageType($(this));"/></div>'+inputs);
-  $('.select').removeClass('select');
+  var currentItem = $('.select');
+  currentItem.html(remover + '<div class="webPage"><input type="text" placeholder="Enter a Web Page link" oninput="webPageType($(this));"/></div>'+inputs);
+  currentItem.removeClass('select');
   $('.resize_controls').remove();
 }
 // End function add element
