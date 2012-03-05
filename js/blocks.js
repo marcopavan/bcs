@@ -1,13 +1,17 @@
 
 var modifyer = '<div class="modify"><img class="remove" src="img/close.png"/><div class="mod_controls"><img class="move_up" src="img/up.png"/><img class="move_down" src="img/down.png"/></div></div><div class="edit_block"><p>edit</p></div>';
+
 var shifter = '<div class="shift_remove_item"><div><img class="move_left" src="img/left.png"/><img class="reset_item" src="img/remove.png"/><img class="move_right" src="img/right.png"/></div></div>';
+var onlyShift = '<div class="shift_item"><div><img class="move_left" src="img/left.png"/><img class="move_right" src="img/right.png"/></div></div>';
 var remover = '<div class="remove_item"><img class="reset_item" src="img/remove.png"/></div>';
+
 var resizeControls = '<div class="resize_controls"><p rel="small">S</p><p rel="medium">M</p><p rel="large">L</p><p class="selected" rel="largest">XL</p></div>';
+
 var inputs = '<input type="hidden" name="component_position" class="element_data"/><input type="hidden" name="template_id" class="element_data"/><input type="hidden" name="resource_position" class="element_data"/><input type="hidden" name="resource_type" class="element_data"/><input type="hidden" name="resource" class="element_data"/>';
 
-var small = '<div class="small">'+shifter+'<a class="new_add_menu"href="#hidden_menu"><p class="message_layout"></p></a>'+inputs+'</div>';
-var medium = '<div class="medium">'+shifter+'<a class="new_add_menu" href="#hidden_menu"><p class="message_layout"></p></a>'+inputs+'</div>';
-var large = '<div class="large">'+shifter+'<a class="new_add_menu" href="#hidden_menu"><p class="message_layout"></p></a>'+inputs+'</div>';
+var small = '<div class="small">'+onlyShift+'<a class="new_add_menu"href="#hidden_menu"><p class="message_layout"></p></a>'+inputs+'</div>';
+var medium = '<div class="medium">'+onlyShift+'<a class="new_add_menu" href="#hidden_menu"><p class="message_layout"></p></a>'+inputs+'</div>';
+var large = '<div class="large">'+onlyShift+'<a class="new_add_menu" href="#hidden_menu"><p class="message_layout"></p></a>'+inputs+'</div>';
 var largest = resizeControls+'<div class="largest resize"><a class="new_add_menu" href=""><p class="message_layout"></p></a>'+inputs+'</div>';
 
 function add(index, content, before){
@@ -273,6 +277,19 @@ $('.move_right').live('click', function(){
         var tinyTextareas = cont.find('.tinyMCETextArea');
         tinyTextareas.each(function(){updateTextAreaTinyMCE($(this).attr('id'));});
 
+        return false;
+});
+
+$('.reset_item').live('click', function(){
+        var cont = $(this).parents('.small, .medium, .large, .largest');
+        if(cont.hasClass('small'))
+          cont.html($(small).html());
+        if(cont.hasClass('medium'))
+          cont.html($(medium).html());
+        if(cont.hasClass('large'))
+          cont.html($(large).html());
+        if(cont.hasClass('largest'))
+          cont.html($(largest).html());
         return false;
 });
 
