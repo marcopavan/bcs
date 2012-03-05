@@ -535,6 +535,9 @@ a.prev {
 .small>.drop_zone {
 	background: url(../img/drop_small.png) center no-repeat;
 }
+.small>.drop_zone:hover {
+	background-color: #eee;
+}
 #blocks_content{
 	height:100%;
 }
@@ -770,9 +773,11 @@ a.prev {
 .img_fancy {
 	display: block;
 }
-
 .content_inserted {
 	border: 2px dashed transparent !important;
+}
+.content_inserted>input {
+	display: none;
 }
 
 /* bottone new e created su admin bar */
