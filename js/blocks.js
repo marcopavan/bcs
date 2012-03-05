@@ -17,23 +17,37 @@ function add(index, content, before){
         if(index != null && index == 'last') index = null;
         if(index != null && index > max - 1) index = max - 1;
 
-  $('#active').attr('id', '');
+        $('#active').attr('id', '');
 
-	if(content == null)
-		content = '<div class="block" id="active">'+modifyer+'</div>';
-	if(index == null)
-		$('#blocks_content').append(content);
-	else
+      	if(content == null)
+      		content = '<div class="block" id="active">'+modifyer+'</div>';
+      	if(index == null)
+      		$('#blocks_content').append(content);
+      	else
         {
-                if(before)
+            if(before)
 			        $('#blocks_content > .block').eq(index).before(content);
-                else
-                        $('#blocks_content > .block').eq(index).after(content);
+            else
+              $('#blocks_content > .block').eq(index).after(content);
         }
 }
 
-function moveShifted(){
-  
+function moveShifted(index, content, parent, before){
+        before = before && !(before == null);
+        if(index != null && index < 0) index = 0;
+        var max = parent.find('.small, .medium, .large').size();
+        if(index != null && index == 'first') index = 0;
+        if(index != null && index == 'last') index = null;
+        if(index != null && index > max - 1) index = max - 1;
+        if(index == null)
+          parent.append(content);
+        else
+        {
+            if(before)
+              parent.find('.small, .medium, .large').eq(index).before(content);
+            else
+              parent.find('.small, .medium, .large').eq(index).after(content);
+        }
 }
 
 function removeActiveTiny(){
@@ -208,16 +222,16 @@ $('.remove').live('click', function(){
 });
 
 $('.move_up').live('click', function(){
-	var cont = $(this).parent().parent().parent();
-	var myIndex = $('#blocks_content > .block').index(cont);
-	myIndex--;
-	add(myIndex, cont.clone(), true);
-  cont.remove();
-        
-  var tinyTextareas = cont.find('.tinyMCETextArea');
-  tinyTextareas.each(function(){updateTextAreaTinyMCE($(this).attr('id'));});
+      	var cont = $(this).parent().parent().parent();
+      	var myIndex = $('#blocks_content > .block').index(cont);
+      	myIndex--;
+      	add(myIndex, cont.clone(), true);
+        cont.remove();
+              
+        var tinyTextareas = cont.find('.tinyMCETextArea');
+        tinyTextareas.each(function(){updateTextAreaTinyMCE($(this).attr('id'));});
 
-  return false;
+        return false;
 });
 
 $('.move_down').live('click', function(){
@@ -235,9 +249,22 @@ $('.move_down').live('click', function(){
 
 $('.move_left').live('click', function(){
         var cont = $(this).parent().parent().parent();
-        var myIndex = cont.find('.small, .medium, .large').index(cont);
+        var myIndex = cont.parent().find('.small, .medium, .large').index(cont);
         myIndex--;
-        add(myIndex, cont.clone());
+        moveShifted(myIndex, cont.clone(), cont.parent(), true);
+        cont.remove();
+
+        var tinyTextareas = cont.find('.tinyMCETextArea');
+        tinyTextareas.each(function(){updateTextAreaTinyMCE($(this).attr('id'));});
+
+        return false;
+});
+
+$('.move_right').live('click', function(){
+        var cont = $(this).parent().parent().parent();
+        var myIndex = cont.parent().find('.small, .medium, .large').index(cont);
+        myIndex++;
+        moveShifted(myIndex, cont.clone(), cont.parent());
         cont.remove();
 
         var tinyTextareas = cont.find('.tinyMCETextArea');
