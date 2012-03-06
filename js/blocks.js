@@ -358,8 +358,13 @@ $(function(){
         });
 
         $('#forum-topic-form').submit(function(){
+
+          $('#submit_bottol').attr('disabled', 'true');
+          $('#submit_bottol').css('color', '#888');
+
           removeActiveTiny();
           $('#active').attr('id', '');
+
           $(this).find('.small, .medium, .large, .largest').each(function(){
             elementId++;
             var blockNumber = $('#blocks_content > .block').index($(this).parent());
@@ -636,7 +641,7 @@ function embedURL(textfield) {
             $(textfield.parent().find('.embed')).remove();
             $(textfield.parent().find('.hidden_link')).embedly({
               maxWidth: max,
-              //key: 'abb3e3165efb11e195364040d3dc5c07',
+              key: 'abb3e3165efb11e195364040d3dc5c07',
               wmode: 'transparent',
               method: 'after'
             });
