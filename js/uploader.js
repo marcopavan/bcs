@@ -1,9 +1,12 @@
-
   function handleFileSelect(evt, actual_drop_zone) {
     evt.stopPropagation();
     evt.preventDefault();
 
-    var files = evt.dataTransfer.files; // FileList object.
+    if(evt.dataTransfer==undefined) {
+      var files = evt.target.files;
+    } else {
+      var files = evt.dataTransfer.files;
+    }
 
     // files is a FileList of File objects. List some properties.
 
@@ -31,12 +34,11 @@
               type: 'POST',
               beforeSend: function(){
                 //actual_drop_zone.find('.message').html(spinner);
-                actual_drop_zone.html('<div class="uploading_status">'+spinner + '<div class="percentLoaded"></div></div>');
+                actual_drop_zone.find('dropped_div').html('<div class="uploading_status">'+spinner + '<div class="percentLoaded"></div></div>');
                 actual_drop_zone.find('.percentLoaded').html('Creating preview...');
               },
               success: function(data){
-                var dropArea = actual_drop_zone;
-                dropArea.html(['<div class="dropped_div"><img class="dropped_img" src="', 'data:image/', f.type, ';base64,', data, '" title="', f.name, '"/></div>'].join(''));
+                actual_drop_zone.html(['<input type="file" class="input_file" name="input_file"/><div class="dropped_div"><img class="dropped_img" src="', 'data:image/', f.type, ';base64,', data, '" title="', f.name, '"/></div>'].join(''));
                 actual_drop_zone.addClass('img_added');
                 saveImage(f, actual_drop_zone);
               }
@@ -138,6 +140,9 @@ function saveImage(file, actual_drop_zone){
   dropZone.live('drop', function(event){
     handleFileSelect(event.originalEvent, $(this));
   });
+  $('.input_file').live('change', function(event){
+    handleFileSelect(event.originalEvent , $(this).parent());
+});
 
 
 var spinner = '<div class="spinner"><div class="bar1"></div><div class="bar2"></div><div class="bar3"></div><div class="bar4"></div><div class="bar5"></div><div class="bar6"></div><div class="bar7"></div><div class="bar8"></div><div class="bar9"></div><div class="bar10"></div><div class="bar11"></div><div class="bar12"></div></div>';

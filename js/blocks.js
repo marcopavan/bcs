@@ -154,9 +154,9 @@ function appendText() {
 function appendImage() {
   var currentItem = $('.select');
   if(currentItem.hasClass('resize'))
-    currentItem.html(remover + '<div class="drop_zone image"><p class="message" id="drop_image"></p></div>'+inputs);
+    currentItem.html(remover + '<div class="drop_zone image"><p class="message" id="drop_image"></p><input type="file" class="input_file" name="input_file"/></div>'+inputs);
   else
-    currentItem.html(shifter + '<div class="drop_zone image"><p class="message" id="drop_image"></p></div>'+inputs);
+    currentItem.html(shifter + '<div class="drop_zone image"><p class="message" id="drop_image"></p><input type="file" class="input_file" name="input_file"/></div>'+inputs);
   currentItem.removeClass('select');
 }
 function appendVideo() {
