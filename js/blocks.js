@@ -1,4 +1,3 @@
-
 var modifyer = '<div class="modify"><img class="remove" src="img/close.png"/><div class="mod_controls"><img class="move_up" src="img/up.png"/><img class="move_down" src="img/down.png"/></div></div><div class="edit_block"><p>edit</p></div>';
 
 var shifter = '<div class="shift_remove_item"><div><img class="move_left" src="img/left.png"/><img class="reset_item" src="img/remove.png"/><img class="move_right" src="img/right.png"/></div></div>';
@@ -73,6 +72,26 @@ function create_block(content){
 var textareaNum = 0;
 var maximumBlocks = 10;
 var currentBlocks = 0;
+
+var activeRequests = 0;
+
+function onAjaxStart(){
+  if(activeRequests <= 0){
+    $('#submit_bottol').attr('disabled', 'true');
+    $('#submit_bottol').css('color', '#888');
+  }
+  activeRequests++;
+  alert(activeRequests);
+}
+
+function onAjaxEnd(){
+  activeRequests--;
+  if(activeRequests <= 0){
+    $('#submit_bottol').attr('disabled', 'false');
+    $('#submit_bottol').css('color', 'green');
+  }
+  alert(activeRequests);
+}
 
 // Function add new element block
 /*
@@ -325,7 +344,7 @@ $('.resize_controls > *').live('click', function(){
   $(toResize.find('.embed')).remove();
   $(toResize.find('.hidden_link')).embedly({
     maxWidth: max,
-    //key: 'abb3e3165efb11e195364040d3dc5c07',
+    key: 'abb3e3165efb11e195364040d3dc5c07',
     wmode: 'transparent',
     method: 'after'
   });
@@ -557,6 +576,7 @@ function webIFrame(textfield){
                 type: "GET",
                 url: pageurl,
                 dataType: "jsonp",
+                beforeSend: onAjaxStart(),
                 complete: function(){
                         if(textfield.parent().find('iframe').size() > 0)
                                 textfield.parent().find('iframe').attr('src', pageurl);
@@ -565,7 +585,8 @@ function webIFrame(textfield){
                                 textfield.parent().css('height', '600px');
                                 textfield.parent().append('<iframe src="'+pageurl+'" frameborder="0"></iframe>');
                         }
-                textfield.parent().addClass('content_inserted');
+                        textfield.parent().addClass('content_inserted');
+                        onAjaxEnd();
                 }
         });
 }
@@ -602,6 +623,7 @@ function videoSearch(textfield){
                 type: "GET",
                 url: pageurl,
                 dataType: "jsonp",
+                beforeSend: onAjaxStart(),
                 complete: function(){
                         var id = pageurl;
                         for(i in regexVideoDomains[domain])
@@ -613,7 +635,8 @@ function videoSearch(textfield){
                                 textfield.parent().find('iframe').attr('src', pageurl);
                         else
                                 textfield.parent().append('<iframe src="'+pageurl+'" frameborder="0" allowfullscreen></iframe>');
-                $(textfield.parent()).addClass('content_inserted');
+                        $(textfield.parent()).addClass('content_inserted');
+                        onAjaxEnd();
                 }
         });
 }
@@ -635,6 +658,7 @@ function embedURL(textfield) {
           type: "GET",
           url: genericUrl,
           dataType: "jsonp",
+          beforeSend: onAjaxStart(),
           complete: function(){
             textfield.parent().find('.hidden_link').attr('href',genericUrl);
             var max = textfield.parent().width();
@@ -646,6 +670,7 @@ function embedURL(textfield) {
               method: 'after'
             });
             $(textfield.parent()).addClass('content_inserted');
+            onAjaxEnd();
           }
         });
 }
