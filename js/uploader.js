@@ -61,7 +61,7 @@
             // Render dropped image.
             var dropArea = actual_drop_zone;
             //dropArea.html('pippa');
-            dropArea.html(['<div class="dropped_div"><img class="dropped_img" src="', e.target.result, '" title="', escape(theFile.name), '"/></div>'].join(''));
+            dropArea.html(['<input type="file" class="input_file" name="input_file"/><div class="dropped_div"><img class="dropped_img" src="', e.target.result, '" title="', escape(theFile.name), '"/></div>'].join(''));
             actual_drop_zone.addClass('img_added');
           };
         })(f);
@@ -100,7 +100,7 @@
               actual_drop_zone.find('.percentLoaded').html('Creating preview...');
             },
             success: function(urlToGDocs){
-              actual_drop_zone.html('<div class="dropped_div"><input type="hidden" class="document_path" value="'+urlToGDocs+'"/><iframe id="document_frame" src="http://docs.google.com/gview?url='+escape(urlToGDocs)+'&embedded=true" style="width:100%; height:600px;" frameborder="0"></iframe></div>');
+              actual_drop_zone.html('<input type="file" class="input_file" name="input_file"/><div class="dropped_div"><input type="hidden" class="document_path" value="'+urlToGDocs+'"/><iframe id="document_frame" src="http://docs.google.com/gview?url='+escape(urlToGDocs)+'&embedded=true" style="width:100%; height:600px;" frameborder="0"></iframe></div>');
               actual_drop_zone.addClass('img_added');
             }
         });

@@ -177,7 +177,7 @@ function appendGenericLink() {
 }
 function appendDocument() {
   var currentItem = $('.select');
-  currentItem.html(remover + '<div class="drop_zone document"><p class="message" id="drop_document"></p></div>'+inputs);
+  currentItem.html(remover + '<div class="drop_zone document"><p class="message" id="drop_document"></p><input type="file" class="input_file" name="input_file"/></div>'+inputs);
   currentItem.removeClass('select');
   $('.resize_controls').remove();
 }
