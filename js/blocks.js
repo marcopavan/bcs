@@ -172,9 +172,9 @@ function appendVideo() {
 function appendGenericLink() {
   var currentItem = $('.select');
   if(currentItem.hasClass('resize'))
-    currentItem.html(remover + '<div class="generic_link"><input type="text" rel="'+(inputNumber++)+'" placeholder="Embed wahtever you like! (twitter, soundcloud, etc)" oninput="embedType($(this));"/><a class="hidden_link" href=""></a></div>'+inputs);
+    currentItem.html(remover + '<div class="generic_link"><input type="text" rel="'+(inputNumber++)+'" placeholder="Embed whatever you like! (twitter, soundcloud, etc)" oninput="embedType($(this));"/><a class="hidden_link" href=""></a></div>'+inputs);
   else
-    currentItem.html(shifter + '<div class="generic_link"><input type="text" rel="'+(inputNumber++)+'" placeholder="Embed wahtever you like! (twitter, soundcloud, etc)" oninput="embedType($(this));"/><a class="hidden_link" href=""></a></div>'+inputs);
+    currentItem.html(shifter + '<div class="generic_link"><input type="text" rel="'+(inputNumber++)+'" placeholder="Embed whatever you like! (twitter, soundcloud, etc)" oninput="embedType($(this));"/><a class="hidden_link" href=""></a></div>'+inputs);
   currentItem.removeClass('select');
 }
 function appendDocument() {
