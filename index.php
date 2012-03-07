@@ -38,6 +38,61 @@ include('db_config.php');
 			<label>Subtitle:</label><br/>
 			<input type="text" name="topic_subtitle" id="topic_subtitle" value="" autocomplete="off" maxlength="80" /><!-- <span class="asterisco">*</span> --><br/>
 
+			
+
+			<!-- hidden menu -->
+
+			<div style="display: none;">
+				<div id="hidden_menu_largest">
+					<div class="element_popup" onclick="appendText()" title="Embed Text">
+						<img src="img/text.png"/>
+					</div>
+					<div class="element_popup" onclick="appendImage()" title="Embed Image">
+						<img src="img/image.png"/>
+					</div>
+					<div class="element_popup" onclick="appendVideo()" title="Embed Video">
+						<img src="img/video.png"/>
+					</div>
+					<div class="element_popup" onclick="appendGenericLink()" title="Embed Web Link">
+						<img src="img/multimedia.png"/>
+					</div>
+					<div class="element_popup" onclick="appendWebPage()" title="Embed Web Page">
+						<img src="img/webpage.png"/>
+					</div>
+					<div class="element_popup" onclick="appendDocument()" title="Embed Document">
+						<img src="img/document.png"/>
+					</div>
+				</div>
+				<div id="hidden_menu">
+					<div class="element_popup" onclick="appendText()" title="Embed Text">
+						<img src="img/text.png"/>
+					</div>
+					<div class="element_popup" onclick="appendImage()" title="Embed Image">
+						<img src="img/image.png"/>
+					</div>
+					<div class="element_popup" onclick="appendVideo()" title="Embed Video">
+						<img src="img/video.png"/>
+					</div>
+					<div class="element_popup" onclick="appendGenericLink()" title="Embed Web Link">
+						<img src="img/multimedia.png"/>
+					</div>
+				</div>
+			</div>
+
+			<!-- end hidden menu -->
+
+			<!-- max chars reached message-->
+
+			<a href="#maxCharsReachMsg" id="maxCharsReach" class="fancybox"></a>
+			<div style="display:none">
+				<div id="maxCharsReachMsg">
+					Sorry but you can enter a maximum of 10000 characters...
+				</div>
+			</div>
+
+			<!-- Content bottle creation -->
+			<div id="blocks_content"></div>
+
 			<!-- start select layout -->
 
 			<div class="list_carousel">
@@ -100,59 +155,6 @@ include('db_config.php');
 				-->
 
 			</div>
-
-			<!-- hidden menu -->
-
-			<div style="display: none;">
-				<div id="hidden_menu_largest">
-					<div class="element_popup" onclick="appendText()" title="Embed Text">
-						<img src="img/text.png"/>
-					</div>
-					<div class="element_popup" onclick="appendImage()" title="Embed Image">
-						<img src="img/image.png"/>
-					</div>
-					<div class="element_popup" onclick="appendVideo()" title="Embed Video">
-						<img src="img/video.png"/>
-					</div>
-					<div class="element_popup" onclick="appendGenericLink()" title="Embed Web Link">
-						<img src="img/multimedia.png"/>
-					</div>
-					<div class="element_popup" onclick="appendWebPage()" title="Embed Web Page">
-						<img src="img/webpage.png"/>
-					</div>
-					<div class="element_popup" onclick="appendDocument()" title="Embed Document">
-						<img src="img/document.png"/>
-					</div>
-				</div>
-				<div id="hidden_menu">
-					<div class="element_popup" onclick="appendText()" title="Embed Text">
-						<img src="img/text.png"/>
-					</div>
-					<div class="element_popup" onclick="appendImage()" title="Embed Image">
-						<img src="img/image.png"/>
-					</div>
-					<div class="element_popup" onclick="appendVideo()" title="Embed Video">
-						<img src="img/video.png"/>
-					</div>
-					<div class="element_popup" onclick="appendGenericLink()" title="Embed Web Link">
-						<img src="img/multimedia.png"/>
-					</div>
-				</div>
-			</div>
-
-			<!-- end hidden menu -->
-
-			<!-- max chars reached message-->
-
-			<a href="#maxCharsReachMsg" id="maxCharsReach" class="fancybox"></a>
-			<div style="display:none">
-				<div id="maxCharsReachMsg">
-					Sorry but you can enter a maximum of 10000 characters...
-				</div>
-			</div>
-
-			<!-- Content bottle creation -->
-			<div id="blocks_content"></div>
 
 			<input type="submit" name="submit_bottol" id="submit_bottol" value="Create"/>
 			<!--
