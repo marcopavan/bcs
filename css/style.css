@@ -755,6 +755,7 @@ a.prev {
 	box-shadow: 2px 2px 2px #888;
 	font-size: 0.8em;
 	color: white;
+	z-index: 1;
 }
 .block > .edit_block > div{
 	height: 100%;
