@@ -159,7 +159,7 @@ include('db_config.php');
 			<input type="button" id="save_bottol" value="Save as Draft"/>
 			<input type="button" id="preview_bottol" value="Preview"/>
 			-->
-			<input type="button" id="cancel_bottol" value="Cancel"/>
+			<input type="button" id="cancel_bottol" value="Cancel" onclick="window.location = 'http://<?php echo $db_domain;?>';"/>
 		</form>
 	</div>
 	<div id="sidebar">

@@ -1,3 +1,20 @@
+function onAjaxStart(){
+  if(activeRequests <= 0){
+    $('#submit_bottol').attr('disabled', true);
+    $('#submit_bottol').css('color', '#888');
+  }
+  activeRequests++;
+}
+
+function onAjaxEnd(){
+  activeRequests--;
+  if(activeRequests <= 0){
+    $('#submit_bottol').attr('disabled', false);
+    $('#submit_bottol').css('color', 'green');
+  }
+}
+
+
   function handleFileSelect(evt, actual_drop_zone) {
     evt.stopPropagation();
     evt.preventDefault();
@@ -34,6 +51,7 @@
               type: 'POST',
               beforeSend: function(){
                 //actual_drop_zone.find('.message').html(spinner);
+                onAjaxStart();
                 actual_drop_zone.html('<div class="uploading_status">'+spinner + '<div class="percentLoaded"></div></div>');
                 actual_drop_zone.find('.percentLoaded').html('Creating preview...');
               },
@@ -41,7 +59,8 @@
                 actual_drop_zone.html(['<p class="or">or</p><div class="input_container"><input type="file" class="input_file" name="input_file"/></div><div class="dropped_div"><img class="dropped_img" src="', 'data:image/', f.type, ';base64,', data, '" title="', f.name, '"/></div>'].join(''));
                 actual_drop_zone.addClass('img_added');
                 saveImage(f, actual_drop_zone);
-              }
+              },
+              complete: onAjaxEnd()
           });break;
         }
 
@@ -49,6 +68,7 @@
         //shows a spinner
         reader.onloadstart = function(e) {
           //actual_drop_zone.find('.message').html(spinner + '<div class="percentLoaded"></div>');
+          onAjaxStart();
           actual_drop_zone.html(spinner + '<div class="percentLoaded"></div>');
         };
         //change percentage
@@ -62,6 +82,7 @@
             var dropArea = actual_drop_zone;
             dropArea.html(['<p class="or">or</p><div class="input_container"><input type="file" class="input_file" name="input_file"/></div><div class="dropped_div"><img class="dropped_img" src="', e.target.result, '" title="', escape(theFile.name), '"/></div>'].join(''));
             actual_drop_zone.addClass('img_added');
+            onAjaxEnd();
           };
         })(f);
 
@@ -95,13 +116,15 @@
             processData: false,
             type: 'POST',
             beforeSend: function(){
+              onAjaxStart();
               actual_drop_zone.html('<div class="uploading_status">'+spinner + '<div class="percentLoaded"></div></div>');
               actual_drop_zone.find('.percentLoaded').html('Creating preview...');
             },
             success: function(urlToGDocs){
               actual_drop_zone.html('<p class="or">or</p><div class="input_container"><input type="file" class="input_file" name="input_file"/></div><div class="dropped_div"><input type="hidden" class="document_path" value="'+urlToGDocs+'"/><iframe id="document_frame" src="http://docs.google.com/gview?url='+escape(urlToGDocs)+'&embedded=true" style="width:100%; height:600px;" frameborder="0"></iframe></div>');
               actual_drop_zone.addClass('img_added');
-            }
+            },
+            complete: onAjaxEnd()
         });
       }
     }
@@ -118,10 +141,12 @@ function saveImage(file, actual_drop_zone){
     contentType: false,
     processData: false,
     type: 'POST',
+    beforeSend: onAjaxStart(),
     success: function(urlToSend){
       actual_drop_zone.find('.img_path').remove();
       actual_drop_zone.append('<input type="hidden" class="img_path" value="'+urlToSend+'"/>');
-    }
+    },
+    complete: onAjaxEnd()
   });
 }
 

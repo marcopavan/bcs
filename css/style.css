@@ -389,6 +389,7 @@ a.prev {
 }
 .img_added .input_container {
 	display: none;
+	cursor: pointer;
 }
 .img_added .or {
 	display: none;
