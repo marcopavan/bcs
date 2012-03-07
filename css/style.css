@@ -472,6 +472,7 @@ a.prev {
 }
 .block#active .webPage > input{
 	z-index: 1;
+	display: block;
 }
 /*link end*/
 
@@ -519,6 +520,7 @@ a.prev {
 }
 .block#active .video > input{
 	z-index: 1;
+	display: block;
 }
 /*video end*/
 
