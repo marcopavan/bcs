@@ -34,11 +34,11 @@
               type: 'POST',
               beforeSend: function(){
                 //actual_drop_zone.find('.message').html(spinner);
-                actual_drop_zone.find('dropped_div').html('<div class="uploading_status">'+spinner + '<div class="percentLoaded"></div></div>');
+                actual_drop_zone.html('<div class="uploading_status">'+spinner + '<div class="percentLoaded"></div></div>');
                 actual_drop_zone.find('.percentLoaded').html('Creating preview...');
               },
               success: function(data){
-                actual_drop_zone.html(['<input type="file" class="input_file" name="input_file"/><div class="dropped_div"><img class="dropped_img" src="', 'data:image/', f.type, ';base64,', data, '" title="', f.name, '"/></div>'].join(''));
+                actual_drop_zone.html(['<p class="or">or</p><div class="input_container"><input type="file" class="input_file" name="input_file"/></div><div class="dropped_div"><img class="dropped_img" src="', 'data:image/', f.type, ';base64,', data, '" title="', f.name, '"/></div>'].join(''));
                 actual_drop_zone.addClass('img_added');
                 saveImage(f, actual_drop_zone);
               }
@@ -60,8 +60,7 @@
           return function(e) {
             // Render dropped image.
             var dropArea = actual_drop_zone;
-            //dropArea.html('pippa');
-            dropArea.html(['<input type="file" class="input_file" name="input_file"/><div class="dropped_div"><img class="dropped_img" src="', e.target.result, '" title="', escape(theFile.name), '"/></div>'].join(''));
+            dropArea.html(['<p class="or">or</p><div class="input_container"><input type="file" class="input_file" name="input_file"/></div><div class="dropped_div"><img class="dropped_img" src="', e.target.result, '" title="', escape(theFile.name), '"/></div>'].join(''));
             actual_drop_zone.addClass('img_added');
           };
         })(f);
@@ -100,7 +99,7 @@
               actual_drop_zone.find('.percentLoaded').html('Creating preview...');
             },
             success: function(urlToGDocs){
-              actual_drop_zone.html('<input type="file" class="input_file" name="input_file"/><div class="dropped_div"><input type="hidden" class="document_path" value="'+urlToGDocs+'"/><iframe id="document_frame" src="http://docs.google.com/gview?url='+escape(urlToGDocs)+'&embedded=true" style="width:100%; height:600px;" frameborder="0"></iframe></div>');
+              actual_drop_zone.html('<p class="or">or</p><div class="input_container"><input type="file" class="input_file" name="input_file"/></div><div class="dropped_div"><input type="hidden" class="document_path" value="'+urlToGDocs+'"/><iframe id="document_frame" src="http://docs.google.com/gview?url='+escape(urlToGDocs)+'&embedded=true" style="width:100%; height:600px;" frameborder="0"></iframe></div>');
               actual_drop_zone.addClass('img_added');
             }
         });
@@ -141,7 +140,7 @@ function saveImage(file, actual_drop_zone){
     handleFileSelect(event.originalEvent, $(this));
   });
   $('.input_file').live('change', function(event){
-    handleFileSelect(event.originalEvent , $(this).parent());
+    handleFileSelect(event.originalEvent , $(this).parent().parent());
 });
 
 

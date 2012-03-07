@@ -171,9 +171,9 @@ function appendText() {
 function appendImage() {
   var currentItem = $('.select');
   if(currentItem.hasClass('resize'))
-    currentItem.html(remover + '<div class="drop_zone image"><p class="message" id="drop_image"></p><input type="file" class="input_file" name="input_file"/></div>'+inputs);
+    currentItem.html(remover + '<div class="drop_zone image"><div class="message"></div><p class="or">or</p><div class="input_container"><input type="file" class="input_file" name="input_file"/></div></div>'+inputs);
   else
-    currentItem.html(shifter + '<div class="drop_zone image"><p class="message" id="drop_image"></p><input type="file" class="input_file" name="input_file"/></div>'+inputs);
+    currentItem.html(shifter + '<div class="drop_zone image"><div class="message"></div><p class="or">or</p><div class="input_container"><input type="file" class="input_file" name="input_file"/></div></div>'+inputs);
   currentItem.removeClass('select');
 }
 function appendVideo() {
@@ -194,7 +194,7 @@ function appendGenericLink() {
 }
 function appendDocument() {
   var currentItem = $('.select');
-  currentItem.html(remover + '<div class="drop_zone document"><p class="message" id="drop_document"></p><input type="file" class="input_file" name="input_file"/></div>'+inputs);
+  currentItem.html(remover + '<div class="drop_zone document"><div class="message"></div><p class="or">or</p><div class="input_container"><input type="file" class="input_file" name="input_file"/></div></div>'+inputs);
   currentItem.removeClass('select');
   $('.resize_controls').remove();
 }

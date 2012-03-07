@@ -376,15 +376,22 @@ a.prev {
 
 /*image drop start*/
 .drop_zone {
-  text-align:center;
-  width:100%;
-  min-height:150px;
-  border-radius:10px;
-  border:2px dashed #ccc;
-  color: #ccc;
+	position: relative;
+	text-align:center;
+	width:100%;
+	min-height:150px;
+	border-radius:10px;
+	border:2px dashed #ccc;
+	color: #ccc;
 }
 .img_added{
    border:2px dashed transparent;
+}
+.img_added .input_container {
+	display: none;
+}
+.img_added .or {
+	display: none;
 }
 .drop_zone:hover {
   color: #888;
@@ -395,6 +402,14 @@ a.prev {
 .drop_zone:hover .dropped_div{
   opacity:0.4;
 }
+
+.drop_zone:hover .input_container {
+	display: block;
+}
+.drop_zone:hover .or {
+	display: block;
+}
+
 
 .dropped_div{
   height:100%;
@@ -412,10 +427,10 @@ a.prev {
   font-weight:bold;
   padding:5px;
 }
-.message{
+/*.message{
 	padding-top:30px;
 	text-align:center;
-}
+}*/
 .document {
 	background: url(../img/dropdoc40pt.png) center no-repeat;
 }
@@ -846,4 +861,38 @@ a.prev {
 }
 .default_text {
 	text-align: left;
+}
+.input_container {
+	z-index: 1;
+	width:120px;
+	overflow: hidden;
+	position: absolute;
+	display: block;
+	background: url(../img/choose.png) center no-repeat;
+	border: 1px solid #ccc;
+	border-radius: 5px;
+	margin-top:50%;
+	margin-left:50%;
+	left:-60px;
+	top: 20px;
+}
+.or {
+	position: absolute;
+	margin-top: 50%;
+	margin-left: 50%;
+	left: -80px;
+	top: 23px;
+	color: black;
+}
+.small .or {
+	top: 38px;
+}
+.small .input_container {
+	top: 35px;
+}
+.input_container:hover {
+	background-color: #fff;
+}
+.input_file {
+	opacity: 0;
 }

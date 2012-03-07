@@ -71,19 +71,19 @@ include('db_config.php');
 					<!-- start layout icons -->
 
 					<div class="element" onclick="addXL()" title="Add one largest slot">
-						<img src="img/3x1.png"/>
+						<img src="img/xl.png"/>
 					</div>
 					<div class="element" onclick="addMM()" title="Add two medium slots">
-						<img src="img/2x2.png"/>
+						<img src="img/mm.png"/>
 					</div>
 					<div class="element" onclick="addSSS()" title="Add three small slots">
-						<img src="img/3x3.png"/>
+						<img src="img/sss.png"/>
 					</div>
 					<div class="element" onclick="addSL()" title="Add a small and a large slot">
-						<img src="img/3x2.png"/>
+						<img src="img/sl.png"/>
 					</div>
 					<div class="element" onclick="addLS()" title="Add a large and a small slot">
-						<img src="img/3x2r.png"/>
+						<img src="img/ls.png"/>
 					</div>
 
 					<!-- fine layout icons -->
