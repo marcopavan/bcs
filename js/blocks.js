@@ -1,4 +1,4 @@
-var modifyer = '<div class="modify"><img class="remove" src="img/close.png"/><div class="mod_controls"><img class="move_up" src="img/up.png"/><img class="move_down" src="img/down.png"/></div></div><div class="edit_block"><p>edit</p></div>';
+var modifyer = '<div class="modify"><img class="remove" src="img/close.png"/><div class="mod_controls"><img class="move_up" src="img/up.png"/><img class="move_down" src="img/down.png"/></div></div><div class="edit_block"><p>edit</p><div></div></div>';
 
 var shifter = '<div class="shift_remove_item"><div><img class="move_left" src="img/left.png"/><img class="reset_item" src="img/remove.png"/><img class="move_right" src="img/right.png"/></div></div>';
 var onlyShift = '<div class="shift_item"><div><img class="move_left" src="img/left.png"/><img class="move_right" src="img/right.png"/></div></div>';
