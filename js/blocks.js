@@ -77,20 +77,18 @@ var activeRequests = 0;
 
 function onAjaxStart(){
   if(activeRequests <= 0){
-    $('#submit_bottol').attr('disabled', 'true');
+    $('#submit_bottol').attr('disabled', true);
     $('#submit_bottol').css('color', '#888');
   }
   activeRequests++;
-  alert(activeRequests);
 }
 
 function onAjaxEnd(){
   activeRequests--;
   if(activeRequests <= 0){
-    $('#submit_bottol').attr('disabled', 'false');
+    $('#submit_bottol').attr('disabled', false);
     $('#submit_bottol').css('color', 'green');
   }
-  alert(activeRequests);
 }
 
 // Function add new element block
