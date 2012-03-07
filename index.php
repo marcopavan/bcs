@@ -115,7 +115,7 @@ include('db_config.php');
 						<img src="img/video.png"/>
 					</div>
 					<div class="element_popup" onclick="appendGenericLink()" title="Embed Web Link">
-						<img src="img/link.png"/>
+						<img src="img/multimedia.png"/>
 					</div>
 					<div class="element_popup" onclick="appendWebPage()" title="Embed Web Page">
 						<img src="img/webpage.png"/>
@@ -135,7 +135,7 @@ include('db_config.php');
 						<img src="img/video.png"/>
 					</div>
 					<div class="element_popup" onclick="appendGenericLink()" title="Embed Web Link">
-						<img src="img/link.png"/>
+						<img src="img/multimedia.png"/>
 					</div>
 				</div>
 			</div>

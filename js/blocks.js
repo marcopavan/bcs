@@ -70,6 +70,7 @@ function create_block(content){
 }
 
 var textareaNum = 0;
+var inputNumber = 0;
 var maximumBlocks = 10;
 var currentBlocks = 0;
 
@@ -163,17 +164,17 @@ function appendImage() {
 function appendVideo() {
   var currentItem = $('.select');
   if(currentItem.hasClass('resize'))
-    currentItem.html(remover + '<div class="video"><input type="text" placeholder="Enter a Video link ('+supportedVideoDomains.join(', ')+')" oninput="videoType($(this));"/></div>'+inputs);
+    currentItem.html(remover + '<div class="video"><input type="text" rel="'+(inputNumber++)+'" placeholder="Enter a Video link ('+supportedVideoDomains.join(', ')+')" oninput="videoType($(this));"/></div>'+inputs);
   else
-    currentItem.html(shifter + '<div class="video"><input type="text" placeholder="Enter a Video link ('+supportedVideoDomains.join(', ')+')" oninput="videoType($(this));"/></div>'+inputs);
+    currentItem.html(shifter + '<div class="video"><input type="text" rel="'+(inputNumber++)+'" placeholder="Enter a Video link ('+supportedVideoDomains.join(', ')+')" oninput="videoType($(this));"/></div>'+inputs);
   currentItem.removeClass('select');
 }
 function appendGenericLink() {
   var currentItem = $('.select');
   if(currentItem.hasClass('resize'))
-    currentItem.html(remover + '<div class="generic_link"><input type="text" placeholder="Enter a link to embed" oninput="embedType($(this));"/><a class="hidden_link" href=""></a></div>'+inputs);
+    currentItem.html(remover + '<div class="generic_link"><input type="text" rel="'+(inputNumber++)+'" placeholder="Enter a link to embed" oninput="embedType($(this));"/><a class="hidden_link" href=""></a></div>'+inputs);
   else
-    currentItem.html(shifter + '<div class="generic_link"><input type="text" placeholder="Enter a link to embed" oninput="embedType($(this));"/><a class="hidden_link" href=""></a></div>'+inputs);
+    currentItem.html(shifter + '<div class="generic_link"><input type="text" rel="'+(inputNumber++)+'" placeholder="Enter a link to embed" oninput="embedType($(this));"/><a class="hidden_link" href=""></a></div>'+inputs);
   currentItem.removeClass('select');
 }
 function appendDocument() {
@@ -184,7 +185,7 @@ function appendDocument() {
 }
 function appendWebPage() {
   var currentItem = $('.select');
-  currentItem.html(remover + '<div class="webPage"><input type="text" placeholder="Enter a Web Page link" oninput="webPageType($(this));"/></div>'+inputs);
+  currentItem.html(remover + '<div class="webPage"><input type="text" rel="'+(inputNumber++)+'" placeholder="Enter a Web Page link" oninput="webPageType($(this));"/></div>'+inputs);
   currentItem.removeClass('select');
   $('.resize_controls').remove();
 }
@@ -539,12 +540,13 @@ var tinyconfigS = {
        handle_event_callback: "onTinyMCEChange"
 }
 
-var lastTyped = 0;
+var lastTyped = new Array();
 
 function webPageType(textfield){
   var now = new Date();
-  lastTyped = now;
-  setTimeout(function(){if(now == lastTyped) webIFrame(textfield);}, 2000);
+  var txtN = textfield.attr('rel');
+  lastTyped[txtN] = now;
+  setTimeout(function(){if(now == lastTyped[txtN]) webIFrame(textfield);}, 2000);
 }
 
 function webIFrame(textfield){
@@ -582,8 +584,9 @@ var theEmbedUrl = new Array('http://www.youtube.com/embed/', 'http://player.vime
 
 function videoType(textfield){
   var now = new Date();
-  lastTyped = now;
-  setTimeout(function(){if(now == lastTyped) videoSearch(textfield);}, 2000);
+  var txtN = textfield.attr('rel');
+  lastTyped[txtN] = now;
+  setTimeout(function(){if(now == lastTyped[txtN]) videoSearch(textfield);}, 2000);
 }
 
 function videoSearch(textfield){
@@ -622,8 +625,9 @@ function videoSearch(textfield){
 
 function embedType(textfield){
   var now = new Date();
-  lastTyped = now;
-  setTimeout(function(){if(now == lastTyped) embedURL(textfield);}, 2000);
+  var txtN = textfield.attr('rel');
+  lastTyped[txtN] = now;
+  setTimeout(function(){if(now == lastTyped[txtN]) embedURL(textfield);}, 2000);
 }
 
 function embedURL(textfield) {
