@@ -854,6 +854,9 @@ a.prev {
 .content_inserted>input {
 	display: none;
 }
+.content_inserted .show_providers {
+	display: none;
+}
 
 /* bottone new e created su admin bar */
 
@@ -927,6 +930,6 @@ a.prev {
 	height:20px;
 	cursor: pointer;
 	position: absolute;
-	top: 43.5%;
+	top: 65px;
 	left: 81%;
 }
