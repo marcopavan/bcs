@@ -528,7 +528,7 @@ a.prev {
 .audio{
 	background: url('../img/drop_audio.png') center no-repeat;
 }
-.small .audio{
+.block .small .audio{
 	background: url('../img/drop_audio_small.png') center no-repeat;
 }
 .block .audio audio{
