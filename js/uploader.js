@@ -1,6 +1,6 @@
 function onAjaxStart(){
   if(activeRequests <= 0){
-    $('#submit_bottol').attr('disabled', true);
+    $('#submit_bottol').attr('disabled', 'disabeld');
     $('#submit_bottol').css('color', '#888');
   }
   activeRequests++;
@@ -9,7 +9,7 @@ function onAjaxStart(){
 function onAjaxEnd(){
   activeRequests--;
   if(activeRequests <= 0){
-    $('#submit_bottol').attr('disabled', false);
+    $('#submit_bottol').removeAttr('disabled');
     $('#submit_bottol').css('color', 'green');
   }
 }

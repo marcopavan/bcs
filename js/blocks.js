@@ -360,10 +360,6 @@ $(function(){
         });
 
         $('#forum-topic-form').submit(function(){
-
-          $('#submit_bottol').attr('disabled', 'true');
-          $('#submit_bottol').css('color', '#888');
-
           removeActiveTiny();
           $('#active').attr('id', '');
 
@@ -438,6 +434,8 @@ $(function(){
             });
           });
         return true;
+        $('#submit_bottol').attr('disabled', 'disabled');
+        $('#submit_bottol').css('color', '#888');
         });
 });
 
