@@ -649,13 +649,17 @@ a.prev {
 .block .generic_link > input{
 	position: absolute;
 	top: 60px;
-	width: 80%;
-	left:10%;
+	width: 70%;
+	left:15%;
 	/*z-index: 0;
 	display: none;
 	*/
 }
 .block#active .generic_link > input{
+	z-index: 2;
+	display: block;
+}
+.block#active .generic_link > img{
 	z-index: 2;
 	display: block;
 }
@@ -905,4 +909,24 @@ a.prev {
 }
 .input_file {
 	opacity: 0;
+}
+.tooltip {
+	display:none;
+	background:url(../img/black_arrow.png);
+	font-size:12px;
+	font-family: Georgia;
+	font-style: italic;
+	height:70px;
+	width:160px;
+	padding:25px;
+	color:#fff;
+	z-index:100;
+}
+.show_providers {
+	width:20px;
+	height:20px;
+	cursor: pointer;
+	position: absolute;
+	top: 43.5%;
+	left: 81%;
 }

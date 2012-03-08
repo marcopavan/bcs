@@ -172,9 +172,10 @@ function appendVideo() {
 function appendGenericLink() {
   var currentItem = $('.select');
   if(currentItem.hasClass('resize'))
-    currentItem.html(remover + '<div class="generic_link"><input type="text" rel="'+(inputNumber++)+'" placeholder="Embed whatever you like! (twitter, soundcloud, etc)" oninput="embedType($(this));"/><a class="hidden_link" href=""></a></div>'+inputs);
+    currentItem.html(remover + '<div class="generic_link"><input type="text" rel="'+(inputNumber++)+'" placeholder="Enter a link to embed" oninput="embedType($(this));"/><img src="img/questionmark.png" class="show_providers" title="Embed whatever you want! Try Google maps, Soundcloud, Grooveshark, Rdio, Flickr, Instagram, Twitter, Amazon, etc."/><a class="hidden_link" href=""></a></div>'+inputs);
   else
-    currentItem.html(shifter + '<div class="generic_link"><input type="text" rel="'+(inputNumber++)+'" placeholder="Embed whatever you like! (twitter, soundcloud, etc)" oninput="embedType($(this));"/><a class="hidden_link" href=""></a></div>'+inputs);
+    currentItem.html(shifter + '<div class="generic_link"><input type="text" rel="'+(inputNumber++)+'" placeholder="Enter a link to embed" oninput="embedType($(this));"/><img src="img/questionmark.png" class="show_providers" title="Embed whatever you want! Try Google maps, Soundcloud, Grooveshark, Rdio, Flickr, Instagram, Twitter, Amazon, etc."/><a class="hidden_link" href=""></a></div>'+inputs);
+  currentItem.find('.show_providers').tooltip({effect: 'slide'});
   currentItem.removeClass('select');
 }
 function appendDocument() {
