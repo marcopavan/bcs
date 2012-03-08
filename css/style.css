@@ -524,6 +524,18 @@ a.prev {
 }
 /*video end*/
 
+/*audio start*/
+.audio{
+	background: url('../img/drop_audio.png') center no-repeat;
+}
+.small .audio{
+	background: url('../img/drop_audio_small.png') center no-repeat;
+}
+.block .audio audio{
+	margin-top: 60px;
+}
+/*audio end*/
+
 .notAvailable{
 	text-align: center;
 	padding: 60px 0;
@@ -570,9 +582,6 @@ a.prev {
 .message_layout:hover {
   border:2px solid #ccc;
   border-radius:10px;
-}
-#hidden_menu {
-  width:360px;
 }
 .element_popup{
 	padding:5px;

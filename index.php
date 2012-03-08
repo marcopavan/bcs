@@ -53,6 +53,9 @@ include('db_config.php');
 					<div class="element_popup" onclick="appendVideo()" title="Embed Video">
 						<img src="img/video.png"/>
 					</div>
+					<div class="element_popup" onclick="appendAudio()" title="Embed Video">
+						<img src="img/audio.png"/>
+					</div>
 					<div class="element_popup" onclick="appendGenericLink()" title="Embed Web Link">
 						<img src="img/multimedia.png"/>
 					</div>
@@ -72,6 +75,9 @@ include('db_config.php');
 					</div>
 					<div class="element_popup" onclick="appendVideo()" title="Embed Video">
 						<img src="img/video.png"/>
+					</div>
+					<div class="element_popup" onclick="appendAudio()" title="Embed Video">
+						<img src="img/audio.png"/>
 					</div>
 					<div class="element_popup" onclick="appendGenericLink()" title="Embed Web Link">
 						<img src="img/multimedia.png"/>

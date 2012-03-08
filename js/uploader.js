@@ -27,7 +27,7 @@ function handleFileSelect(evt, actual_drop_zone) {
 
   for (var i = 0, f; f = files[i]; i++) {
 
-    // Import images
+    // IMPORT IMAGE
 
     if (actual_drop_zone.hasClass("image")) {
       if (!f.type.match('image.*')) {
@@ -95,7 +95,7 @@ function handleFileSelect(evt, actual_drop_zone) {
       saveImage(f, actual_drop_zone);
     }
 
-    // Import Documents
+    // IMPORT DOCUMENT
 
     if (actual_drop_zone.hasClass("document")) {
       if (!f.type.match('application.*')) {
@@ -133,6 +133,47 @@ function handleFileSelect(evt, actual_drop_zone) {
           }
       });
     }
+
+    // IMPORT AUDIO FILE
+
+    if (actual_drop_zone.hasClass("audio")) {
+      if (!f.type.match('audio.*')) {
+      actual_drop_zone.find('.message').html('<p class="warning_img">Only documents can be uploaded!<strong>');
+      break;
+      }
+      if (f.size > 10485760) {
+        actual_drop_zone.find('.message').html('<p class="warning_img">Max document size: 10MB<strong>');
+        break;
+      }
+
+      var form = new FormData();
+      form.append('file', f);
+      form.append('name', f.name);
+      $.ajax({
+          url: 'saveTemp.php',
+          data: form,
+          cache: false,
+          contentType: false,
+          processData: false,
+          type: 'POST',
+          beforeSend: function(){
+            onAjaxStart();
+            actual_drop_zone.html('<div class="uploading_status">'+spinner + '<div class="percentLoaded"></div></div>');
+            actual_drop_zone.find('.percentLoaded').html('Creating preview...');
+          },
+          success: function(urlToSend){
+            actual_drop_zone.html('<p class="or">or</p><div class="input_container"><input type="file" class="input_file" name="input_file"/></div><div class="dropped_div"><input type="hidden" class="audio_path" value="'+urlToSend+'"/><audio controls="controls"><source src="'+urlToSend+'" type="'+f.type+'" />Your browser does not support the audio element.</audio></div>');
+            actual_drop_zone.addClass('img_added');
+          },
+          statusCode: {
+            200: function() {
+              onAjaxEnd();
+            }
+          }
+      });
+      break;
+    }
+
   }
 }
 

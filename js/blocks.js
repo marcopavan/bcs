@@ -169,6 +169,14 @@ function appendVideo() {
     currentItem.html(shifter + '<div class="video"><input type="text" rel="'+(inputNumber++)+'" placeholder="Enter a Video link ('+supportedVideoDomains.join(', ')+')" oninput="videoType($(this));"/></div>'+inputs);
   currentItem.removeClass('select');
 }
+function appendAudio() {
+  var currentItem = $('.select');
+  if(currentItem.hasClass('resize'))
+    currentItem.html(remover + '<div class="drop_zone audio"><div class="message"></div><p class="or">or</p><div class="input_container"><input type="file" class="input_file" name="input_file"/></div></div>'+inputs);
+  else
+    currentItem.html(shifter + '<div class="drop_zone audio"><div class="message"></div><p class="or">or</p><div class="input_container"><input type="file" class="input_file" name="input_file"/></div></div>'+inputs);
+  currentItem.removeClass('select');
+}
 function appendGenericLink() {
   var currentItem = $('.select');
   if(currentItem.hasClass('resize'))
