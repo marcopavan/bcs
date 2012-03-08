@@ -12,6 +12,7 @@
 <script type="text/javascript" src="js/uploader.js"></script>
 <script type="text/javascript" src="js/fancybox/jquery.fancybox-1.3.4.pack.js"></script>
 <script type="text/javascript" src="js/jquery.embedly.js"></script>
+<script type="text/javascript" src="js/jquery.tools.min.js"></script>
 </head>
 
 <body>
