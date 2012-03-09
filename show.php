@@ -7,6 +7,9 @@
 <script type="text/javascript" language="javascript" src="js/jquery-1.7.1.min.js"></script>
 <script type="text/javascript" src="js/fancybox/jquery.fancybox-1.3.4.pack.js"></script>
 
+<script type="text/javascript" src="js/jquery-ui-1.8.16.custom.min.js"></script>
+<script type="text/javascript" src="js/blocks.js"></script>
+
 <script type="text/javascript">
 	$(document).ready(function() {
 		$("a.img_fancy").fancybox();
@@ -118,6 +121,29 @@ while ($values=mysql_fetch_array($query)) {
 									<?php
 									}
 										break;
+									case 'a':
+									if ($resource[0]) {
+										$musicname=explode("/", $resource[0]);
+									?>
+										<div class="audio">
+											<div class="dropped_div">
+											<p class="player" rel="<?php echo $i.$resource_position[0]; ?>">
+												<span class="playtoggle"></span>
+												<span class="song_name"><?php echo $musicname[5]; ?></span>
+												<span class="gutter">
+													<span class="loading"></span>
+													<span class="handle" class="ui-slider-handle"></span>
+												</span>
+												<span class="timeleft"></span>
+												<audio>
+													<source src="<?php echo $resource[0]; ?>" type="audio/mp3"></source>
+											    </audio>
+											</p>
+											</div>
+										</div>
+									<?php
+									}
+										break;
 								}
 							?>
 							</div>
@@ -167,6 +193,29 @@ while ($values=mysql_fetch_array($query)) {
 									<?php
 									}
 										break;
+									case 'a':
+									if ($resource[0]) {
+										$musicname=explode("/", $resource[0]);
+									?>
+										<div class="audio">
+											<div class="dropped_div">
+											<p class="player" rel="<?php echo $i.$resource_position[0]; ?>">
+												<span class="playtoggle"></span>
+												<span class="song_name"><?php echo $musicname[5]; ?></span>
+												<span class="gutter">
+													<span class="loading"></span>
+													<span class="handle" class="ui-slider-handle"></span>
+												</span>
+												<span class="timeleft"></span>
+												<audio>
+													<source src="<?php echo $resource[0]; ?>" type="audio/mp3"></source>
+											    </audio>
+											</p>
+											</div>
+										</div>
+									<?php
+									}
+										break;	
 								}
 							?>
 							</div>
@@ -211,6 +260,29 @@ while ($values=mysql_fetch_array($query)) {
 										<div class="generic_link content_inserted">
 											<div class="embed">
 												<?php echo $resource[0]; ?>
+											</div>
+										</div>
+									<?php
+									}
+										break;
+									case 'a':
+									if ($resource[0]) {
+										$musicname=explode("/", $resource[0]);
+									?>
+										<div class="audio">
+											<div class="dropped_div">
+											<p class="player" rel="<?php echo $i.$resource_position[0]; ?>">
+												<span class="playtoggle"></span>
+												<span class="song_name"><?php echo $musicname[5]; ?></span>
+												<span class="gutter">
+													<span class="loading"></span>
+													<span class="handle" class="ui-slider-handle"></span>
+												</span>
+												<span class="timeleft"></span>
+												<audio>
+													<source src="<?php echo $resource[0]; ?>" type="audio/mp3"></source>
+											    </audio>
+											</p>
 											</div>
 										</div>
 									<?php
@@ -265,6 +337,29 @@ while ($values=mysql_fetch_array($query)) {
 									<?php
 									}
 										break;
+									case 'a':
+									if ($resource[0]) {
+										$musicname=explode("/", $resource[0]);
+									?>
+										<div class="audio">
+											<div class="dropped_div">
+											<p class="player" rel="<?php echo $i.$resource_position[0]; ?>">
+												<span class="playtoggle"></span>
+												<span class="song_name"><?php echo $musicname[5]; ?></span>
+												<span class="gutter">
+													<span class="loading"></span>
+													<span class="handle" class="ui-slider-handle"></span>
+												</span>
+												<span class="timeleft"></span>
+												<audio>
+													<source src="<?php echo $resource[0]; ?>" type="audio/mp3"></source>
+											    </audio>
+											</p>
+											</div>
+										</div>
+									<?php
+									}
+										break;	
 									case 'w':
 									if ($resource[0]) {
 									?>
@@ -331,6 +426,29 @@ while ($values=mysql_fetch_array($query)) {
 										<?php
 										}
 											break;
+										case 'a':
+										if ($resource[$key]) {
+											$musicname=explode("/", $resource[$key]);
+										?>
+											<div class="audio">
+												<div class="dropped_div">
+												<p class="player" rel="<?php echo $i.$resource_position[$key]; ?>">
+													<span class="playtoggle"></span>
+													<span class="song_name"><?php echo $musicname[5]; ?></span>
+													<span class="gutter">
+														<span class="loading"></span>
+														<span class="handle" class="ui-slider-handle"></span>
+													</span>
+													<span class="timeleft"></span>
+													<audio>
+														<source src="<?php echo $resource[$key]; ?>" type="audio/mp3"></source>
+												    </audio>
+												</p>
+												</div>
+											</div>
+										<?php
+										}
+											break;
 									}
 								?>
 							</div>
@@ -376,6 +494,29 @@ while ($values=mysql_fetch_array($query)) {
 										<?php
 										}
 											break;
+										case 'a':
+										if ($resource[$key]) {
+											$musicname=explode("/", $resource[$key]);
+										?>
+											<div class="audio">
+												<div class="dropped_div">
+												<p class="player" rel="<?php echo $i.$resource_position[$key]; ?>">
+													<span class="playtoggle"></span>
+													<span class="song_name"><?php echo $musicname[5]; ?></span>
+													<span class="gutter">
+														<span class="loading"></span>
+														<span class="handle" class="ui-slider-handle"></span>
+													</span>
+													<span class="timeleft"></span>
+													<audio>
+														<source src="<?php echo $resource[$key]; ?>" type="audio/mp3"></source>
+												    </audio>
+												</p>
+												</div>
+											</div>
+										<?php
+										}
+											break;	
 									}
 								?>
 							</div>
@@ -426,6 +567,29 @@ while ($values=mysql_fetch_array($query)) {
 										<?php
 										}
 											break;
+										case 'a':
+										if ($resource[$key]) {
+											$musicname=explode("/", $resource[$key]);
+										?>
+											<div class="audio">
+												<div class="dropped_div">
+												<p class="player" rel="<?php echo $i.$resource_position[$key]; ?>">
+													<span class="playtoggle"></span>
+													<span class="song_name"><?php echo $musicname[5]; ?></span>
+													<span class="gutter">
+														<span class="loading"></span>
+														<span class="handle" class="ui-slider-handle"></span>
+													</span>
+													<span class="timeleft"></span>
+													<audio>
+														<source src="<?php echo $resource[$key]; ?>" type="audio/mp3"></source>
+												    </audio>
+												</p>
+												</div>
+											</div>
+										<?php
+										}
+											break;	
 									}
 								?>
 							</div>
@@ -471,6 +635,29 @@ while ($values=mysql_fetch_array($query)) {
 										<?php
 										}
 											break;
+										case 'a':
+										if ($resource[$key]) {
+											$musicname=explode("/", $resource[$key]);
+										?>
+											<div class="audio">
+												<div class="dropped_div">
+												<p class="player" rel="<?php echo $i.$resource_position[$key]; ?>">
+													<span class="playtoggle"></span>
+													<span class="song_name"><?php echo $musicname[5]; ?></span>
+													<span class="gutter">
+														<span class="loading"></span>
+														<span class="handle" class="ui-slider-handle"></span>
+													</span>
+													<span class="timeleft"></span>
+													<audio>
+														<source src="<?php echo $resource[$key]; ?>" type="audio/mp3"></source>
+												    </audio>
+												</p>
+												</div>
+											</div>
+										<?php
+										}
+											break;	
 									}
 								?>
 							</div>
@@ -516,6 +703,29 @@ while ($values=mysql_fetch_array($query)) {
 										<?php
 										}
 											break;
+										case 'a':
+										if ($resource[$key]) {
+											$musicname=explode("/", $resource[$key]);
+										?>
+											<div class="audio">
+												<div class="dropped_div">
+												<p class="player" rel="<?php echo $i.$resource_position[$key]; ?>">
+													<span class="playtoggle"></span>
+													<span class="song_name"><?php echo $musicname[5]; ?></span>
+													<span class="gutter">
+														<span class="loading"></span>
+														<span class="handle" class="ui-slider-handle"></span>
+													</span>
+													<span class="timeleft"></span>
+													<audio>
+														<source src="<?php echo $resource[$key]; ?>" type="audio/mp3"></source>
+												    </audio>
+												</p>
+												</div>
+											</div>
+										<?php
+										}
+											break;	
 									}
 								?>
 							</div>
@@ -566,6 +776,29 @@ while ($values=mysql_fetch_array($query)) {
 										<?php
 										}
 											break;
+										case 'a':
+										if ($resource[$key]) {
+											$musicname=explode("/", $resource[$key]);
+										?>
+											<div class="audio">
+												<div class="dropped_div">
+												<p class="player" rel="<?php echo $i.$resource_position[$key]; ?>">
+													<span class="playtoggle"></span>
+													<span class="song_name"><?php echo $musicname[5]; ?></span>
+													<span class="gutter">
+														<span class="loading"></span>
+														<span class="handle" class="ui-slider-handle"></span>
+													</span>
+													<span class="timeleft"></span>
+													<audio>
+														<source src="<?php echo $resource[$key]; ?>" type="audio/mp3"></source>
+												    </audio>
+												</p>
+												</div>
+											</div>
+										<?php
+										}
+											break;	
 									}
 								?>
 							</div>
@@ -611,6 +844,29 @@ while ($values=mysql_fetch_array($query)) {
 										<?php
 										}
 											break;
+										case 'a':
+										if ($resource[$key]) {
+											$musicname=explode("/", $resource[$key]);
+										?>
+											<div class="audio">
+												<div class="dropped_div">
+												<p class="player" rel="<?php echo $i.$resource_position[$key]; ?>">
+													<span class="playtoggle"></span>
+													<span class="song_name"><?php echo $musicname[5]; ?></span>
+													<span class="gutter">
+														<span class="loading"></span>
+														<span class="handle" class="ui-slider-handle"></span>
+													</span>
+													<span class="timeleft"></span>
+													<audio>
+														<source src="<?php echo $resource[$key]; ?>" type="audio/mp3"></source>
+												    </audio>
+												</p>
+												</div>
+											</div>
+										<?php
+										}
+											break;	
 									}
 								?>
 							</div>
@@ -661,6 +917,29 @@ while ($values=mysql_fetch_array($query)) {
 										<?php
 										}
 											break;
+										case 'a':
+										if ($resource[$key]) {
+											$musicname=explode("/", $resource[$key]);
+										?>
+											<div class="audio">
+												<div class="dropped_div">
+												<p class="player" rel="<?php echo $i.$resource_position[$key]; ?>">
+													<span class="playtoggle"></span>
+													<span class="song_name"><?php echo $musicname[5]; ?></span>
+													<span class="gutter">
+														<span class="loading"></span>
+														<span class="handle" class="ui-slider-handle"></span>
+													</span>
+													<span class="timeleft"></span>
+													<audio>
+														<source src="<?php echo $resource[$key]; ?>" type="audio/mp3"></source>
+												    </audio>
+												</p>
+												</div>
+											</div>
+										<?php
+										}
+											break;	
 									}
 								?>
 							</div>
@@ -706,6 +985,29 @@ while ($values=mysql_fetch_array($query)) {
 										<?php
 										}
 											break;
+										case 'a':
+										if ($resource[$key]) {
+											$musicname=explode("/", $resource[$key]);
+										?>
+											<div class="audio">
+												<div class="dropped_div">
+												<p class="player" rel="<?php echo $i.$resource_position[$key]; ?>">
+													<span class="playtoggle"></span>
+													<span class="song_name"><?php echo $musicname[5]; ?></span>
+													<span class="gutter">
+														<span class="loading"></span>
+														<span class="handle" class="ui-slider-handle"></span>
+													</span>
+													<span class="timeleft"></span>
+													<audio>
+														<source src="<?php echo $resource[$key]; ?>" type="audio/mp3"></source>
+												    </audio>
+												</p>
+												</div>
+											</div>
+										<?php
+										}
+											break;	
 									}
 								?>
 							</div>

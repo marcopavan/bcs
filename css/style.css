@@ -608,6 +608,9 @@ a.prev {
 }
 .audio .song_name{
 	color: #eee;
+	position: absolute;
+	top: -10px;
+	left: 64px;
 }
 
 .audio .dropped_div{
