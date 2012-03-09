@@ -162,7 +162,7 @@ function handleFileSelect(evt, actual_drop_zone) {
             actual_drop_zone.find('.percentLoaded').html('Creating preview...');
           },
           success: function(urlToSend){
-            actual_drop_zone.html('<p class="or">or</p><div class="input_container"><input type="file" class="input_file" name="input_file"/></div><div class="dropped_div"><input type="hidden" class="audio_path" value="'+urlToSend+'"/><audio controls="controls"><source src="'+urlToSend+'" type="'+f.type+'" />Your browser does not support the audio element.</audio></div>');
+            actual_drop_zone.html('<p class="or">or</p><div class="input_container"><input type="file" class="input_file" name="input_file"/></div><div class="dropped_div"><input type="hidden" class="audio_path" value="'+urlToSend+'"/><p class="player" rel="'+(totalAudio++)+'"><span class="playtoggle"></span><span class="song_name">'+f.name+'</span><span class="gutter"><span class="loading"></span><span class="handle" class="ui-slider-handle"></span></span><span class="timeleft"></span><audio><source src="'+urlToSend+'" type="'+f.type+'"></source></audio></p></div>');
             actual_drop_zone.addClass('img_added');
           },
           statusCode: {
@@ -221,4 +221,5 @@ $('.input_file').live('change', function(event){
 });
 
 var spinner = '<div class="spinner"><div class="bar1"></div><div class="bar2"></div><div class="bar3"></div><div class="bar4"></div><div class="bar5"></div><div class="bar6"></div><div class="bar7"></div><div class="bar8"></div><div class="bar9"></div><div class="bar10"></div><div class="bar11"></div><div class="bar12"></div></div>';
+var totalAudio = 0;
   
