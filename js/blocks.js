@@ -156,9 +156,10 @@ function appendText() {
 function appendImage() {
   var currentItem = $('.select');
   if(currentItem.hasClass('resize'))
-    currentItem.html(remover + '<div class="drop_zone image"><div class="message"></div><p class="or">or</p><div class="input_container"><input type="file" class="input_file" name="input_file"/></div></div>'+inputs);
+    currentItem.html(remover + '<div class="drop_zone image"><div class="message"></div><div class="submenu_image"><p class="or">or</p><div class="input_container"><input type="file" class="input_file" name="input_file"/></div><img src="img/questionmark.png" title="Add these image formats: jpeg, jpg, png, gif, bmp, tiff. Max size 5 MB." class="show_image_types"/></div></div>'+inputs);
   else
-    currentItem.html(shifter + '<div class="drop_zone image"><div class="message"></div><p class="or">or</p><div class="input_container"><input type="file" class="input_file" name="input_file"/></div></div>'+inputs);
+    currentItem.html(shifter + '<div class="drop_zone image"><div class="message"></div><div class="submenu_image"><p class="or">or</p><div class="input_container"><input type="file" class="input_file" name="input_file"/></div><img src="img/questionmark.png" title="Add these image formats: jpeg, jpg, png, gif, bmp, tiff. Max size 5 MB." class="show_image_types"/></div></div>'+inputs);
+  currentItem.find('.show_image_types').tooltip({effect: 'slide'});
   currentItem.removeClass('select');
 }
 function appendVideo() {
@@ -180,7 +181,8 @@ function appendGenericLink() {
 }
 function appendDocument() {
   var currentItem = $('.select');
-  currentItem.html(remover + '<div class="drop_zone document"><div class="message"></div><p class="or">or</p><div class="input_container"><input type="file" class="input_file" name="input_file"/></div></div>'+inputs);
+  currentItem.html(remover + '<div class="drop_zone document"><div class="message"></div><div class="submenu_document"><p class="or">or</p><div class="input_container"><input type="file" class="input_file" name="input_file"/></div><img src="img/questionmark.png" class="show_document_types" title="Add these document types: pdf, doc, docx, ppt, pptx, pps. Max size 5 MB."/></div></div>'+inputs);
+  currentItem.find('.show_document_types').tooltip({effect: 'slide'});
   currentItem.removeClass('select');
   $('.resize_controls').remove();
 }

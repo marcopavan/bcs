@@ -15,7 +15,7 @@
 <script type="text/javascript" src="js/jquery.tools.min.js"></script>
 </head>
 
-<body>
+<body onDragStart="return false;" ondragenter="return false;" ondragover="return false;" ondrop="return false;">
 <?php
 include('db_config.php');
 ?>
