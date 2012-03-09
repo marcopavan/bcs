@@ -163,6 +163,7 @@ include('db_config.php');
 			<input type="button" id="preview_bottol" value="Preview"/>
 			-->
 			<input type="button" id="cancel_bottol" value="Cancel" onclick="window.location = 'http://<?php echo $db_domain;?>';"/>
+			<div id="loading_resources"></div>
 		</form>
 	</div>
 	<div id="sidebar">

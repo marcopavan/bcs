@@ -1,7 +1,11 @@
+var spinner = '<div class="spinner"><div class="bar1"></div><div class="bar2"></div><div class="bar3"></div><div class="bar4"></div><div class="bar5"></div><div class="bar6"></div><div class="bar7"></div><div class="bar8"></div><div class="bar9"></div><div class="bar10"></div><div class="bar11"></div><div class="bar12"></div></div>';
+var spinner_create = '<div class="spinner_create"><div class="bar1"></div><div class="bar2"></div><div class="bar3"></div><div class="bar4"></div><div class="bar5"></div><div class="bar6"></div><div class="bar7"></div><div class="bar8"></div><div class="bar9"></div><div class="bar10"></div><div class="bar11"></div><div class="bar12"></div></div>';
+
 function onAjaxStart(){
   if(activeRequests <= 0){
     $('#submit_bottol').attr('disabled', 'disabeld');
     $('#submit_bottol').css('color', '#888');
+    $('#loading_resources').html(spinner_create);
   }
   activeRequests++;
 }
@@ -11,6 +15,7 @@ function onAjaxEnd(){
   if(activeRequests <= 0){
     $('#submit_bottol').removeAttr('disabled');
     $('#submit_bottol').css('color', 'green');
+    $('#loading_resources').html('');
   }
 }
 
@@ -179,5 +184,8 @@ $('.input_file').live('change', function(event){
   handleFileSelect(event.originalEvent , $(this).parent().parent());
 });
 
-var spinner = '<div class="spinner"><div class="bar1"></div><div class="bar2"></div><div class="bar3"></div><div class="bar4"></div><div class="bar5"></div><div class="bar6"></div><div class="bar7"></div><div class="bar8"></div><div class="bar9"></div><div class="bar10"></div><div class="bar11"></div><div class="bar12"></div></div>';
-  
+
+
+
+
+

@@ -127,10 +127,12 @@ label {
 
 #submit_bottol {
 	color: green;
+	float: left;
 }
 
 #cancel_bottol {
-	color: red;
+	color: gray;
+	float: left;
 }
 
 #sidebar {
@@ -932,4 +934,11 @@ a.prev {
 	position: absolute;
 	top: 65px;
 	left: 81%;
+}
+#loading_resources {
+	margin-left: 10px;
+	width: 25px;
+	height: 25px;
+	display: block;
+	float:left;
 }
