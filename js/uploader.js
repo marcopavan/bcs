@@ -143,11 +143,11 @@ function handleFileSelect(evt, actual_drop_zone) {
 
     if (actual_drop_zone.hasClass("audio")) {
       if (!f.type.match('audio.*')) {
-      actual_drop_zone.find('.message').html('<p class="warning_img">Only documents can be uploaded!<strong>');
+      actual_drop_zone.find('.message').html('<p class="warning_img">Only audio files can be uploaded!<strong>');
       break;
       }
       if (f.size > 10485760) {
-        actual_drop_zone.find('.message').html('<p class="warning_img">Max document size: 10MB<strong>');
+        actual_drop_zone.find('.message').html('<p class="warning_img">Max audio file size: 10MB<strong>');
         break;
       }
 
@@ -167,7 +167,7 @@ function handleFileSelect(evt, actual_drop_zone) {
             actual_drop_zone.find('.percentLoaded').html('Creating preview...');
           },
           success: function(urlToSend){
-            actual_drop_zone.html('<p class="or">or</p><div class="input_container"><input type="file" class="input_file" name="input_file"/></div><div class="dropped_div"><input type="hidden" class="audio_path" value="'+urlToSend+'"/><p class="player" rel="'+(totalAudio++)+'"><span class="playtoggle"></span><span class="song_name">'+f.name+'</span><span class="gutter"><span class="loading"></span><span class="handle" class="ui-slider-handle"></span></span><span class="timeleft"></span><audio><source src="'+urlToSend+'" type="'+f.type+'"></source></audio></p></div>');
+            actual_drop_zone.html('<div class="submenu_audio"><p class="or">or</p><div class="input_container"><input type="file" class="input_file" name="input_file"/></div><img src="img/questionmark.png" title="Audio. Max size 5 MB." class="show_audio_types"/></div><div class="dropped_div"><input type="hidden" class="audio_path" value="'+urlToSend+'"/><p class="player" rel="'+(totalAudio++)+'"><span class="playtoggle"></span><span class="song_name">'+f.name+'</span><span class="gutter"><span class="loading"></span><span class="handle" class="ui-slider-handle"></span></span><span class="timeleft"></span><audio><source src="'+urlToSend+'" type="'+f.type+'"></source></audio></p></div>');
             actual_drop_zone.addClass('img_added');
           },
           statusCode: {
