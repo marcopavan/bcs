@@ -26,10 +26,10 @@ if(isset($_POST['submit_bottol'])) {
 
 	$conn=mysql_connect($db_host,$db_user,$db_psw) or die ("db_connect error");
 	$var="INSERT INTO sharabelcom.wp_bb_topics (topic_title,topic_subtitle) VALUES ('$topic_title','$topic_subtitle')";
-	$query= mysql_query($var, $conn) or die ("db_query error");
+	$query= mysql_query($var, $conn) or die ("db_query error 1");
 
 	$var="SELECT topic_id FROM sharabelcom.wp_bb_topics ORDER BY topic_id DESC LIMIT 1";
-	$query= mysql_query($var, $conn) or die ("db_query error");
+	$query= mysql_query($var, $conn) or die ("db_query error 2");
 	while ($values=mysql_fetch_array($query)) {
 		$topic_id=$values['topic_id'];
 	}
@@ -42,11 +42,11 @@ if(isset($_POST['submit_bottol'])) {
 		$template_id=$_POST['element'.$i.'_template_id'];
 		$resource_position=$_POST['element'.$i.'_resource_position'];
 		$resource_type=$_POST['element'.$i.'_resource_type'];
-		$resource=$_POST['element'.$i.'_resource'];
+		$resource=addslashes($_POST['element'.$i.'_resource']);
 
 		$conn=mysql_connect($db_host,$db_user,$db_psw) or die ("db_connect error");
 		$var="INSERT INTO sharabelcom.topic_component_resources (topic_id,component_position,template_id,resource_position,resource_type,resource) VALUES ('$topic_id','$component_position','$template_id','$resource_position','$resource_type','$resource')";
-		$query= mysql_query($var, $conn) or die ("db_query error");
+		$query= mysql_query($var, $conn) or die ("db_query error 3-".$i);
 	}
 }
 
@@ -81,7 +81,7 @@ if(isset($_POST['submit_bottol'])) {
 				<?php
 				$conn=mysql_connect($db_host,$db_user,$db_psw) or die ("db_connect error");
 				$var="SELECT * FROM sharabelcom.wp_bb_topics";
-				$query= mysql_query($var, $conn) or die ("db_query error");
+				$query= mysql_query($var, $conn) or die ("db_query error 4");
 				while ($values=mysql_fetch_array($query)) {
 					$id=$values["topic_id"];
 					$titolo=$values["topic_title"];
