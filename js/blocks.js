@@ -410,6 +410,7 @@ $(function(){
             if($(this).find('.tinyMCETextArea').size() > 0) resourceType = 't';
             if($(this).find('.image').size() > 0) resourceType = 'i';
             if($(this).find('.video').size() > 0) resourceType = 'v';
+            if($(this).find('.audio').size() > 0) resourceType = 'a';
             if($(this).find('.generic_link').size() > 0) resourceType = 'e';
             if($(this).find('.new_add_menu').size() > 0) resourceType = 'x';
             if($(this).find('.add_menu').size() > 0) resourceType = 'x';
@@ -421,6 +422,7 @@ $(function(){
               case 'w': resourceContent = $(this).find('.webPage iframe').attr('src'); break;
               case 't': resourceContent = $(this).find('.tinyMCETextArea').val(); break;
               case 'i': resourceContent = $(this).find('.image .img_path').val(); break;
+              case 'a': resourceContent = $(this).find('.audio .audio_path').val(); break;
               case 'v': resourceContent = $(this).find('.video iframe').attr('src'); break;
               case 'e': resourceContent = $(this).find('.generic_link .embed').html(); break;
               case 'x': resourceContent = ''
