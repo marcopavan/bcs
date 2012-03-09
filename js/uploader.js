@@ -1,7 +1,11 @@
+var spinner = '<div class="spinner"><div class="bar1"></div><div class="bar2"></div><div class="bar3"></div><div class="bar4"></div><div class="bar5"></div><div class="bar6"></div><div class="bar7"></div><div class="bar8"></div><div class="bar9"></div><div class="bar10"></div><div class="bar11"></div><div class="bar12"></div></div>';
+var spinner_create = '<div class="spinner_create"><div class="bar1"></div><div class="bar2"></div><div class="bar3"></div><div class="bar4"></div><div class="bar5"></div><div class="bar6"></div><div class="bar7"></div><div class="bar8"></div><div class="bar9"></div><div class="bar10"></div><div class="bar11"></div><div class="bar12"></div></div>';
+
 function onAjaxStart(){
   if(activeRequests <= 0){
     $('#submit_bottol').attr('disabled', 'disabeld');
     $('#submit_bottol').css('color', '#888');
+    $('#loading_resources').html(spinner_create);
   }
   activeRequests++;
 }
@@ -11,6 +15,7 @@ function onAjaxEnd(){
   if(activeRequests <= 0){
     $('#submit_bottol').removeAttr('disabled');
     $('#submit_bottol').css('color', 'green');
+    $('#loading_resources').html('');
   }
 }
 
@@ -55,7 +60,7 @@ function handleFileSelect(evt, actual_drop_zone) {
               actual_drop_zone.find('.percentLoaded').html('Creating preview...');
             },
             success: function(data){
-              actual_drop_zone.html(['<p class="or">or</p><div class="input_container"><input type="file" class="input_file" name="input_file"/></div><div class="dropped_div"><img class="dropped_img" src="', 'data:image/', f.type, ';base64,', data, '" title="', f.name, '"/></div>'].join(''));
+              actual_drop_zone.html(['<div class="submenu_image"><p class="or">or</p><div class="input_container"><input type="file" class="input_file" name="input_file"/></div><img src="img/questionmark.png" title="Add these image formats: jpeg, jpg, png, gif, bmp, tiff. Max size 5 MB." class="show_image_types"/></div><div class="dropped_div"><img class="dropped_img" src="', 'data:image/', f.type, ';base64,', data, '" title="', f.name, '"/></div>'].join(''));
               actual_drop_zone.addClass('img_added');
               saveImage(f, actual_drop_zone);
             },
@@ -83,7 +88,7 @@ function handleFileSelect(evt, actual_drop_zone) {
       reader.onload = (function(theFile) {
         return function(e) {
           var dropArea = actual_drop_zone;
-          dropArea.html(['<p class="or">or</p><div class="input_container"><input type="file" class="input_file" name="input_file"/></div><div class="dropped_div"><img class="dropped_img" src="', e.target.result, '" title="', escape(theFile.name), '"/></div>'].join(''));
+          dropArea.html(['<div class="submenu_image"><p class="or">or</p><div class="input_container"><input type="file" class="input_file" name="input_file"/></div><img src="img/questionmark.png" title="Add these image formats: jpeg, jpg, png, gif, bmp, tiff. Max size 5 MB." class="show_image_types"/></div></div><div class="dropped_div"><img class="dropped_img" src="', e.target.result, '" title="', escape(theFile.name), '"/></div>'].join(''));
           actual_drop_zone.addClass('img_added');
           onAjaxEnd();
         };
@@ -123,7 +128,7 @@ function handleFileSelect(evt, actual_drop_zone) {
             actual_drop_zone.find('.percentLoaded').html('Creating preview...');
           },
           success: function(urlToGDocs){
-            actual_drop_zone.html('<p class="or">or</p><div class="input_container"><input type="file" class="input_file" name="input_file"/></div><div class="dropped_div"><input type="hidden" class="document_path" value="'+urlToGDocs+'"/><iframe id="document_frame" src="http://docs.google.com/gview?url='+escape(urlToGDocs)+'&embedded=true" style="width:100%; height:600px;" frameborder="0"></iframe></div>');
+            actual_drop_zone.html('<div class="submenu_document"><p class="or">or</p><div class="input_container"><input type="file" class="input_file" name="input_file"/></div><img src="img/questionmark.png" title="Add these document types: pdf, doc, docx, ppt, pptx, pps. Max size 5 MB." class="show_document_types"/></div><div class="dropped_div"><input type="hidden" class="document_path" value="'+urlToGDocs+'"/><iframe id="document_frame" src="http://docs.google.com/gview?url='+escape(urlToGDocs)+'&embedded=true" style="width:100%; height:600px;" frameborder="0"></iframe></div>');
             actual_drop_zone.addClass('img_added');
           },
           statusCode: {
@@ -217,9 +222,8 @@ dropZone.live('drop', function(event){
   handleFileSelect(event.originalEvent, $(this));
 });
 $('.input_file').live('change', function(event){
-  handleFileSelect(event.originalEvent , $(this).parent().parent());
+  handleFileSelect(event.originalEvent , $(this).parent().parent().parent());
 });
 
 var spinner = '<div class="spinner"><div class="bar1"></div><div class="bar2"></div><div class="bar3"></div><div class="bar4"></div><div class="bar5"></div><div class="bar6"></div><div class="bar7"></div><div class="bar8"></div><div class="bar9"></div><div class="bar10"></div><div class="bar11"></div><div class="bar12"></div></div>';
 var totalAudio = 0;
-  

@@ -12,9 +12,10 @@
 <script type="text/javascript" src="js/uploader.js"></script>
 <script type="text/javascript" src="js/fancybox/jquery.fancybox-1.3.4.pack.js"></script>
 <script type="text/javascript" src="js/jquery.embedly.js"></script>
+<script type="text/javascript" src="js/jquery.tools.min.js"></script>
 </head>
 
-<body>
+<body onDragStart="return false;" ondragenter="return false;" ondragover="return false;" ondrop="return false;">
 <?php
 include('db_config.php');
 ?>
@@ -168,6 +169,7 @@ include('db_config.php');
 			<input type="button" id="preview_bottol" value="Preview"/>
 			-->
 			<input type="button" id="cancel_bottol" value="Cancel" onclick="window.location = 'http://<?php echo $db_domain;?>';"/>
+			<div id="loading_resources"></div>
 		</form>
 	</div>
 	<div id="sidebar">
