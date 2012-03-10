@@ -387,9 +387,9 @@ a.prev {
 	color: #ccc;
 }
 .drop_zone:hover {
-  color: #888;
-  border:2px dashed #888;
-  background-color: #eee;
+  color: #888 !important;
+  border:2px dashed #888 !important;
+  background-color: #eee !important;
 }
 .drop_zone:hover .dropped_div{
   opacity:0.4;
