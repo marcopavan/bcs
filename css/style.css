@@ -394,24 +394,6 @@ a.prev {
 .drop_zone:hover .dropped_div{
   opacity:0.4;
 }
-.content_inserted{
-   border:2px dashed transparent;
-}
-.content_inserted .input_container {
-	display: none;
-}
-.content_inserted .or {
-	display: none;
-}
-.content_inserted .show_image_types {
-	display: none;
-}
-.content_inserted .show_document_types {
-	display: none;
-}
-.content_inserted .show_audio_types {
-	display: none;
-}
 .drop_zone:hover .input_container {
 	display: block;
 }
@@ -426,6 +408,18 @@ a.prev {
 }
 .drop_zone:hover .show_audio_types {
 	display: block;
+}
+.drop_zone:hover.image {
+	background: url(../img/drop40pt.png) center no-repeat;
+}
+.small .drop_zone:hover.image {
+	background: url(../img/drop_small.png) center no-repeat;
+}
+.small>.drop_zone {
+	background: url(../img/drop_small.png) center no-repeat;
+}
+.small>.drop_zone:hover {
+	background-color: #eee;
 }
 .dropped_div{
   height:100%;
@@ -688,12 +682,6 @@ a.prev {
 	margin: 20px auto;
 	width: 200px;
 }
-.small>.drop_zone {
-	background: url(../img/drop_small.png) center no-repeat;
-}
-.small>.drop_zone:hover {
-	background-color: #eee;
-}
 #blocks_content{
 	height:100%;
 }
@@ -941,12 +929,6 @@ a.prev {
 .img_fancy {
 	display: block;
 }
-.content_inserted>input {
-	display: none;
-}
-.content_inserted .show_providers {
-	display: none;
-}
 
 /* bottone new e created su admin bar */
 
@@ -1131,3 +1113,36 @@ a.prev {
 	display: block;
 	float:left;
 }
+
+/* Content inserted start */
+
+.content_inserted>input {
+	display: none;
+}
+.content_inserted .show_providers {
+	display: none;
+}
+.content_inserted.image{
+   border:2px dashed transparent;
+   background: none;
+}
+.small .content_inserted {
+   background: none;
+}
+.content_inserted .input_container {
+	display: none;
+}
+.content_inserted .or {
+	display: none;
+}
+.content_inserted .show_image_types {
+	display: none;
+}
+.content_inserted .show_document_types {
+	display: none;
+}
+.content_inserted .show_audio_types {
+	display: none;
+}
+
+/* Content inserted end */

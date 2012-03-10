@@ -145,7 +145,6 @@ function handleFileSelect(evt, actual_drop_zone) {
     // IMPORT AUDIO FILE
 
     if (actual_drop_zone.hasClass("audio")) {
-      alert(f.type);
       if (!f.type.match('audio.*')) {
       actual_drop_zone.find('.message').html('<p class="warning_img">Only audio files can be uploaded!<strong>');
       break;
