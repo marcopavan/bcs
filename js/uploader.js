@@ -61,7 +61,8 @@ function handleFileSelect(evt, actual_drop_zone) {
             },
             success: function(data){
               actual_drop_zone.html(['<div class="submenu_image"><p class="or">or</p><div class="input_container"><input type="file" class="input_file" name="input_file"/></div><img src="img/questionmark.png" title="Add these image formats: jpeg, jpg, png, gif, bmp, tiff. Max size 5 MB." class="show_image_types"/></div><div class="dropped_div"><img class="dropped_img" src="', 'data:image/', f.type, ';base64,', data, '" title="', f.name, '"/></div>'].join(''));
-              actual_drop_zone.addClass('img_added');
+              actual_drop_zone.addClass('content_inserted');
+              actual_drop_zone.find('.show_image_types').tooltip({effect: 'slide'});
               saveImage(f, actual_drop_zone);
             },
             statusCode: {
@@ -89,7 +90,8 @@ function handleFileSelect(evt, actual_drop_zone) {
         return function(e) {
           var dropArea = actual_drop_zone;
           dropArea.html(['<div class="submenu_image"><p class="or">or</p><div class="input_container"><input type="file" class="input_file" name="input_file"/></div><img src="img/questionmark.png" title="Add these image formats: jpeg, jpg, png, gif, bmp, tiff. Max size 5 MB." class="show_image_types"/></div></div><div class="dropped_div"><img class="dropped_img" src="', e.target.result, '" title="', escape(theFile.name), '"/></div>'].join(''));
-          actual_drop_zone.addClass('img_added');
+          actual_drop_zone.addClass('content_inserted');
+          actual_drop_zone.find('.show_image_types').tooltip({effect: 'slide'});
           onAjaxEnd();
         };
       })(f);
@@ -129,7 +131,8 @@ function handleFileSelect(evt, actual_drop_zone) {
           },
           success: function(urlToGDocs){
             actual_drop_zone.html('<div class="submenu_document"><p class="or">or</p><div class="input_container"><input type="file" class="input_file" name="input_file"/></div><img src="img/questionmark.png" title="Add these document types: pdf, doc, docx, ppt, pptx, pps. Max size 5 MB." class="show_document_types"/></div><div class="dropped_div"><input type="hidden" class="document_path" value="'+urlToGDocs+'"/><iframe id="document_frame" src="http://docs.google.com/gview?url='+escape(urlToGDocs)+'&embedded=true" style="width:100%; height:600px;" frameborder="0"></iframe></div>');
-            actual_drop_zone.addClass('img_added');
+            actual_drop_zone.addClass('content_inserted');
+            actual_drop_zone.find('.show_document_types').tooltip({effect: 'slide'});
           },
           statusCode: {
             200: function() {
@@ -142,6 +145,7 @@ function handleFileSelect(evt, actual_drop_zone) {
     // IMPORT AUDIO FILE
 
     if (actual_drop_zone.hasClass("audio")) {
+      alert(f.type);
       if (!f.type.match('audio.*')) {
       actual_drop_zone.find('.message').html('<p class="warning_img">Only audio files can be uploaded!<strong>');
       break;
@@ -167,8 +171,9 @@ function handleFileSelect(evt, actual_drop_zone) {
             actual_drop_zone.find('.percentLoaded').html('Creating preview...');
           },
           success: function(urlToSend){
-            actual_drop_zone.html('<div class="submenu_audio"><p class="or">or</p><div class="input_container"><input type="file" class="input_file" name="input_file"/></div><img src="img/questionmark.png" title="Audio. Max size 5 MB." class="show_audio_types"/></div><div class="dropped_div"><input type="hidden" class="audio_path" value="'+urlToSend+'"/><p class="player" rel="'+(totalAudio++)+'"><span class="playtoggle"></span><span class="song_name">'+f.name+'</span><span class="gutter"><span class="loading"></span><span class="handle" class="ui-slider-handle"></span></span><span class="timeleft"></span><audio><source src="'+urlToSend+'" type="'+f.type+'"></source></audio></p></div>');
-            actual_drop_zone.addClass('img_added');
+            actual_drop_zone.html('<div class="submenu_audio"><p class="or">or</p><div class="input_container"><input type="file" class="input_file" name="input_file"/></div><img src="img/questionmark.png" title="Add these audio formats: mp3, wav, m4a, aiff. Max size 10 MB." class="show_audio_types"/></div><div class="dropped_div"><input type="hidden" class="audio_path" value="'+urlToSend+'"/><p class="player" rel="'+(totalAudio++)+'"><span class="playtoggle"></span><span class="song_name">'+f.name+'</span><span class="gutter"><span class="loading"></span><span class="handle" class="ui-slider-handle"></span></span><span class="timeleft"></span><audio><source src="'+urlToSend+'" type="'+f.type+'"></source></audio></p></div>');
+            actual_drop_zone.addClass('content_inserted');
+            actual_drop_zone.find('.show_audio_types').tooltip({effect: 'slide'});
           },
           statusCode: {
             200: function() {

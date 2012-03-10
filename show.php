@@ -372,7 +372,7 @@ while ($values=mysql_fetch_array($query)) {
 									case 'd':
 									if ($resource[0]) {
 									?>
-										<iframe src="http://docs.google.com/gview?url=<?php echo $resource[0]; ?>" frameborder="0" id="document_frame" style="height: 600px; width: 100%;"></iframe>
+										<iframe src="http://docs.google.com/gview?url=<?php echo $resource[0]; ?>&embedded=true" frameborder="0" id="document_frame" style="height: 600px; width: 100%;"></iframe>
 									<?php
 									}
 										break;

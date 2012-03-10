@@ -173,9 +173,9 @@ function appendVideo() {
 function appendAudio() {
   var currentItem = $('.select');
   if(currentItem.hasClass('resize'))
-    currentItem.html(remover + '<div class="drop_zone audio"><div class="message"></div><div class="submenu_audio"><p class="or">or</p><div class="input_container"><input type="file" class="input_file" name="input_file"/></div><img src="img/questionmark.png" title="Add these audio formats: mp3, wav. Max size 10 MB." class="show_audio_types"/></div></div>'+inputs);
+    currentItem.html(remover + '<div class="drop_zone audio"><div class="message"></div><div class="submenu_audio"><p class="or">or</p><div class="input_container"><input type="file" class="input_file" name="input_file"/></div><img src="img/questionmark.png" title="Add these audio formats: mp3, wav, m4a, aiff. Max size 10 MB." class="show_audio_types"/></div></div>'+inputs);
   else
-    currentItem.html(shifter + '<div class="drop_zone audio"><div class="message"></div><div class="submenu_audio"><p class="or">or</p><div class="input_container"><input type="file" class="input_file" name="input_file"/></div><img src="img/questionmark.png" title="Add these audio formats: mp3, wav. Max size 10 MB." class="show_audio_types"/></div></div>'+inputs);
+    currentItem.html(shifter + '<div class="drop_zone audio"><div class="message"></div><div class="submenu_audio"><p class="or">or</p><div class="input_container"><input type="file" class="input_file" name="input_file"/></div><img src="img/questionmark.png" title="Add these audio formats: mp3, wav, m4a, aiff. Max size 10 MB." class="show_audio_types"/></div></div>'+inputs);
   currentItem.find('.show_audio_types').tooltip({effect: 'slide'});
   currentItem.removeClass('select');
 }
@@ -628,7 +628,7 @@ function videoSearch(textfield){
                         if(textfield.parent().find('iframe').size() > 0)
                                 textfield.parent().find('iframe').attr('src', pageurl);
                         else
-                                textfield.parent().append('<iframe src="'+pageurl+'" frameborder="0" allowfullscreen></iframe>');
+                                textfield.parent().append('<iframe src="'+pageurl+'?wmode=transparent" frameborder="0" allowfullscreen></iframe>');
                         $(textfield.parent()).addClass('content_inserted');
                 }
         });

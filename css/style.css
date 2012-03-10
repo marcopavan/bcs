@@ -386,9 +386,6 @@ a.prev {
 	border:2px dashed #ccc;
 	color: #ccc;
 }
-.img_added{
-   border:2px dashed transparent;
-}
 .drop_zone:hover {
   color: #888;
   border:2px dashed #888;
@@ -397,19 +394,22 @@ a.prev {
 .drop_zone:hover .dropped_div{
   opacity:0.4;
 }
-.img_added .input_container {
+.content_inserted{
+   border:2px dashed transparent;
+}
+.content_inserted .input_container {
 	display: none;
 }
-.img_added .or {
+.content_inserted .or {
 	display: none;
 }
-.img_added .show_image_types {
+.content_inserted .show_image_types {
 	display: none;
 }
-.img_added .show_document_types {
+.content_inserted .show_document_types {
 	display: none;
 }
-.img_added .show_audio_types {
+.content_inserted .show_audio_types {
 	display: none;
 }
 .drop_zone:hover .input_container {
@@ -940,9 +940,6 @@ a.prev {
 }
 .img_fancy {
 	display: block;
-}
-.content_inserted {
-	border: 2px dashed transparent !important;
 }
 .content_inserted>input {
 	display: none;
