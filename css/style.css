@@ -1122,7 +1122,7 @@ a.prev {
 .content_inserted .show_providers {
 	display: none;
 }
-.content_inserted.image{
+.content_inserted.image, .content_inserted.generic_link, .content_inserted.video, .content_inserted.webPage {
    border:2px dashed transparent;
    background: none;
 }
