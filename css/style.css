@@ -475,7 +475,7 @@ a.prev {
 	z-index: 0;
 }
 .block .webPage > input{
-	margin: 60px auto 0 auto;
+	margin: 60px auto 0 auto !important;
 	position: relative;
 	z-index: 0;
 }
