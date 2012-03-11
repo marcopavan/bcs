@@ -7,6 +7,7 @@
 <script type="text/javascript" language="javascript" src="js/jquery-1.7.1.min.js"></script>
 <script type="text/javascript" src="js/fancybox/jquery.fancybox-1.3.4.pack.js"></script>
 <script type="text/javascript" src="js/jquery-ui-1.8.16.custom.min.js"></script>
+<script type="text/javascript" src="js/audio_player.js"></script>
 
 <script type="text/javascript">
 	$(document).ready(function() {
@@ -122,8 +123,6 @@ while ($values=mysql_fetch_array($query)) {
 									case 'a':
 									if ($resource[0]) {
 										$musicname=explode("/", $resource[0]);
-										$ext = substr($resource[0], -3);
-										echo $ext;
 									?>
 										<div class="audio">
 											<div class="dropped_div">

@@ -13,6 +13,7 @@
 <script type="text/javascript" src="js/fancybox/jquery.fancybox-1.3.4.pack.js"></script>
 <script type="text/javascript" src="js/jquery.embedly.js"></script>
 <script type="text/javascript" src="js/jquery.tools.min.js"></script>
+<script type="text/javascript" src="js/audio_player.js"></script>
 </head>
 
 <body onDragStart="return false;" ondragenter="return false;" ondragover="return false;" ondrop="return false;">
