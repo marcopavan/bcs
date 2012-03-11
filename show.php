@@ -73,12 +73,12 @@ while ($values=mysql_fetch_array($query)) {
 				$resource[].=$values["resource"];
 			}
 			?>
-				<div class="block">
+				<div class="block" style="min-height: 0px;">
 					<?php
 					switch ($template_id) {
 						case 1:
 							?>
-							<div class="resize small">
+							<div class="resize small" style="min-height: 0px;">
 							<?php
 								switch ($resource_type[0]) {
 									case 't':
@@ -122,6 +122,8 @@ while ($values=mysql_fetch_array($query)) {
 									case 'a':
 									if ($resource[0]) {
 										$musicname=explode("/", $resource[0]);
+										$ext = substr($resource[0], -3);
+										echo $ext;
 									?>
 										<div class="audio">
 											<div class="dropped_div">
@@ -150,7 +152,7 @@ while ($values=mysql_fetch_array($query)) {
 							break;
 						case 2:
 							?>
-							<div class="resize medium">
+							<div class="resize medium" style="min-height: 0px;">
 							<?php
 								switch ($resource_type[0]) {
 									case 't':
@@ -222,7 +224,7 @@ while ($values=mysql_fetch_array($query)) {
 							break;
 						case 3:
 							?>
-							<div class="resize large">
+							<div class="resize large" style="min-height: 0px;">
 							<?php
 								switch ($resource_type[0]) {
 									case 't':
@@ -294,7 +296,7 @@ while ($values=mysql_fetch_array($query)) {
 							break;
 						case 4:
 							?>
-							<div class="resize largest">
+							<div class="resize largest" style="min-height: 0px;">
 							<?php
 								switch ($resource_type[0]) {
 									case 't':
@@ -382,7 +384,7 @@ while ($values=mysql_fetch_array($query)) {
 							break;
 						case 5:
 							?>
-							<div class="medium">
+							<div class="medium" style="min-height: 0px;">
 								<?php
 								$key = array_search(1,$resource_position);
 									switch ($resource_type[$key]) {
@@ -450,7 +452,7 @@ while ($values=mysql_fetch_array($query)) {
 									}
 								?>
 							</div>
-							<div class="medium">
+							<div class="medium" style="min-height: 0px;">
 								<?php
 								$key = array_search(2,$resource_position);
 									switch ($resource_type[$key]) {
@@ -523,7 +525,7 @@ while ($values=mysql_fetch_array($query)) {
 							break;
 						case 6:
 							?>
-							<div class="small">
+							<div class="small" style="min-height: 0px;">
 								<?php
 								$key = array_search(1,$resource_position);
 									switch ($resource_type[$key]) {
@@ -591,7 +593,7 @@ while ($values=mysql_fetch_array($query)) {
 									}
 								?>
 							</div>
-							<div class="small">
+							<div class="small" style="min-height: 0px;">
 								<?php
 								$key = array_search(2,$resource_position);
 									switch ($resource_type[$key]) {
@@ -659,7 +661,7 @@ while ($values=mysql_fetch_array($query)) {
 									}
 								?>
 							</div>
-							<div class="small">
+							<div class="small" style="min-height: 0px;">
 								<?php
 								$key = array_search(3,$resource_position);
 									switch ($resource_type[$key]) {
@@ -732,7 +734,7 @@ while ($values=mysql_fetch_array($query)) {
 							break;
 						case 7:
 							?>
-							<div class="small">
+							<div class="small" style="min-height: 0px;">
 								<?php
 								$key = array_search(1,$resource_position);
 									switch ($resource_type[$key]) {
@@ -800,7 +802,7 @@ while ($values=mysql_fetch_array($query)) {
 									}
 								?>
 							</div>
-							<div class="large">
+							<div class="large" style="min-height: 0px;">
 								<?php
 								$key = array_search(2,$resource_position);
 									switch ($resource_type[$key]) {
@@ -873,7 +875,7 @@ while ($values=mysql_fetch_array($query)) {
 							break;
 						case 8:
 							?>
-							<div class="large">
+							<div class="large" style="min-height: 0px;">
 								<?php
 								$key = array_search(1,$resource_position);
 									switch ($resource_type[$key]) {
@@ -941,7 +943,7 @@ while ($values=mysql_fetch_array($query)) {
 									}
 								?>
 							</div>
-							<div class="small">
+							<div class="small" style="min-height: 0px;">
 								<?php
 								$key = array_search(2,$resource_position);
 									switch ($resource_type[$key]) {

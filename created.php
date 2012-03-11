@@ -42,7 +42,7 @@ if(isset($_POST['submit_bottol'])) {
 		$template_id=$_POST['element'.$i.'_template_id'];
 		$resource_position=$_POST['element'.$i.'_resource_position'];
 		$resource_type=$_POST['element'.$i.'_resource_type'];
-		$resource=addslashes($_POST['element'.$i.'_resource']);
+		$resource=$_POST['element'.$i.'_resource'];
 
 		$conn=mysql_connect($db_host,$db_user,$db_psw) or die ("db_connect error");
 		$var="INSERT INTO sharabelcom.topic_component_resources (topic_id,component_position,template_id,resource_position,resource_type,resource) VALUES ('$topic_id','$component_position','$template_id','$resource_position','$resource_type','$resource')";

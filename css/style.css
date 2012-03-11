@@ -811,6 +811,8 @@ a.prev {
 }
 .block > .resize.largest{
 	margin: 0 0.5%;
+}
+.img_fancy {
 	text-align: center;
 }
 /* resize block - end */
