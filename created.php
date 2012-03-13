@@ -34,7 +34,7 @@ if(isset($_POST['submit_bottol'])) {
 		$topic_id=$values['topic_id'];
 	}
 
-	for ($i=1; $i<=10 ; $i++) {
+	for ($i=1; $i<=30 ; $i++) {
 		if(!$_POST['element'.$i.'_component_position']) {
 			break;
 		}
