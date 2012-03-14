@@ -1146,5 +1146,8 @@ a.prev {
 .content_inserted .show_audio_types {
 	display: none;
 }
+.generic_link>.embed>iframe {
+	width: 100% !important;
+}
 
 /* Content inserted end */
