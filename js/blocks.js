@@ -54,6 +54,21 @@ function moveShifted(index, content, parent, before){
         }
 }
 
+function hideLateralArrows(){
+  var actualArrow = null;
+  $('#active').find('.shift_left').each(function(){
+    $(this).removeClass('hidden_arrow');
+    if(actualArrow == null)
+      actualArrow = $(this);
+  });
+  actualArrow.addClass('hidden_arrow');
+  $('#active').find('.shift_right').each(function(){
+    $(this).removeClass('hidden_arrow');
+    actualArrow = $(this);
+  });
+  actualArrow.addClass('hidden_arrow');
+}
+
 function removeActiveTiny(){
   var tinyTextareas = $('#active').find('.tinyMCETextArea');
   tinyTextareas.each(function(){removeTextAreaTinyMCE($(this).attr('id'));});
@@ -118,21 +133,25 @@ function addMM(){
   if(!checkNumberOfBlocksInserted()) return;
   removeActiveTiny();
   add('last', create_block(medium+medium+'<div class="fixed"></div>'));
+  hideLateralArrows();
 }
 function addSSS(){
   if(!checkNumberOfBlocksInserted()) return;
   removeActiveTiny();
   add('last', create_block(small+small+small+'<div class="fixed"></div>'));
+  hideLateralArrows();
 }
 function addSL(){
   if(!checkNumberOfBlocksInserted()) return;
   removeActiveTiny();
   add('last', create_block(small+large+'<div class="fixed"></div>'));
+  hideLateralArrows();
 }
 function addLS(){
   if(!checkNumberOfBlocksInserted()) return;
   removeActiveTiny();
   add('last', create_block(large+small+'<div class="fixed"></div>'));
+  hideLateralArrows();
 }
 function addXL(){
   if(!checkNumberOfBlocksInserted()) return;
@@ -152,6 +171,7 @@ function appendText() {
     currentItem.html(shiftLeft+shiftRight+remover + '<textarea id="textarea' + (++textareaNum) + '" class="tinyMCETextArea"></textarea><div class="tinyMCETextAreaDisplay"></div>'+inputs);
   createTextAreaTinyMCE('textarea'+textareaNum);
   currentItem.removeClass('select');
+  hideLateralArrows();
 }
 function appendImage() {
   var currentItem = $('.select');
@@ -161,6 +181,7 @@ function appendImage() {
     currentItem.html(shiftLeft+shiftRight+remover + '<div class="drop_zone image"><div class="message"></div><div class="submenu_image"><p class="or">or</p><div class="input_container"><input type="file" class="input_file" name="input_file"/></div><img src="img/questionmark.png" title="Add these image formats: jpeg, jpg, png, gif, bmp, tiff. Max size 5 MB." class="show_image_types"/></div></div>'+inputs);
   currentItem.find('.show_image_types').tooltip({effect: 'slide'});
   currentItem.removeClass('select');
+  hideLateralArrows();
 }
 function appendVideo() {
   var currentItem = $('.select');
@@ -169,6 +190,7 @@ function appendVideo() {
   else
     currentItem.html(shiftLeft+shiftRight+remover + '<div class="video"><input type="text" rel="'+(inputNumber++)+'" placeholder="Enter a Video link ('+supportedVideoDomains.join(', ')+')" oninput="videoType($(this));"/></div>'+inputs);
   currentItem.removeClass('select');
+  hideLateralArrows();
 }
 function appendAudio() {
   var currentItem = $('.select');
@@ -178,6 +200,7 @@ function appendAudio() {
     currentItem.html(shiftLeft+shiftRight+remover + '<div class="drop_zone audio"><div class="message"></div><div class="submenu_audio"><p class="or">or</p><div class="input_container"><input type="file" class="input_file" name="input_file"/></div><img src="img/questionmark.png" title="Add these audio formats: mp3, wav. Max size 10 MB." class="show_audio_types"/></div></div>'+inputs);
   currentItem.find('.show_audio_types').tooltip({effect: 'slide'});
   currentItem.removeClass('select');
+  hideLateralArrows();
 }
 function appendGenericLink() {
   var currentItem = $('.select');
@@ -187,6 +210,7 @@ function appendGenericLink() {
     currentItem.html(shiftLeft+shiftRight+remover + '<div class="generic_link"><input type="text" rel="'+(inputNumber++)+'" placeholder="Enter a link to embed" oninput="embedType($(this));"/><img src="img/questionmark.png" class="show_providers" title="Embed whatever you want! Try Google maps, Soundcloud, Grooveshark, Rdio, Flickr, Instagram, Twitter, Amazon, etc."/><a class="hidden_link" href=""></a></div>'+inputs);
   currentItem.find('.show_providers').tooltip({effect: 'slide'});
   currentItem.removeClass('select');
+  hideLateralArrows();
 }
 function appendDocument() {
   var currentItem = $('.select');
@@ -275,6 +299,8 @@ $('.move_left').live('click', function(){
         moveShifted(myIndex, cont.clone(), cont.parent(), true);
         cont.remove();
 
+        hideLateralArrows();
+
         var tinyTextareas = cont.find('.tinyMCETextArea');
         tinyTextareas.each(function(){updateTextAreaTinyMCE($(this).attr('id'));});
 
@@ -287,6 +313,8 @@ $('.move_right').live('click', function(){
         myIndex++;
         moveShifted(myIndex, cont.clone(), cont.parent());
         cont.remove();
+
+        hideLateralArrows();
 
         var tinyTextareas = cont.find('.tinyMCETextArea');
         tinyTextareas.each(function(){updateTextAreaTinyMCE($(this).attr('id'));});
@@ -304,6 +332,8 @@ $('.reset_item').live('click', function(){
           cont.html($(large).html());
         if(cont.hasClass('largest'))
           cont.html('<a class="new_add_menu" href=""><p class="message_layout"></p></a>'+inputs);
+
+        hideLateralArrows();
         return false;
 });
 
