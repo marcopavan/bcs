@@ -183,6 +183,46 @@ function handleFileSelect(evt, actual_drop_zone) {
       break;
     }
 
+    // IMPORT FILE ATTACHMENT
+
+    if (actual_drop_zone.hasClass("file")) {
+      if (!f.type.match('application.*')) {
+        actual_drop_zone.find('.message').html('<p class="warning_img">Only archive files can be uploaded!<strong>');
+        break;
+      }
+      if (f.size > 10485760) {
+        actual_drop_zone.find('.message').html('<p class="warning_img">Max archive file size: 10MB<strong>');
+        break;
+      }
+      actual_drop_zone.html('<ul><li><strong>'+escape(f.name)+'</strong> - '+f.size+' bytes</li></ul>');
+
+      var form = new FormData();
+      form.append('file', f);
+      form.append('name', f.name);
+      $.ajax({
+          url: 'saveTemp.php',
+          data: form,
+          cache: false,
+          contentType: false,
+          processData: false,
+          type: 'POST',
+          beforeSend: function(){
+            onAjaxStart();
+            actual_drop_zone.html('<p>Attachment: <strong>'+escape(f.name)+'</strong> - '+f.size+' bytes</p>');
+          },
+          success: function(urlToSend){
+            actual_drop_zone.html('<p>Attachment: <strong>'+escape(f.name)+'</strong> - '+f.size+' bytes</p><div class="submenu_file"><p class="or">or</p><div class="input_container"><input type="file" class="input_file" name="input_file"/></div><img src="img/questionmark.png" title="Add these archive formats: zip, rar, tar, targz, tgz. Max size 10 MB." class="show_file_types"/></div>');
+            actual_drop_zone.addClass('content_inserted');
+            actual_drop_zone.find('.show_file_types').tooltip({effect: 'slide'});
+          },
+          statusCode: {
+            200: function() {
+              onAjaxEnd();
+            }
+          }
+      });
+      break;
+    }
   }
 }
 

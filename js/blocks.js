@@ -201,6 +201,15 @@ function appendWebPage() {
   currentItem.removeClass('select');
   $('.resize_controls').remove();
 }
+function appendFile() {
+  var currentItem = $('.select');
+  if(currentItem.hasClass('resize'))
+    currentItem.html(remover + '<div class="drop_zone file"><div class="message"></div><div class="submenu_file"><p class="or">or</p><div class="input_container"><input type="file" class="input_file" name="input_file"/></div><img src="img/questionmark.png" title="Add these archive formats: zip, rar, tar, targz, tgz. Max size 10 MB." class="show_file_types"/></div></div>'+inputs);
+  else
+    currentItem.html(shifter + '<div class="drop_zone file"><div class="message"></div><div class="submenu_file"><p class="or">or</p><div class="input_container"><input type="file" class="input_file" name="input_file"/></div><img src="img/questionmark.png" title="Add these archive formats: zip, rar, tar, targz, tgz. Max size 10 MB." class="show_file_types"/></div></div>'+inputs);
+  currentItem.find('.show_file_types').tooltip({effect: 'slide'});
+  currentItem.removeClass('select');
+}
 // End function add element
 
 function checkNumberOfBlocksInserted() {
