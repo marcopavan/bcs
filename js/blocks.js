@@ -348,9 +348,9 @@ $('.resize_controls > *').live('click', function(){
   $.fancybox.close();
   toResize.addClass($(this).attr('rel'));
   if ($(this).attr('rel')=='largest') {
-    toResize.find('a').attr('href','#hidden_menu_largest');
+    toResize.children('a').attr('href','#hidden_menu_largest');
   } else {
-    toResize.find('a').attr('href','#hidden_menu');
+    toResize.children('a').attr('href','#hidden_menu');
   }
   toResize.find('a').fancybox({
     'hideOnContentClick' : true,
