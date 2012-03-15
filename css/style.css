@@ -303,51 +303,43 @@ a.prev {
 	bottom: -45px;
 }
 
-.block .shift_remove_item{
-	display: none;
-	position: absolute;
-	bottom: -15px;
-	left: 0;
-	width: 50%;
-	text-align: right;
-	cursor: pointer;
-	z-index: 10;
-}
-.block#active > div:hover > .shift_remove_item{
-	display: block;
-}
-.block .shift_remove_item > div{
-	position: relative;
-	right: -52px;
-}
-.block .shift_remove_item img{
-	height: 30px;
-	width: auto;
-	margin: 0 2px;
-}
+/* horizontal shift blocks */
 
-.block .shift_item{
+.block .shift_left{
 	display: none;
-	position: absolute;
-	bottom: -15px;
-	left: 0;
-	width: 50%;
-	text-align: right;
 	cursor: pointer;
+	position: absolute;
+	top: 50%;
+	margin-top: -23px;
+	margin-left: -24px;
 	z-index: 10;
 }
-.block#active > div:hover > .shift_item{
-	display: block;
+.block .shift_left > img{
+	width: 46px;
+	height: auto;
 }
-.block .shift_item > div{
-	position: relative;
-	right: -36px;
+.block#active > div:hover .shift_left{ display: block; }
+.block .small .shift_left{ left: -1.5%; }
+.block .medium .shift_left{ left: -1%; }
+.block .large .shift_left{ left: -0.7%; }
+
+.block .shift_right{
+	display: none;
+	cursor: pointer;
+	position: absolute;
+	top: 50%;
+	margin-top: -23px;
+	margin-right: -24px;
+	z-index: 10;
 }
-.block .shift_item img{
-	height: 30px;
-	width: auto;
-	margin: 0 2px;
+.block .shift_right > img{
+	width: 46px;
+	height: auto;
 }
+.block#active > div:hover .shift_right{ display: block; }
+.block .small .shift_right{ right: -1.5%; }
+.block .medium .shift_right{ right: -1%; }
+.block .large .shift_right{ right: -0.7%; }
 
 .block .remove_item{
 	display: none;
@@ -359,9 +351,7 @@ a.prev {
 	cursor: pointer;
 	z-index: 10;
 }
-.block#active > div:hover > .remove_item{
-	display: block;
-}
+.block#active > div:hover .remove_item{ display: block; }
 .block .remove_item > img{
 	position: relative;
 	right: -16px;
