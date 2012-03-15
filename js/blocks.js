@@ -197,7 +197,7 @@ function appendAudio() {
   if(currentItem.hasClass('resize'))
     currentItem.html(remover + '<div class="drop_zone audio"><div class="message"></div><div class="submenu_audio"><p class="or">or</p><div class="input_container"><input type="file" class="input_file" name="input_file"/></div><img src="img/questionmark.png" title="Add these audio formats: mp3, wav. Max size 10 MB." class="show_audio_types"/></div></div>'+inputs);
   else
-    currentItem.html(shiftLeft+shiftRight+remover + '<div class="drop_zone audio"><div class="message"></div><div class="submenu_audio"><p class="or">or</p><div class="input_container"><input type="file" class="input_file" name="input_file"/></div><img src="img/questionmark.png" title="Add these audio formats: mp3, wav. Max size 10 MB." class="show_audio_types"/></div></div>'+inputs);
+    currentItem.html(shiftLeft+shiftRight+remover + '<div class="drop_zone audio"><div class="message"></div><div class="submenu_audio"><p class="or">or</p><div class="input_container"><input type="file" class="input_file" name="input_file"/></div><img src="img/questionmark.png" title="Add these audio formats: mp3, wav, m4a, aiff. Max size 10 MB." class="show_audio_types"/></div></div>'+inputs);
   currentItem.find('.show_audio_types').tooltip({effect: 'slide'});
   currentItem.removeClass('select');
   hideLateralArrows();
