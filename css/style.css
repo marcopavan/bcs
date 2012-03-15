@@ -684,6 +684,7 @@ a.prev {
 }
 #blocks_content{
 	height:100%;
+	color: #000;
 }
 .fixed {
 	clear:both;
@@ -793,6 +794,7 @@ a.prev {
 	display: inline;
 	padding: 4px;
 	cursor: pointer;
+	color: #555;
 }
 .block > .resize_controls > .selected{
 	color: white;

@@ -510,6 +510,9 @@ function onTinyMCEChange() {
 
 var tinyconfigXL = {
        theme : "advanced",
+       oninit : "setPlainText",
+       plugins : "paste",
+       paste_auto_cleanup_on_paste : true,
        mode : "specific_textareas",
        editor_selector : "mceEditor",
        theme_advanced_buttons1 : "bold,italic,underline,strikethrough,|,justifyleft,justifycenter,justifyright,justifyfull,|,bullist,numlist,undo,redo,|,formatselect,fontselect,fontsizeselect,|,forecolor,backcolor,|,link,unlink",
@@ -524,6 +527,9 @@ var tinyconfigXL = {
 }
 var tinyconfigM = {
        theme : "advanced",
+       oninit : "setPlainText",
+       plugins : "paste",
+       paste_auto_cleanup_on_paste : true,
        mode : "specific_textareas",
        editor_selector : "mceEditor",
        theme_advanced_buttons1 : "bold,italic,underline,strikethrough,|,justifyleft,justifycenter,justifyright,justifyfull,|,bullist,numlist,undo,redo,|,forecolor,backcolor",
@@ -539,6 +545,9 @@ var tinyconfigM = {
 var tinyconfigL = tinyconfigM;
 var tinyconfigS = {
        theme : "advanced",
+       oninit : "setPlainText",
+       plugins : "paste",
+       paste_auto_cleanup_on_paste : true,
        mode : "specific_textareas",
        editor_selector : "mceEditor",
        theme_advanced_buttons1 : "bold,italic,underline,strikethrough,|,justifyleft,justifycenter,justifyright,justifyfull,|,bullist,numlist",
