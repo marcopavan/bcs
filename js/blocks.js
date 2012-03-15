@@ -1,7 +1,7 @@
 var modifyer = '<div class="modify"><img class="remove" src="img/close.png"/><div class="mod_controls"><img class="move_up" src="img/up.png"/><img class="move_down" src="img/down.png"/></div></div><div class="edit_block"><p>edit</p><div></div></div>';
 
-var shiftLeft = '<div class="shift_left"><img class="move_left" src="img/double_arrow"/></div>';
-var shiftRight = '<div class="shift_right"><img class="move_right" src="img/double_arrow"/></div>';
+var shiftLeft = '<div class="shift_left"><img class="move_left" src="img/double_arrow.png"/></div>';
+var shiftRight = '<div class="shift_right"><img class="move_right" src="img/double_arrow.png"/></div>';
 var remover = '<div class="remove_item"><img class="reset_item" src="img/remove.png"/></div>';
 
 var resizeControls = '<div class="resize_controls"><p rel="small">S</p><p rel="medium">M</p><p rel="large">L</p><p class="selected" rel="largest">XL</p></div>';
@@ -300,6 +300,10 @@ $('.move_left').live('click', function(){
         cont.remove();
 
         hideLateralArrows();
+        $('#active').find('.show_audio_types').attr('title', 'Add these audio formats: mp3, wav, m4a, aiff. Max size 10 MB.').tooltip({effect: 'slide'});
+        $('#active').find('.show_image_types').attr('title', 'Add these image formats: jpeg, jpg, png, gif, bmp, tiff. Max size 5 MB.').tooltip({effect: 'slide'});
+        $('#active').find('.show_providers').attr('title', 'Embed whatever you want! Try Google maps, Soundcloud, Grooveshark, Rdio, Flickr, Instagram, Twitter, Amazon, etc.').tooltip({effect: 'slide'});
+        $('#active').find('.show_document_types').attr('title', 'Add these document types: pdf, doc, docx, ppt, pptx, pps. Max size 5 MB.').tooltip({effect: 'slide'});
 
         var tinyTextareas = cont.find('.tinyMCETextArea');
         tinyTextareas.each(function(){updateTextAreaTinyMCE($(this).attr('id'));});
@@ -315,6 +319,10 @@ $('.move_right').live('click', function(){
         cont.remove();
 
         hideLateralArrows();
+        $('#active').find('.show_audio_types').attr('title', 'Add these audio formats: mp3, wav, m4a, aiff. Max size 10 MB.').tooltip({effect: 'slide'});
+        $('#active').find('.show_image_types').attr('title', 'Add these image formats: jpeg, jpg, png, gif, bmp, tiff. Max size 5 MB.').tooltip({effect: 'slide'});
+        $('#active').find('.show_providers').attr('title', 'Embed whatever you want! Try Google maps, Soundcloud, Grooveshark, Rdio, Flickr, Instagram, Twitter, Amazon, etc.').tooltip({effect: 'slide'});
+        $('#active').find('.show_document_types').attr('title', 'Add these document types: pdf, doc, docx, ppt, pptx, pps. Max size 5 MB.').tooltip({effect: 'slide'});
 
         var tinyTextareas = cont.find('.tinyMCETextArea');
         tinyTextareas.each(function(){updateTextAreaTinyMCE($(this).attr('id'));});
