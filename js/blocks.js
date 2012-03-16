@@ -204,9 +204,9 @@ function appendWebPage() {
 function appendFile() {
   var currentItem = $('.select');
   if(currentItem.hasClass('resize'))
-    currentItem.html(remover + '<div class="drop_zone file"><div class="message"></div><div class="submenu_file"><p class="or">or</p><div class="input_container"><input type="file" class="input_file" name="input_file"/></div><img src="img/questionmark.png" title="Add these archive formats: zip, rar, tar, targz, tgz. Max size 10 MB." class="show_file_types"/></div></div>'+inputs);
+    currentItem.html(remover + '<div class="drop_zone file"><div class="message"></div><div class="submenu_file"><p class="or">or</p><div class="input_container"><input type="file" class="input_file" name="input_file"/></div><img src="img/questionmark.png" title="Attach whatever you want! zip, rar, pdf, doc, xls, ppt, etc. Max size 10 MB." class="show_file_types"/></div></div>'+inputs);
   else
-    currentItem.html(shifter + '<div class="drop_zone file"><div class="message"></div><div class="submenu_file"><p class="or">or</p><div class="input_container"><input type="file" class="input_file" name="input_file"/></div><img src="img/questionmark.png" title="Add these archive formats: zip, rar, tar, targz, tgz. Max size 10 MB." class="show_file_types"/></div></div>'+inputs);
+    currentItem.html(shifter + '<div class="drop_zone file"><div class="message"></div><div class="submenu_file"><p class="or">or</p><div class="input_container"><input type="file" class="input_file" name="input_file"/></div><img src="img/questionmark.png" title="Attach whatever you want! zip, rar, pdf, doc, xls, ppt, etc. Max size 10 MB." class="show_file_types"/></div></div>'+inputs);
   currentItem.find('.show_file_types').tooltip({effect: 'slide'});
   currentItem.removeClass('select');
 }
@@ -421,6 +421,7 @@ $(function(){
             if($(this).find('.video').size() > 0) resourceType = 'v';
             if($(this).find('.audio').size() > 0) resourceType = 'a';
             if($(this).find('.generic_link').size() > 0) resourceType = 'e';
+            if($(this).find('.file').size() > 0) resourceType = 'f';
             if($(this).find('.new_add_menu').size() > 0) resourceType = 'x';
             if($(this).find('.add_menu').size() > 0) resourceType = 'x';
 
@@ -434,6 +435,7 @@ $(function(){
               case 'a': resourceContent = $(this).find('.audio .audio_path').val(); break;
               case 'v': resourceContent = $(this).find('.video iframe').attr('src'); break;
               case 'e': resourceContent = $(this).find('.generic_link .embed').html(); break;
+              case 'f': resourceContent = $(this).find('.file .file_path').val(); break;
               case 'x': resourceContent = ''
               break;
             }

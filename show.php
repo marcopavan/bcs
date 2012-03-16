@@ -1,3 +1,27 @@
+<?php
+function format_bytes($a_bytes) {
+    if ($a_bytes < 1024) {
+        return $a_bytes .' B';
+    } elseif ($a_bytes < 1048576) {
+        return round($a_bytes / 1024, 2) .' KB';
+    } elseif ($a_bytes < 1073741824) {
+        return round($a_bytes / 1048576, 2) . ' MB';
+    } elseif ($a_bytes < 1099511627776) {
+        return round($a_bytes / 1073741824, 2) . ' GB';
+    } elseif ($a_bytes < 1125899906842624) {
+        return round($a_bytes / 1099511627776, 2) .' TB';
+    } elseif ($a_bytes < 1152921504606846976) {
+        return round($a_bytes / 1125899906842624, 2) .' PB';
+    } elseif ($a_bytes < 1180591620717411303424) {
+        return round($a_bytes / 1152921504606846976, 2) .' EB';
+    } elseif ($a_bytes < 1208925819614629174706176) {
+        return round($a_bytes / 1180591620717411303424, 2) .' ZB';
+    } else {
+        return round($a_bytes / 1208925819614629174706176, 2) .' YB';
+    }
+}
+?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -143,6 +167,24 @@ while ($values=mysql_fetch_array($query)) {
 									<?php
 									}
 										break;
+									case 'f':
+									if ($resource[0]) {
+										$filename=explode("/", $resource[0]);
+										$ext= explode(".",$resource[0]);
+									?>
+										<div class="file content_inserted">
+											<div class="dropped_div">
+												<div class="attachment_info">
+													<a href="<?php echo $resource[0]?>">
+														<span class="extension"><?php echo end($ext); ?></span>
+														<img class="file_icon" src="img/file_icon_lightblue.png"/>
+													</a>
+												</div>
+												<p><strong><?php echo $filename[5]; ?></strong> - <?php echo format_bytes(filesize("tmp/".$filename[5])) ?></p>
+											</div>
+										</div>
+									<?php
+									}
 								}
 							?>
 							</div>
@@ -214,7 +256,25 @@ while ($values=mysql_fetch_array($query)) {
 										</div>
 									<?php
 									}
-										break;	
+										break;
+									case 'f':
+									if ($resource[0]) {
+										$filename=explode("/", $resource[0]);
+										$ext= explode(".",$resource[0]);
+									?>
+										<div class="file content_inserted">
+											<div class="dropped_div">
+												<div class="attachment_info">
+													<a href="<?php echo $resource[0]?>">
+														<span class="extension"><?php echo end($ext); ?></span>
+														<img class="file_icon" src="img/file_icon_lightblue.png"/>
+													</a>
+												</div>
+												<p><strong><?php echo $filename[5]; ?></strong> - <?php echo format_bytes(filesize("tmp/".$filename[5])) ?></p>
+											</div>
+										</div>
+									<?php
+									}	
 								}
 							?>
 							</div>
@@ -287,6 +347,24 @@ while ($values=mysql_fetch_array($query)) {
 									<?php
 									}
 										break;
+									case 'f':
+									if ($resource[0]) {
+										$filename=explode("/", $resource[0]);
+										$ext= explode(".",$resource[0]);
+									?>
+										<div class="file content_inserted">
+											<div class="dropped_div">
+												<div class="attachment_info">
+													<a href="<?php echo $resource[0]?>">
+														<span class="extension"><?php echo end($ext); ?></span>
+														<img class="file_icon" src="img/file_icon_lightblue.png"/>
+													</a>
+												</div>
+												<p><strong><?php echo $filename[5]; ?></strong> - <?php echo format_bytes(filesize("tmp/".$filename[5])) ?></p>
+											</div>
+										</div>
+									<?php
+									}
 								}
 							?>
 							</div>
@@ -375,6 +453,24 @@ while ($values=mysql_fetch_array($query)) {
 									<?php
 									}
 										break;
+									case 'f':
+									if ($resource[0]) {
+										$filename=explode("/", $resource[0]);
+										$ext= explode(".",$resource[0]);
+									?>
+										<div class="file content_inserted">
+											<div class="dropped_div">
+												<div class="attachment_info">
+													<a href="<?php echo $resource[0]?>">
+														<span class="extension"><?php echo end($ext); ?></span>
+														<img class="file_icon" src="img/file_icon_lightblue.png"/>
+													</a>
+												</div>
+												<p><strong><?php echo $filename[5]; ?></strong> - <?php echo format_bytes(filesize("tmp/".$filename[5])) ?></p>
+											</div>
+										</div>
+									<?php
+									}
 								}
 							?>
 							</div>
@@ -448,6 +544,24 @@ while ($values=mysql_fetch_array($query)) {
 										<?php
 										}
 											break;
+										case 'f':
+										if ($resource[$key]) {
+											$filename=explode("/", $resource[$key]);
+											$ext= explode(".",$resource[$key]);
+										?>
+											<div class="file content_inserted">
+												<div class="dropped_div">
+													<div class="attachment_info">
+														<a href="<?php echo $resource[$key]?>">
+															<span class="extension"><?php echo end($ext); ?></span>
+															<img class="file_icon" src="img/file_icon_lightblue.png"/>
+														</a>
+													</div>
+													<p><strong><?php echo $filename[5]; ?></strong> - <?php echo format_bytes(filesize("tmp/".$filename[5])) ?></p>
+												</div>
+											</div>
+										<?php
+										}
 									}
 								?>
 							</div>
@@ -515,7 +629,25 @@ while ($values=mysql_fetch_array($query)) {
 											</div>
 										<?php
 										}
-											break;	
+											break;
+										case 'f':
+										if ($resource[$key]) {
+											$filename=explode("/", $resource[$key]);
+											$ext= explode(".",$resource[$key]);
+										?>
+											<div class="file content_inserted">
+												<div class="dropped_div">
+													<div class="attachment_info">
+														<a href="<?php echo $resource[$key]?>">
+															<span class="extension"><?php echo end($ext); ?></span>
+															<img class="file_icon" src="img/file_icon_lightblue.png"/>
+														</a>
+													</div>
+													<p><strong><?php echo $filename[5]; ?></strong> - <?php echo format_bytes(filesize("tmp/".$filename[5])) ?></p>
+												</div>
+											</div>
+										<?php
+										}	
 									}
 								?>
 							</div>
@@ -588,7 +720,25 @@ while ($values=mysql_fetch_array($query)) {
 											</div>
 										<?php
 										}
-											break;	
+											break;
+										case 'f':
+										if ($resource[$key]) {
+											$filename=explode("/", $resource[$key]);
+											$ext= explode(".",$resource[$key]);
+										?>
+											<div class="file content_inserted">
+												<div class="dropped_div">
+													<div class="attachment_info">
+														<a href="<?php echo $resource[$key]?>">
+															<span class="extension"><?php echo end($ext); ?></span>
+															<img class="file_icon" src="img/file_icon_lightblue.png"/>
+														</a>
+													</div>
+													<p><strong><?php echo $filename[5]; ?></strong> - <?php echo format_bytes(filesize("tmp/".$filename[5])) ?></p>
+												</div>
+											</div>
+										<?php
+										}
 									}
 								?>
 							</div>
@@ -656,7 +806,25 @@ while ($values=mysql_fetch_array($query)) {
 											</div>
 										<?php
 										}
-											break;	
+											break;
+										case 'f':
+										if ($resource[$key]) {
+											$filename=explode("/", $resource[$key]);
+											$ext= explode(".",$resource[$key]);
+										?>
+											<div class="file content_inserted">
+												<div class="dropped_div">
+													<div class="attachment_info">
+														<a href="<?php echo $resource[$key]?>">
+															<span class="extension"><?php echo end($ext); ?></span>
+															<img class="file_icon" src="img/file_icon_lightblue.png"/>
+														</a>
+													</div>
+													<p><strong><?php echo $filename[5]; ?></strong> - <?php echo format_bytes(filesize("tmp/".$filename[5])) ?></p>
+												</div>
+											</div>
+										<?php
+										}	
 									}
 								?>
 							</div>
@@ -724,7 +892,25 @@ while ($values=mysql_fetch_array($query)) {
 											</div>
 										<?php
 										}
-											break;	
+											break;
+										case 'f':
+										if ($resource[$key]) {
+											$filename=explode("/", $resource[$key]);
+											$ext= explode(".",$resource[$key]);
+										?>
+											<div class="file content_inserted">
+												<div class="dropped_div">
+													<div class="attachment_info">
+														<a href="<?php echo $resource[$key]?>">
+															<span class="extension"><?php echo end($ext); ?></span>
+															<img class="file_icon" src="img/file_icon_lightblue.png"/>
+														</a>
+													</div>
+													<p><strong><?php echo $filename[5]; ?></strong> - <?php echo format_bytes(filesize("tmp/".$filename[5])) ?></p>
+												</div>
+											</div>
+										<?php
+										}
 									}
 								?>
 							</div>
@@ -797,7 +983,25 @@ while ($values=mysql_fetch_array($query)) {
 											</div>
 										<?php
 										}
-											break;	
+											break;
+										case 'f':
+										if ($resource[$key]) {
+											$filename=explode("/", $resource[$key]);
+											$ext= explode(".",$resource[$key]);
+										?>
+											<div class="file content_inserted">
+												<div class="dropped_div">
+													<div class="attachment_info">
+														<a href="<?php echo $resource[$key]?>">
+															<span class="extension"><?php echo end($ext); ?></span>
+															<img class="file_icon" src="img/file_icon_lightblue.png"/>
+														</a>
+													</div>
+													<p><strong><?php echo $filename[5]; ?></strong> - <?php echo format_bytes(filesize("tmp/".$filename[5])) ?></p>
+												</div>
+											</div>
+										<?php
+										}
 									}
 								?>
 							</div>
@@ -865,7 +1069,25 @@ while ($values=mysql_fetch_array($query)) {
 											</div>
 										<?php
 										}
-											break;	
+											break;
+										case 'f':
+										if ($resource[$key]) {
+											$filename=explode("/", $resource[$key]);
+											$ext= explode(".",$resource[$key]);
+										?>
+											<div class="file content_inserted">
+												<div class="dropped_div">
+													<div class="attachment_info">
+														<a href="<?php echo $resource[$key]?>">
+															<span class="extension"><?php echo end($ext); ?></span>
+															<img class="file_icon" src="img/file_icon_lightblue.png"/>
+														</a>
+													</div>
+													<p><strong><?php echo $filename[5]; ?></strong> - <?php echo format_bytes(filesize("tmp/".$filename[5])) ?></p>
+												</div>
+											</div>
+										<?php
+										}
 									}
 								?>
 							</div>
@@ -938,7 +1160,25 @@ while ($values=mysql_fetch_array($query)) {
 											</div>
 										<?php
 										}
-											break;	
+											break;
+										case 'f':
+										if ($resource[$key]) {
+											$filename=explode("/", $resource[$key]);
+											$ext= explode(".",$resource[$key]);
+										?>
+											<div class="file content_inserted">
+												<div class="dropped_div">
+													<div class="attachment_info">
+														<a href="<?php echo $resource[$key]?>">
+															<span class="extension"><?php echo end($ext); ?></span>
+															<img class="file_icon" src="img/file_icon_lightblue.png"/>
+														</a>
+													</div>
+													<p><strong><?php echo $filename[5]; ?></strong> - <?php echo format_bytes(filesize("tmp/".$filename[5])) ?></p>
+												</div>
+											</div>
+										<?php
+										}	
 									}
 								?>
 							</div>
@@ -1006,7 +1246,25 @@ while ($values=mysql_fetch_array($query)) {
 											</div>
 										<?php
 										}
-											break;	
+											break;
+										case 'f':
+										if ($resource[$key]) {
+											$filename=explode("/", $resource[$key]);
+											$ext= explode(".",$resource[$key]);
+										?>
+											<div class="file content_inserted">
+												<div class="dropped_div">
+													<div class="attachment_info">
+														<a href="<?php echo $resource[$key]?>">
+															<span class="extension"><?php echo end($ext); ?></span>
+															<img class="file_icon" src="img/file_icon_lightblue.png"/>
+														</a>
+													</div>
+													<p><strong><?php echo $filename[5]; ?></strong> - <?php echo format_bytes(filesize("tmp/".$filename[5])) ?></p>
+												</div>
+											</div>
+										<?php
+										}
 									}
 								?>
 							</div>

@@ -424,17 +424,23 @@ a.prev {
 .small .drop_zone:hover.image {
 	background: url(../img/drop_small.png) center no-repeat;
 }
-.small>.drop_zone.image {
+.small>.image {
 	background: url(../img/drop_small.png) center no-repeat;
 }
-.small>.drop_zone.file {
+.small>.file {
 	background: url(../img/drop_file_small.png) center no-repeat;
 }
 .small>.drop_zone:hover {
 	background-color: #eee;
 }
-.drop_zone.file>p {
+.drop_zone.file .dropped_div p {
 	color: #000;
+}
+.file {
+	text-align: center;
+}
+.file_icon {
+	height:80px;
 }
 .dropped_div{
   height:100%;
@@ -1133,4 +1139,26 @@ a.prev {
 
 .generic_link>.embed>iframe {
 	width: 100% !important;
+}
+.attachment_info {
+	position: relative;
+}
+.attachment_info a {
+	text-decoration: none;
+}
+.extension {
+	width: 30px;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	color: #fff !important;
+	margin-left: -21px;
+	margin-top: 7px;
+	font-size: 10pt;
+}
+#hidden_menu_largest {
+	width: 360px;
+}
+#hidden_menu {
+	width: 270px;
 }
