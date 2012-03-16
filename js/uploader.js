@@ -194,7 +194,7 @@ function handleFileSelect(evt, actual_drop_zone) {
         actual_drop_zone.find('.message').html('<p class="warning_img">Max file size: 10MB<strong>');
         break;
       }
-      actual_drop_zone.html('<ul><li><strong>'+escape(f.name)+'</strong> - '+f.size+' bytes</li></ul>');
+
       var extArray = f.name.split('.');
       var ext = extArray[extArray.length-1];
 
@@ -210,7 +210,7 @@ function handleFileSelect(evt, actual_drop_zone) {
           type: 'POST',
           beforeSend: function(){
             onAjaxStart();
-            actual_drop_zone.html('<div class="dropped_div"><div class="attachment_info"><p class="extension">'+ext+'</p><img class="file_icon" src="img/file_icon_lightblue.png"/></div><p><strong>'+escape(f.name)+'</strong> - '+format_bytes(f.size)+'</p></div>');
+            actual_drop_zone.html('<div class="dropped_div"><div class="attachment_info"><p class="extension">'+ext+'</p><img class="file_icon" src="img/file_icon_lightblue.png"/></div><p><strong>'+escape(f.name)+'</strong> - '+format_bytes(f.size)+'</p>'+spinner_create+'</div>');
           },
           success: function(urlToSend){
             actual_drop_zone.html('<div class="submenu_file"><p class="or">or</p><div class="input_container"><input type="file" class="input_file" name="input_file"/></div><img src="img/questionmark.png" title="Attach whatever you want! zip, rar, pdf, doc, xls, ppt, etc. Max size 10 MB." class="show_file_types"/></div><div class="dropped_div"><input type="hidden" class="file_path" value="'+urlToSend+'"/><div class="attachment_info"><p class="extension">'+ext+'</p><img class="file_icon" src="img/file_icon_lightblue.png"/></div><p><strong>'+escape(f.name)+'</strong> - '+format_bytes(f.size)+'</p></div>');
@@ -293,5 +293,4 @@ $('.input_file').live('change', function(event){
   handleFileSelect(event.originalEvent , $(this).parent().parent().parent());
 });
 
-var spinner = '<div class="spinner"><div class="bar1"></div><div class="bar2"></div><div class="bar3"></div><div class="bar4"></div><div class="bar5"></div><div class="bar6"></div><div class="bar7"></div><div class="bar8"></div><div class="bar9"></div><div class="bar10"></div><div class="bar11"></div><div class="bar12"></div></div>';
 var totalAudio = 0;

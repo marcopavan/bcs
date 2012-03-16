@@ -185,6 +185,7 @@ while ($values=mysql_fetch_array($query)) {
 										</div>
 									<?php
 									}
+										break;
 								}
 							?>
 							</div>
@@ -274,7 +275,8 @@ while ($values=mysql_fetch_array($query)) {
 											</div>
 										</div>
 									<?php
-									}	
+									}
+										break;
 								}
 							?>
 							</div>
@@ -365,6 +367,7 @@ while ($values=mysql_fetch_array($query)) {
 										</div>
 									<?php
 									}
+										break;
 								}
 							?>
 							</div>
@@ -471,6 +474,7 @@ while ($values=mysql_fetch_array($query)) {
 										</div>
 									<?php
 									}
+										break;
 								}
 							?>
 							</div>
@@ -562,6 +566,7 @@ while ($values=mysql_fetch_array($query)) {
 											</div>
 										<?php
 										}
+											break;
 									}
 								?>
 							</div>
@@ -647,7 +652,8 @@ while ($values=mysql_fetch_array($query)) {
 												</div>
 											</div>
 										<?php
-										}	
+										}
+											break;
 									}
 								?>
 							</div>
@@ -739,6 +745,7 @@ while ($values=mysql_fetch_array($query)) {
 											</div>
 										<?php
 										}
+											break;
 									}
 								?>
 							</div>
@@ -824,7 +831,8 @@ while ($values=mysql_fetch_array($query)) {
 												</div>
 											</div>
 										<?php
-										}	
+										}
+											break;	
 									}
 								?>
 							</div>
@@ -911,6 +919,7 @@ while ($values=mysql_fetch_array($query)) {
 											</div>
 										<?php
 										}
+											break;
 									}
 								?>
 							</div>
@@ -1002,6 +1011,7 @@ while ($values=mysql_fetch_array($query)) {
 											</div>
 										<?php
 										}
+											break;
 									}
 								?>
 							</div>
@@ -1088,6 +1098,7 @@ while ($values=mysql_fetch_array($query)) {
 											</div>
 										<?php
 										}
+											break;
 									}
 								?>
 							</div>
@@ -1178,7 +1189,8 @@ while ($values=mysql_fetch_array($query)) {
 												</div>
 											</div>
 										<?php
-										}	
+										}
+											break;	
 									}
 								?>
 							</div>
@@ -1265,6 +1277,7 @@ while ($values=mysql_fetch_array($query)) {
 											</div>
 										<?php
 										}
+											break;
 									}
 								?>
 							</div>
