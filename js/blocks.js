@@ -59,6 +59,7 @@ function updateTooltip(){
   $('#active').find('.show_image_types').attr('title', 'Add these image formats: jpeg, jpg, png, gif, bmp, tiff. Max size 5 MB.').tooltip({effect: 'slide'});
   $('#active').find('.show_providers').attr('title', 'Embed whatever you want! Try Google maps, Soundcloud, Grooveshark, Rdio, Flickr, Instagram, Twitter, Amazon, etc.').tooltip({effect: 'slide'});
   $('#active').find('.show_document_types').attr('title', 'Add these document types: pdf, doc, docx, ppt, pptx, pps. Max size 5 MB.').tooltip({effect: 'slide'});
+  $('#active').find('.show_file_types').attr('title', 'Attach whatever you want! zip, rar, pdf, doc, xls, ppt, etc. Max size 10 MB.').tooltip({effect: 'slide'});
 }
 
 function hideLateralArrows(){
@@ -237,9 +238,10 @@ function appendFile() {
   if(currentItem.hasClass('resize'))
     currentItem.html(remover + '<div class="drop_zone file"><div class="message"></div><div class="submenu_file"><p class="or">or</p><div class="input_container"><input type="file" class="input_file" name="input_file"/></div><img src="img/questionmark.png" title="Attach whatever you want! zip, rar, pdf, doc, xls, ppt, etc. Max size 10 MB." class="show_file_types"/></div></div>'+inputs);
   else
-    currentItem.html(shifter + '<div class="drop_zone file"><div class="message"></div><div class="submenu_file"><p class="or">or</p><div class="input_container"><input type="file" class="input_file" name="input_file"/></div><img src="img/questionmark.png" title="Attach whatever you want! zip, rar, pdf, doc, xls, ppt, etc. Max size 10 MB." class="show_file_types"/></div></div>'+inputs);
+    currentItem.html(shiftLeft+shiftRight+remover + '<div class="drop_zone file"><div class="message"></div><div class="submenu_file"><p class="or">or</p><div class="input_container"><input type="file" class="input_file" name="input_file"/></div><img src="img/questionmark.png" title="Attach whatever you want! zip, rar, pdf, doc, xls, ppt, etc. Max size 10 MB." class="show_file_types"/></div></div>'+inputs);
   currentItem.find('.show_file_types').tooltip({effect: 'slide'});
   currentItem.removeClass('select');
+  hideLateralArrows();
 }
 // End function add element
 
