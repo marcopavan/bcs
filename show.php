@@ -1,7 +1,7 @@
 <?php
 function format_bytes($a_bytes) {
     if ($a_bytes < 1024) {
-        return $a_bytes .' B';
+        return $a_bytes .' Bytes';
     } elseif ($a_bytes < 1048576) {
         return round($a_bytes / 1024, 2) .' KB';
     } elseif ($a_bytes < 1073741824) {
