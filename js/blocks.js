@@ -626,10 +626,20 @@ function webPageType(textfield){
   setTimeout(function(){if(now == lastTyped[txtN]) webIFrame(textfield);}, 2000);
 }
 
+var iframeBreakoutDomains = new Array('youtube', 'facebook', 'flickr', 'twitter', 'nytimes');
+
 function webIFrame(textfield){
         var pageurl = textfield.val();
         if(pageurl == '' || pageurl == 'http://')
                 return;
+
+        var i;
+        for(i in iframeBreakoutDomains)
+          if(pageurl.indexOf(iframeBreakoutDomains[i]) >= 0){
+            textfield.val('Sorry, '+iframeBreakoutDomains[i]+' is blocked...');
+            return;
+          }
+
         if(!(pageurl.indexOf('http://') == 0))
                 pageurl = 'http://' + pageurl;
 
