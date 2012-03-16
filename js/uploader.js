@@ -183,6 +183,48 @@ function handleFileSelect(evt, actual_drop_zone) {
       break;
     }
 
+    // IMPORT FILE ATTACHMENT
+
+    if (actual_drop_zone.hasClass("file")) {
+      if (!f.type.match('application.*')) {
+        actual_drop_zone.find('.message').html('<p class="warning_img">You can\'t upload this file type!<strong>');
+        break;
+      }
+      if (f.size > 10485760) {
+        actual_drop_zone.find('.message').html('<p class="warning_img">Max file size: 10MB<strong>');
+        break;
+      }
+      actual_drop_zone.html('<ul><li><strong>'+escape(f.name)+'</strong> - '+f.size+' bytes</li></ul>');
+      var extArray = f.name.split('.');
+      var ext = extArray[extArray.length-1];
+
+      var form = new FormData();
+      form.append('file', f);
+      form.append('name', f.name);
+      $.ajax({
+          url: 'saveTemp.php',
+          data: form,
+          cache: false,
+          contentType: false,
+          processData: false,
+          type: 'POST',
+          beforeSend: function(){
+            onAjaxStart();
+            actual_drop_zone.html('<div class="dropped_div"><div class="attachment_info"><p class="extension">'+ext+'</p><img class="file_icon" src="img/file_icon_lightblue.png"/></div><p><strong>'+escape(f.name)+'</strong> - '+format_bytes(f.size)+'</p></div>');
+          },
+          success: function(urlToSend){
+            actual_drop_zone.html('<div class="submenu_file"><p class="or">or</p><div class="input_container"><input type="file" class="input_file" name="input_file"/></div><img src="img/questionmark.png" title="Attach whatever you want! zip, rar, pdf, doc, xls, ppt, etc. Max size 10 MB." class="show_file_types"/></div><div class="dropped_div"><input type="hidden" class="file_path" value="'+urlToSend+'"/><div class="attachment_info"><p class="extension">'+ext+'</p><img class="file_icon" src="img/file_icon_lightblue.png"/></div><p><strong>'+escape(f.name)+'</strong> - '+format_bytes(f.size)+'</p></div>');
+            actual_drop_zone.addClass('content_inserted');
+            actual_drop_zone.find('.show_file_types').tooltip({effect: 'slide'});
+          },
+          statusCode: {
+            200: function() {
+              onAjaxEnd();
+            }
+          }
+      });
+      break;
+    }
   }
 }
 
@@ -214,6 +256,28 @@ function handleDragOver(evt, actual_drop_zone) {
   evt.stopPropagation();
   evt.preventDefault();
   evt.dataTransfer.dropEffect = 'copy'; // Explicitly show this is a copy.
+}
+
+function format_bytes(size) {
+    if (size < 1024) {
+        return size +' Bytes';
+    } else if (size < 1048576) {
+        return Math.round(size / 1024, 2) +' KB';
+    } else if (size < 1073741824) {
+        return Math.round(size / 1048576, 2) +' MB';
+    } else if (size < 1099511627776) {
+        return Math.round(size / 1073741824, 2) +' GB';
+    } else if (size < 1125899906842624) {
+        return Math.round(size / 1099511627776, 2) +' TB';
+    } else if (size < 1152921504606846976) {
+        return Math.round(size / 1125899906842624, 2) +' PB';
+    } else if (size < 1180591620717411303424) {
+        return Math.round(size / 1152921504606846976, 2) +' EB';
+    } else if (size < 1208925819614629174706176) {
+        return Math.round(size / 1180591620717411303424, 2) +' ZB';
+    } else {
+        return Math.round(size / 1208925819614629174706176, 2) +' YB';
+    }
 }
 
 // Setup the drag and drop and input button listeners.

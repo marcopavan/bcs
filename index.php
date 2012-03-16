@@ -67,6 +67,9 @@ include('db_config.php');
 					<div class="element_popup" onclick="appendDocument()" title="Embed Document">
 						<img src="img/document.png"/>
 					</div>
+					<div class="element_popup" onclick="appendFile()" title="Embed File">
+						<img src="img/file.png"/>
+					</div>
 				</div>
 				<div id="hidden_menu">
 					<div class="element_popup" onclick="appendText()" title="Embed Text">
@@ -83,6 +86,9 @@ include('db_config.php');
 					</div>
 					<div class="element_popup" onclick="appendGenericLink()" title="Embed Web Link">
 						<img src="img/multimedia.png"/>
+					</div>
+					<div class="element_popup" onclick="appendFile()" title="Embed File">
+						<img src="img/file.png"/>
 					</div>
 				</div>
 			</div>
