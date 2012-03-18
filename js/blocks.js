@@ -751,3 +751,16 @@ function embedURL(textfield) {
 }
 //prevent send from input text
 $('#forum-topic-form input[type=text]').live('keydown', function(e){if(e.keyCode == 13) return false;});
+
+
+
+
+//click outside elements show preview
+$('.element, .block, #hidden_menu, #hidden_menu_largest').live('click', function(){
+  return false;
+});
+
+$(document).click(function(){
+        removeActiveTiny();
+        $('#active').attr('id', '');
+});
