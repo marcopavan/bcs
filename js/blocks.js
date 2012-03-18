@@ -2,7 +2,7 @@ var modifyer = '<div class="modify"><img class="remove" src="img/close.png"/><di
 
 var shiftLeft = '<div class="shift_left"><img class="move_left" src="img/double_arrow.png"/></div>';
 var shiftRight = '<div class="shift_right"><img class="move_right" src="img/double_arrow.png"/></div>';
-var remover = '<div class="remove_item"><img class="reset_item" src="img/remove.png"/></div>';
+var remover = '<div class="remove_item"><img class="preview_item" src="img/preview.png"/><img class="reset_item" src="img/remove.png"/></div>';
 
 var resizeControls = '<div class="resize_controls"><p rel="small">S</p><p rel="medium">M</p><p rel="large">L</p><p class="selected" rel="largest">XL</p></div>';
 
@@ -361,6 +361,12 @@ $('.reset_item').live('click', function(){
         return false;
 });
 
+$('.preview_item').live('click', function(){
+        removeActiveTiny();
+        $('#active').attr('id', '');
+        return false;
+});
+
 $('.resize_controls > *').live('click', function(){
   var resizer = $(this).parent();
   var selected = resizer.find('.selected');
@@ -403,7 +409,7 @@ $('.tinyMCETextAreaDisplay').live('mousedown', function(){return false;})
 
 $('.block').live('mousedown', function(){
         if($(this).attr('id') == 'active')
-          return;
+          return false;
 
         removeActiveTiny();
         $('#active').attr('id', '');
@@ -412,6 +418,8 @@ $('.block').live('mousedown', function(){
 
         var tinyTextareas = $(this).find('.tinyMCETextArea');
         tinyTextareas.each(function(){createTextAreaTinyMCE($(this).attr('id'));});
+
+        return false;
 });
 
 var elementId = 0;
