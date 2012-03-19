@@ -395,10 +395,10 @@ $('.resize_controls > *').live('click', function(){
   tinyTextareas.each(function(){updateTextAreaTinyMCE($(this).attr('id'), $(this).attr('rel'));});
 
 
-  var max = toResize.width();
+  //var max = toResize.width();
   $(toResize.find('.embed')).remove();
   $(toResize.find('.hidden_link')).embedly({
-    maxWidth: max,
+    //maxWidth: max,
     //key: 'abb3e3165efb11e195364040d3dc5c07',
     wmode: 'transparent',
     method: 'after'
@@ -737,10 +737,10 @@ function embedURL(textfield) {
           dataType: "jsonp",
           complete: function(){
             textfield.parent().find('.hidden_link').attr('href',genericUrl);
-            var max = textfield.parent().width();
+            //var max = textfield.parent().width();
             $(textfield.parent().find('.embed')).remove();
             $(textfield.parent().find('.hidden_link')).embedly({
-              maxWidth: max,
+              //maxWidth: max,
               key: 'abb3e3165efb11e195364040d3dc5c07',
               wmode: 'transparent',
               method: 'after'

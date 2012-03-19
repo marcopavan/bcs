@@ -737,6 +737,9 @@ a.prev {
 	position: relative;
 	z-index: 1;
 }
+.block .generic_link > div *{
+	max-width: 100%;
+}
 
 .block#active .generic_link > div {
 	opacity: 0.4;
