@@ -407,16 +407,16 @@ $('.resize_controls > *').live('click', function(){
 
 $('.tinyMCETextAreaDisplay').live('mousedown', function(){return false;})
 
-$('.block').live('mousedown', function(){
-        if($(this).attr('id') == 'active')
+$('.edit_block').live('mousedown', function(){
+        if($(this).parent().attr('id') == 'active')
           return false;
 
         removeActiveTiny();
         $('#active').attr('id', '');
 
-        $(this).attr('id', 'active');
+        $(this).parent().attr('id', 'active');
 
-        var tinyTextareas = $(this).find('.tinyMCETextArea');
+        var tinyTextareas = $(this).parent().find('.tinyMCETextArea');
         tinyTextareas.each(function(){createTextAreaTinyMCE($(this).attr('id'));});
 
         return false;
