@@ -28,14 +28,59 @@ function format_bytes($a_bytes) {
 <title>The New Bottol Creation System</title>
 <link rel="stylesheet" href="css/style.css" type="text/css" media="screen, print" />
 <link rel="stylesheet" href="js/fancybox/jquery.fancybox-1.3.4.css" type="text/css" media="screen" />
+<link rel="stylesheet" type="text/css" href="css/blue.monday/jplayer.blue.monday.css"/>
 <script type="text/javascript" language="javascript" src="js/jquery-1.7.1.min.js"></script>
 <script type="text/javascript" src="js/fancybox/jquery.fancybox-1.3.4.pack.js"></script>
 <script type="text/javascript" src="js/jquery-ui-1.8.16.custom.min.js"></script>
-<script type="text/javascript" src="js/audio_player.js"></script>
+<script type="text/javascript" src="js/jQuery.jPlayer.2.1.0/jquery.jplayer.min.js"></script>
 
 <script type="text/javascript">
+	var jPlayerId = 0;
+
+	function updateAudioPlayer(playerIdNumber,resourceUrl) {
+	  var extAudioArray = resourceUrl.split('.');
+	  var extAudio = extAudioArray[extAudioArray.length-1];
+
+	  $('#jquery_jplayer_'+playerIdNumber).jPlayer({
+	    ready: function () {
+	      switch (extAudio) {
+	        case 'mp3':
+	          $(this).jPlayer("setMedia", {
+	            mp3: resourceUrl
+	          });
+	          break;
+	        case 'm4a':
+	          $(this).jPlayer("setMedia", {
+	            m4a: resourceUrl
+	          });
+	          break;
+	      }
+	    },
+	    cssSelectorAncestor: '#jp_container_'+playerIdNumber,
+	    swfPath: "js/jQuery.jPlayer.2.1.0",
+	    solution: 'html, flash',
+	    supplied: "mp3, m4a",
+	    wmode: "window"
+	  });
+	  $('#jquery_jplayer_'+playerIdNumber).bind($.jPlayer.event.play, function() {
+	    $(this).jPlayer("pauseOthers");
+	  });
+	}
+
 	$(document).ready(function() {
 		$("a.img_fancy").fancybox();
+		var audioPlayer = $('#blocks_content').find('.jp-jplayer');
+        audioPlayer.each(function(){
+			jPlayerId++;
+			$(this).attr('id','jquery_jplayer_'+jPlayerId);
+			$(this).siblings('.jp-audio').attr('id','jp_container_'+jPlayerId);
+		});
+		audioPlayer.each(function(){
+			var playerId = $(this).attr('id');
+			var playerIdNumber = playerId.split('_');
+			var resourceUrl = $(this).siblings('.audio_path').attr('value');
+			updateAudioPlayer(playerIdNumber[playerIdNumber.length-1],resourceUrl);
+        });
 	});
 </script>
 
@@ -150,18 +195,47 @@ while ($values=mysql_fetch_array($query)) {
 									?>
 										<div class="audio">
 											<div class="dropped_div">
-											<p class="player" rel="<?php echo $i.$resource_position[0]; ?>">
-												<span class="playtoggle"></span>
-												<span class="song_name"><?php echo $musicname[5]; ?></span>
-												<span class="gutter">
-													<span class="loading"></span>
-													<span class="handle" class="ui-slider-handle"></span>
-												</span>
-												<span class="timeleft"></span>
-												<audio>
-													<source src="<?php echo $resource[0]; ?>" type="audio/mp3"></source>
-											    </audio>
-											</p>
+												<input type="hidden" class="audio_path" value="<?php echo $resource[0]; ?>"/>
+												<div id="jquery_jplayer_1" class="jp-jplayer"></div>
+												<div id="jp_container_1" class="jp-audio">
+													<div class="jp-type-single">
+													  <div class="jp-gui jp-interface">
+													    <ul class="jp-controls">
+													      <li><a href="javascript:;" class="jp-play" tabindex="1">play</a></li>
+													      <li><a href="javascript:;" class="jp-pause" tabindex="1">pause</a></li>
+													      <li><a href="javascript:;" class="jp-stop" tabindex="1">stop</a></li>
+													      <li><a href="javascript:;" class="jp-mute" tabindex="1" title="mute">mute</a></li>
+													      <li><a href="javascript:;" class="jp-unmute" tabindex="1" title="unmute">unmute</a></li>
+													      <li><a href="javascript:;" class="jp-volume-max" tabindex="1" title="max volume">max volume</a></li>
+													    </ul>
+													    <div class="jp-progress">
+													      <div class="jp-seek-bar">
+													        <div class="jp-play-bar"></div>
+													      </div>
+													    </div>
+													    <div class="jp-volume-bar">
+													      <div class="jp-volume-bar-value"></div>
+													    </div>
+													    <div class="jp-time-holder">
+													      <div class="jp-current-time"></div>
+													      <div class="jp-duration"></div>
+													      <ul class="jp-toggles">
+													        <li><a href="javascript:;" class="jp-repeat" tabindex="1" title="repeat">repeat</a></li>
+													        <li><a href="javascript:;" class="jp-repeat-off" tabindex="1" title="repeat off">repeat off</a></li>
+													      </ul>
+													    </div>
+													  </div>
+													  <div class="jp-title">
+													    <ul>
+													      <li><?php echo $musicname[5]; ?></li>
+													    </ul>
+													  </div>
+													  <div class="jp-no-solution">
+													    <span>Update Required</span>
+													    To play the media you will need to either update your browser to a recent version or update your <a href="http://get.adobe.com/flashplayer/" target="_blank">Flash plugin</a>.
+													  </div>
+													</div>
+												</div>
 											</div>
 										</div>
 									<?php
@@ -241,18 +315,47 @@ while ($values=mysql_fetch_array($query)) {
 									?>
 										<div class="audio">
 											<div class="dropped_div">
-											<p class="player" rel="<?php echo $i.$resource_position[0]; ?>">
-												<span class="playtoggle"></span>
-												<span class="song_name"><?php echo $musicname[5]; ?></span>
-												<span class="gutter">
-													<span class="loading"></span>
-													<span class="handle" class="ui-slider-handle"></span>
-												</span>
-												<span class="timeleft"></span>
-												<audio>
-													<source src="<?php echo $resource[0]; ?>" type="audio/mp3"></source>
-											    </audio>
-											</p>
+												<input type="hidden" class="audio_path" value="<?php echo $resource[0]; ?>"/>
+												<div id="jquery_jplayer_1" class="jp-jplayer"></div>
+												<div id="jp_container_1" class="jp-audio">
+													<div class="jp-type-single">
+													  <div class="jp-gui jp-interface">
+													    <ul class="jp-controls">
+													      <li><a href="javascript:;" class="jp-play" tabindex="1">play</a></li>
+													      <li><a href="javascript:;" class="jp-pause" tabindex="1">pause</a></li>
+													      <li><a href="javascript:;" class="jp-stop" tabindex="1">stop</a></li>
+													      <li><a href="javascript:;" class="jp-mute" tabindex="1" title="mute">mute</a></li>
+													      <li><a href="javascript:;" class="jp-unmute" tabindex="1" title="unmute">unmute</a></li>
+													      <li><a href="javascript:;" class="jp-volume-max" tabindex="1" title="max volume">max volume</a></li>
+													    </ul>
+													    <div class="jp-progress">
+													      <div class="jp-seek-bar">
+													        <div class="jp-play-bar"></div>
+													      </div>
+													    </div>
+													    <div class="jp-volume-bar">
+													      <div class="jp-volume-bar-value"></div>
+													    </div>
+													    <div class="jp-time-holder">
+													      <div class="jp-current-time"></div>
+													      <div class="jp-duration"></div>
+													      <ul class="jp-toggles">
+													        <li><a href="javascript:;" class="jp-repeat" tabindex="1" title="repeat">repeat</a></li>
+													        <li><a href="javascript:;" class="jp-repeat-off" tabindex="1" title="repeat off">repeat off</a></li>
+													      </ul>
+													    </div>
+													  </div>
+													  <div class="jp-title">
+													    <ul>
+													      <li><?php echo $musicname[5]; ?></li>
+													    </ul>
+													  </div>
+													  <div class="jp-no-solution">
+													    <span>Update Required</span>
+													    To play the media you will need to either update your browser to a recent version or update your <a href="http://get.adobe.com/flashplayer/" target="_blank">Flash plugin</a>.
+													  </div>
+													</div>
+												</div>
 											</div>
 										</div>
 									<?php
@@ -332,18 +435,47 @@ while ($values=mysql_fetch_array($query)) {
 									?>
 										<div class="audio">
 											<div class="dropped_div">
-											<p class="player" rel="<?php echo $i.$resource_position[0]; ?>">
-												<span class="playtoggle"></span>
-												<span class="song_name"><?php echo $musicname[5]; ?></span>
-												<span class="gutter">
-													<span class="loading"></span>
-													<span class="handle" class="ui-slider-handle"></span>
-												</span>
-												<span class="timeleft"></span>
-												<audio>
-													<source src="<?php echo $resource[0]; ?>" type="audio/mp3"></source>
-											    </audio>
-											</p>
+												<input type="hidden" class="audio_path" value="<?php echo $resource[0]; ?>"/>
+												<div id="jquery_jplayer_1" class="jp-jplayer"></div>
+												<div id="jp_container_1" class="jp-audio">
+													<div class="jp-type-single">
+													  <div class="jp-gui jp-interface">
+													    <ul class="jp-controls">
+													      <li><a href="javascript:;" class="jp-play" tabindex="1">play</a></li>
+													      <li><a href="javascript:;" class="jp-pause" tabindex="1">pause</a></li>
+													      <li><a href="javascript:;" class="jp-stop" tabindex="1">stop</a></li>
+													      <li><a href="javascript:;" class="jp-mute" tabindex="1" title="mute">mute</a></li>
+													      <li><a href="javascript:;" class="jp-unmute" tabindex="1" title="unmute">unmute</a></li>
+													      <li><a href="javascript:;" class="jp-volume-max" tabindex="1" title="max volume">max volume</a></li>
+													    </ul>
+													    <div class="jp-progress">
+													      <div class="jp-seek-bar">
+													        <div class="jp-play-bar"></div>
+													      </div>
+													    </div>
+													    <div class="jp-volume-bar">
+													      <div class="jp-volume-bar-value"></div>
+													    </div>
+													    <div class="jp-time-holder">
+													      <div class="jp-current-time"></div>
+													      <div class="jp-duration"></div>
+													      <ul class="jp-toggles">
+													        <li><a href="javascript:;" class="jp-repeat" tabindex="1" title="repeat">repeat</a></li>
+													        <li><a href="javascript:;" class="jp-repeat-off" tabindex="1" title="repeat off">repeat off</a></li>
+													      </ul>
+													    </div>
+													  </div>
+													  <div class="jp-title">
+													    <ul>
+													      <li><?php echo $musicname[5]; ?></li>
+													    </ul>
+													  </div>
+													  <div class="jp-no-solution">
+													    <span>Update Required</span>
+													    To play the media you will need to either update your browser to a recent version or update your <a href="http://get.adobe.com/flashplayer/" target="_blank">Flash plugin</a>.
+													  </div>
+													</div>
+												</div>
 											</div>
 										</div>
 									<?php
@@ -423,18 +555,47 @@ while ($values=mysql_fetch_array($query)) {
 									?>
 										<div class="audio">
 											<div class="dropped_div">
-											<p class="player" rel="<?php echo $i.$resource_position[0]; ?>">
-												<span class="playtoggle"></span>
-												<span class="song_name"><?php echo $musicname[5]; ?></span>
-												<span class="gutter">
-													<span class="loading"></span>
-													<span class="handle" class="ui-slider-handle"></span>
-												</span>
-												<span class="timeleft"></span>
-												<audio>
-													<source src="<?php echo $resource[0]; ?>" type="audio/mp3"></source>
-											    </audio>
-											</p>
+												<input type="hidden" class="audio_path" value="<?php echo $resource[0]; ?>"/>
+												<div id="jquery_jplayer_1" class="jp-jplayer"></div>
+												<div id="jp_container_1" class="jp-audio">
+													<div class="jp-type-single">
+													  <div class="jp-gui jp-interface">
+													    <ul class="jp-controls">
+													      <li><a href="javascript:;" class="jp-play" tabindex="1">play</a></li>
+													      <li><a href="javascript:;" class="jp-pause" tabindex="1">pause</a></li>
+													      <li><a href="javascript:;" class="jp-stop" tabindex="1">stop</a></li>
+													      <li><a href="javascript:;" class="jp-mute" tabindex="1" title="mute">mute</a></li>
+													      <li><a href="javascript:;" class="jp-unmute" tabindex="1" title="unmute">unmute</a></li>
+													      <li><a href="javascript:;" class="jp-volume-max" tabindex="1" title="max volume">max volume</a></li>
+													    </ul>
+													    <div class="jp-progress">
+													      <div class="jp-seek-bar">
+													        <div class="jp-play-bar"></div>
+													      </div>
+													    </div>
+													    <div class="jp-volume-bar">
+													      <div class="jp-volume-bar-value"></div>
+													    </div>
+													    <div class="jp-time-holder">
+													      <div class="jp-current-time"></div>
+													      <div class="jp-duration"></div>
+													      <ul class="jp-toggles">
+													        <li><a href="javascript:;" class="jp-repeat" tabindex="1" title="repeat">repeat</a></li>
+													        <li><a href="javascript:;" class="jp-repeat-off" tabindex="1" title="repeat off">repeat off</a></li>
+													      </ul>
+													    </div>
+													  </div>
+													  <div class="jp-title">
+													    <ul>
+													      <li><?php echo $musicname[5]; ?></li>
+													    </ul>
+													  </div>
+													  <div class="jp-no-solution">
+													    <span>Update Required</span>
+													    To play the media you will need to either update your browser to a recent version or update your <a href="http://get.adobe.com/flashplayer/" target="_blank">Flash plugin</a>.
+													  </div>
+													</div>
+												</div>
 											</div>
 										</div>
 									<?php
@@ -531,18 +692,47 @@ while ($values=mysql_fetch_array($query)) {
 										?>
 											<div class="audio">
 												<div class="dropped_div">
-												<p class="player" rel="<?php echo $i.$resource_position[$key]; ?>">
-													<span class="playtoggle"></span>
-													<span class="song_name"><?php echo $musicname[5]; ?></span>
-													<span class="gutter">
-														<span class="loading"></span>
-														<span class="handle" class="ui-slider-handle"></span>
-													</span>
-													<span class="timeleft"></span>
-													<audio>
-														<source src="<?php echo $resource[$key]; ?>" type="audio/mp3"></source>
-												    </audio>
-												</p>
+													<input type="hidden" class="audio_path" value="<?php echo $resource[$key]; ?>"/>
+													<div id="jquery_jplayer_1" class="jp-jplayer"></div>
+													<div id="jp_container_1" class="jp-audio">
+														<div class="jp-type-single">
+														  <div class="jp-gui jp-interface">
+														    <ul class="jp-controls">
+														      <li><a href="javascript:;" class="jp-play" tabindex="1">play</a></li>
+														      <li><a href="javascript:;" class="jp-pause" tabindex="1">pause</a></li>
+														      <li><a href="javascript:;" class="jp-stop" tabindex="1">stop</a></li>
+														      <li><a href="javascript:;" class="jp-mute" tabindex="1" title="mute">mute</a></li>
+														      <li><a href="javascript:;" class="jp-unmute" tabindex="1" title="unmute">unmute</a></li>
+														      <li><a href="javascript:;" class="jp-volume-max" tabindex="1" title="max volume">max volume</a></li>
+														    </ul>
+														    <div class="jp-progress">
+														      <div class="jp-seek-bar">
+														        <div class="jp-play-bar"></div>
+														      </div>
+														    </div>
+														    <div class="jp-volume-bar">
+														      <div class="jp-volume-bar-value"></div>
+														    </div>
+														    <div class="jp-time-holder">
+														      <div class="jp-current-time"></div>
+														      <div class="jp-duration"></div>
+														      <ul class="jp-toggles">
+														        <li><a href="javascript:;" class="jp-repeat" tabindex="1" title="repeat">repeat</a></li>
+														        <li><a href="javascript:;" class="jp-repeat-off" tabindex="1" title="repeat off">repeat off</a></li>
+														      </ul>
+														    </div>
+														  </div>
+														  <div class="jp-title">
+														    <ul>
+														      <li><?php echo $musicname[5]; ?></li>
+														    </ul>
+														  </div>
+														  <div class="jp-no-solution">
+														    <span>Update Required</span>
+														    To play the media you will need to either update your browser to a recent version or update your <a href="http://get.adobe.com/flashplayer/" target="_blank">Flash plugin</a>.
+														  </div>
+														</div>
+													</div>
 												</div>
 											</div>
 										<?php
@@ -618,18 +808,47 @@ while ($values=mysql_fetch_array($query)) {
 										?>
 											<div class="audio">
 												<div class="dropped_div">
-												<p class="player" rel="<?php echo $i.$resource_position[$key]; ?>">
-													<span class="playtoggle"></span>
-													<span class="song_name"><?php echo $musicname[5]; ?></span>
-													<span class="gutter">
-														<span class="loading"></span>
-														<span class="handle" class="ui-slider-handle"></span>
-													</span>
-													<span class="timeleft"></span>
-													<audio>
-														<source src="<?php echo $resource[$key]; ?>" type="audio/mp3"></source>
-												    </audio>
-												</p>
+													<input type="hidden" class="audio_path" value="<?php echo $resource[$key]; ?>"/>
+													<div id="jquery_jplayer_1" class="jp-jplayer"></div>
+													<div id="jp_container_1" class="jp-audio">
+														<div class="jp-type-single">
+														  <div class="jp-gui jp-interface">
+														    <ul class="jp-controls">
+														      <li><a href="javascript:;" class="jp-play" tabindex="1">play</a></li>
+														      <li><a href="javascript:;" class="jp-pause" tabindex="1">pause</a></li>
+														      <li><a href="javascript:;" class="jp-stop" tabindex="1">stop</a></li>
+														      <li><a href="javascript:;" class="jp-mute" tabindex="1" title="mute">mute</a></li>
+														      <li><a href="javascript:;" class="jp-unmute" tabindex="1" title="unmute">unmute</a></li>
+														      <li><a href="javascript:;" class="jp-volume-max" tabindex="1" title="max volume">max volume</a></li>
+														    </ul>
+														    <div class="jp-progress">
+														      <div class="jp-seek-bar">
+														        <div class="jp-play-bar"></div>
+														      </div>
+														    </div>
+														    <div class="jp-volume-bar">
+														      <div class="jp-volume-bar-value"></div>
+														    </div>
+														    <div class="jp-time-holder">
+														      <div class="jp-current-time"></div>
+														      <div class="jp-duration"></div>
+														      <ul class="jp-toggles">
+														        <li><a href="javascript:;" class="jp-repeat" tabindex="1" title="repeat">repeat</a></li>
+														        <li><a href="javascript:;" class="jp-repeat-off" tabindex="1" title="repeat off">repeat off</a></li>
+														      </ul>
+														    </div>
+														  </div>
+														  <div class="jp-title">
+														    <ul>
+														      <li><?php echo $musicname[5]; ?></li>
+														    </ul>
+														  </div>
+														  <div class="jp-no-solution">
+														    <span>Update Required</span>
+														    To play the media you will need to either update your browser to a recent version or update your <a href="http://get.adobe.com/flashplayer/" target="_blank">Flash plugin</a>.
+														  </div>
+														</div>
+													</div>
 												</div>
 											</div>
 										<?php
@@ -710,18 +929,47 @@ while ($values=mysql_fetch_array($query)) {
 										?>
 											<div class="audio">
 												<div class="dropped_div">
-												<p class="player" rel="<?php echo $i.$resource_position[$key]; ?>">
-													<span class="playtoggle"></span>
-													<span class="song_name"><?php echo $musicname[5]; ?></span>
-													<span class="gutter">
-														<span class="loading"></span>
-														<span class="handle" class="ui-slider-handle"></span>
-													</span>
-													<span class="timeleft"></span>
-													<audio>
-														<source src="<?php echo $resource[$key]; ?>" type="audio/mp3"></source>
-												    </audio>
-												</p>
+													<input type="hidden" class="audio_path" value="<?php echo $resource[$key]; ?>"/>
+													<div id="jquery_jplayer_1" class="jp-jplayer"></div>
+													<div id="jp_container_1" class="jp-audio">
+														<div class="jp-type-single">
+														  <div class="jp-gui jp-interface">
+														    <ul class="jp-controls">
+														      <li><a href="javascript:;" class="jp-play" tabindex="1">play</a></li>
+														      <li><a href="javascript:;" class="jp-pause" tabindex="1">pause</a></li>
+														      <li><a href="javascript:;" class="jp-stop" tabindex="1">stop</a></li>
+														      <li><a href="javascript:;" class="jp-mute" tabindex="1" title="mute">mute</a></li>
+														      <li><a href="javascript:;" class="jp-unmute" tabindex="1" title="unmute">unmute</a></li>
+														      <li><a href="javascript:;" class="jp-volume-max" tabindex="1" title="max volume">max volume</a></li>
+														    </ul>
+														    <div class="jp-progress">
+														      <div class="jp-seek-bar">
+														        <div class="jp-play-bar"></div>
+														      </div>
+														    </div>
+														    <div class="jp-volume-bar">
+														      <div class="jp-volume-bar-value"></div>
+														    </div>
+														    <div class="jp-time-holder">
+														      <div class="jp-current-time"></div>
+														      <div class="jp-duration"></div>
+														      <ul class="jp-toggles">
+														        <li><a href="javascript:;" class="jp-repeat" tabindex="1" title="repeat">repeat</a></li>
+														        <li><a href="javascript:;" class="jp-repeat-off" tabindex="1" title="repeat off">repeat off</a></li>
+														      </ul>
+														    </div>
+														  </div>
+														  <div class="jp-title">
+														    <ul>
+														      <li><?php echo $musicname[5]; ?></li>
+														    </ul>
+														  </div>
+														  <div class="jp-no-solution">
+														    <span>Update Required</span>
+														    To play the media you will need to either update your browser to a recent version or update your <a href="http://get.adobe.com/flashplayer/" target="_blank">Flash plugin</a>.
+														  </div>
+														</div>
+													</div>
 												</div>
 											</div>
 										<?php
@@ -797,18 +1045,47 @@ while ($values=mysql_fetch_array($query)) {
 										?>
 											<div class="audio">
 												<div class="dropped_div">
-												<p class="player" rel="<?php echo $i.$resource_position[$key]; ?>">
-													<span class="playtoggle"></span>
-													<span class="song_name"><?php echo $musicname[5]; ?></span>
-													<span class="gutter">
-														<span class="loading"></span>
-														<span class="handle" class="ui-slider-handle"></span>
-													</span>
-													<span class="timeleft"></span>
-													<audio>
-														<source src="<?php echo $resource[$key]; ?>" type="audio/mp3"></source>
-												    </audio>
-												</p>
+													<input type="hidden" class="audio_path" value="<?php echo $resource[$key]; ?>"/>
+													<div id="jquery_jplayer_1" class="jp-jplayer"></div>
+													<div id="jp_container_1" class="jp-audio">
+														<div class="jp-type-single">
+														  <div class="jp-gui jp-interface">
+														    <ul class="jp-controls">
+														      <li><a href="javascript:;" class="jp-play" tabindex="1">play</a></li>
+														      <li><a href="javascript:;" class="jp-pause" tabindex="1">pause</a></li>
+														      <li><a href="javascript:;" class="jp-stop" tabindex="1">stop</a></li>
+														      <li><a href="javascript:;" class="jp-mute" tabindex="1" title="mute">mute</a></li>
+														      <li><a href="javascript:;" class="jp-unmute" tabindex="1" title="unmute">unmute</a></li>
+														      <li><a href="javascript:;" class="jp-volume-max" tabindex="1" title="max volume">max volume</a></li>
+														    </ul>
+														    <div class="jp-progress">
+														      <div class="jp-seek-bar">
+														        <div class="jp-play-bar"></div>
+														      </div>
+														    </div>
+														    <div class="jp-volume-bar">
+														      <div class="jp-volume-bar-value"></div>
+														    </div>
+														    <div class="jp-time-holder">
+														      <div class="jp-current-time"></div>
+														      <div class="jp-duration"></div>
+														      <ul class="jp-toggles">
+														        <li><a href="javascript:;" class="jp-repeat" tabindex="1" title="repeat">repeat</a></li>
+														        <li><a href="javascript:;" class="jp-repeat-off" tabindex="1" title="repeat off">repeat off</a></li>
+														      </ul>
+														    </div>
+														  </div>
+														  <div class="jp-title">
+														    <ul>
+														      <li><?php echo $musicname[5]; ?></li>
+														    </ul>
+														  </div>
+														  <div class="jp-no-solution">
+														    <span>Update Required</span>
+														    To play the media you will need to either update your browser to a recent version or update your <a href="http://get.adobe.com/flashplayer/" target="_blank">Flash plugin</a>.
+														  </div>
+														</div>
+													</div>
 												</div>
 											</div>
 										<?php
@@ -884,18 +1161,47 @@ while ($values=mysql_fetch_array($query)) {
 										?>
 											<div class="audio">
 												<div class="dropped_div">
-												<p class="player" rel="<?php echo $i.$resource_position[$key]; ?>">
-													<span class="playtoggle"></span>
-													<span class="song_name"><?php echo $musicname[5]; ?></span>
-													<span class="gutter">
-														<span class="loading"></span>
-														<span class="handle" class="ui-slider-handle"></span>
-													</span>
-													<span class="timeleft"></span>
-													<audio>
-														<source src="<?php echo $resource[$key]; ?>" type="audio/mp3"></source>
-												    </audio>
-												</p>
+													<input type="hidden" class="audio_path" value="<?php echo $resource[$key]; ?>"/>
+													<div id="jquery_jplayer_1" class="jp-jplayer"></div>
+													<div id="jp_container_1" class="jp-audio">
+														<div class="jp-type-single">
+														  <div class="jp-gui jp-interface">
+														    <ul class="jp-controls">
+														      <li><a href="javascript:;" class="jp-play" tabindex="1">play</a></li>
+														      <li><a href="javascript:;" class="jp-pause" tabindex="1">pause</a></li>
+														      <li><a href="javascript:;" class="jp-stop" tabindex="1">stop</a></li>
+														      <li><a href="javascript:;" class="jp-mute" tabindex="1" title="mute">mute</a></li>
+														      <li><a href="javascript:;" class="jp-unmute" tabindex="1" title="unmute">unmute</a></li>
+														      <li><a href="javascript:;" class="jp-volume-max" tabindex="1" title="max volume">max volume</a></li>
+														    </ul>
+														    <div class="jp-progress">
+														      <div class="jp-seek-bar">
+														        <div class="jp-play-bar"></div>
+														      </div>
+														    </div>
+														    <div class="jp-volume-bar">
+														      <div class="jp-volume-bar-value"></div>
+														    </div>
+														    <div class="jp-time-holder">
+														      <div class="jp-current-time"></div>
+														      <div class="jp-duration"></div>
+														      <ul class="jp-toggles">
+														        <li><a href="javascript:;" class="jp-repeat" tabindex="1" title="repeat">repeat</a></li>
+														        <li><a href="javascript:;" class="jp-repeat-off" tabindex="1" title="repeat off">repeat off</a></li>
+														      </ul>
+														    </div>
+														  </div>
+														  <div class="jp-title">
+														    <ul>
+														      <li><?php echo $musicname[5]; ?></li>
+														    </ul>
+														  </div>
+														  <div class="jp-no-solution">
+														    <span>Update Required</span>
+														    To play the media you will need to either update your browser to a recent version or update your <a href="http://get.adobe.com/flashplayer/" target="_blank">Flash plugin</a>.
+														  </div>
+														</div>
+													</div>
 												</div>
 											</div>
 										<?php
@@ -976,18 +1282,47 @@ while ($values=mysql_fetch_array($query)) {
 										?>
 											<div class="audio">
 												<div class="dropped_div">
-												<p class="player" rel="<?php echo $i.$resource_position[$key]; ?>">
-													<span class="playtoggle"></span>
-													<span class="song_name"><?php echo $musicname[5]; ?></span>
-													<span class="gutter">
-														<span class="loading"></span>
-														<span class="handle" class="ui-slider-handle"></span>
-													</span>
-													<span class="timeleft"></span>
-													<audio>
-														<source src="<?php echo $resource[$key]; ?>" type="audio/mp3"></source>
-												    </audio>
-												</p>
+													<input type="hidden" class="audio_path" value="<?php echo $resource[$key]; ?>"/>
+													<div id="jquery_jplayer_1" class="jp-jplayer"></div>
+													<div id="jp_container_1" class="jp-audio">
+														<div class="jp-type-single">
+														  <div class="jp-gui jp-interface">
+														    <ul class="jp-controls">
+														      <li><a href="javascript:;" class="jp-play" tabindex="1">play</a></li>
+														      <li><a href="javascript:;" class="jp-pause" tabindex="1">pause</a></li>
+														      <li><a href="javascript:;" class="jp-stop" tabindex="1">stop</a></li>
+														      <li><a href="javascript:;" class="jp-mute" tabindex="1" title="mute">mute</a></li>
+														      <li><a href="javascript:;" class="jp-unmute" tabindex="1" title="unmute">unmute</a></li>
+														      <li><a href="javascript:;" class="jp-volume-max" tabindex="1" title="max volume">max volume</a></li>
+														    </ul>
+														    <div class="jp-progress">
+														      <div class="jp-seek-bar">
+														        <div class="jp-play-bar"></div>
+														      </div>
+														    </div>
+														    <div class="jp-volume-bar">
+														      <div class="jp-volume-bar-value"></div>
+														    </div>
+														    <div class="jp-time-holder">
+														      <div class="jp-current-time"></div>
+														      <div class="jp-duration"></div>
+														      <ul class="jp-toggles">
+														        <li><a href="javascript:;" class="jp-repeat" tabindex="1" title="repeat">repeat</a></li>
+														        <li><a href="javascript:;" class="jp-repeat-off" tabindex="1" title="repeat off">repeat off</a></li>
+														      </ul>
+														    </div>
+														  </div>
+														  <div class="jp-title">
+														    <ul>
+														      <li><?php echo $musicname[5]; ?></li>
+														    </ul>
+														  </div>
+														  <div class="jp-no-solution">
+														    <span>Update Required</span>
+														    To play the media you will need to either update your browser to a recent version or update your <a href="http://get.adobe.com/flashplayer/" target="_blank">Flash plugin</a>.
+														  </div>
+														</div>
+													</div>
 												</div>
 											</div>
 										<?php
@@ -1063,18 +1398,47 @@ while ($values=mysql_fetch_array($query)) {
 										?>
 											<div class="audio">
 												<div class="dropped_div">
-												<p class="player" rel="<?php echo $i.$resource_position[$key]; ?>">
-													<span class="playtoggle"></span>
-													<span class="song_name"><?php echo $musicname[5]; ?></span>
-													<span class="gutter">
-														<span class="loading"></span>
-														<span class="handle" class="ui-slider-handle"></span>
-													</span>
-													<span class="timeleft"></span>
-													<audio>
-														<source src="<?php echo $resource[$key]; ?>" type="audio/mp3"></source>
-												    </audio>
-												</p>
+													<input type="hidden" class="audio_path" value="<?php echo $resource[$key]; ?>"/>
+													<div id="jquery_jplayer_1" class="jp-jplayer"></div>
+													<div id="jp_container_1" class="jp-audio">
+														<div class="jp-type-single">
+														  <div class="jp-gui jp-interface">
+														    <ul class="jp-controls">
+														      <li><a href="javascript:;" class="jp-play" tabindex="1">play</a></li>
+														      <li><a href="javascript:;" class="jp-pause" tabindex="1">pause</a></li>
+														      <li><a href="javascript:;" class="jp-stop" tabindex="1">stop</a></li>
+														      <li><a href="javascript:;" class="jp-mute" tabindex="1" title="mute">mute</a></li>
+														      <li><a href="javascript:;" class="jp-unmute" tabindex="1" title="unmute">unmute</a></li>
+														      <li><a href="javascript:;" class="jp-volume-max" tabindex="1" title="max volume">max volume</a></li>
+														    </ul>
+														    <div class="jp-progress">
+														      <div class="jp-seek-bar">
+														        <div class="jp-play-bar"></div>
+														      </div>
+														    </div>
+														    <div class="jp-volume-bar">
+														      <div class="jp-volume-bar-value"></div>
+														    </div>
+														    <div class="jp-time-holder">
+														      <div class="jp-current-time"></div>
+														      <div class="jp-duration"></div>
+														      <ul class="jp-toggles">
+														        <li><a href="javascript:;" class="jp-repeat" tabindex="1" title="repeat">repeat</a></li>
+														        <li><a href="javascript:;" class="jp-repeat-off" tabindex="1" title="repeat off">repeat off</a></li>
+														      </ul>
+														    </div>
+														  </div>
+														  <div class="jp-title">
+														    <ul>
+														      <li><?php echo $musicname[5]; ?></li>
+														    </ul>
+														  </div>
+														  <div class="jp-no-solution">
+														    <span>Update Required</span>
+														    To play the media you will need to either update your browser to a recent version or update your <a href="http://get.adobe.com/flashplayer/" target="_blank">Flash plugin</a>.
+														  </div>
+														</div>
+													</div>
 												</div>
 											</div>
 										<?php
@@ -1155,18 +1519,47 @@ while ($values=mysql_fetch_array($query)) {
 										?>
 											<div class="audio">
 												<div class="dropped_div">
-												<p class="player" rel="<?php echo $i.$resource_position[$key]; ?>">
-													<span class="playtoggle"></span>
-													<span class="song_name"><?php echo $musicname[5]; ?></span>
-													<span class="gutter">
-														<span class="loading"></span>
-														<span class="handle" class="ui-slider-handle"></span>
-													</span>
-													<span class="timeleft"></span>
-													<audio>
-														<source src="<?php echo $resource[$key]; ?>" type="audio/mp3"></source>
-												    </audio>
-												</p>
+													<input type="hidden" class="audio_path" value="<?php echo $resource[$key]; ?>"/>
+													<div id="jquery_jplayer_1" class="jp-jplayer"></div>
+													<div id="jp_container_1" class="jp-audio">
+														<div class="jp-type-single">
+														  <div class="jp-gui jp-interface">
+														    <ul class="jp-controls">
+														      <li><a href="javascript:;" class="jp-play" tabindex="1">play</a></li>
+														      <li><a href="javascript:;" class="jp-pause" tabindex="1">pause</a></li>
+														      <li><a href="javascript:;" class="jp-stop" tabindex="1">stop</a></li>
+														      <li><a href="javascript:;" class="jp-mute" tabindex="1" title="mute">mute</a></li>
+														      <li><a href="javascript:;" class="jp-unmute" tabindex="1" title="unmute">unmute</a></li>
+														      <li><a href="javascript:;" class="jp-volume-max" tabindex="1" title="max volume">max volume</a></li>
+														    </ul>
+														    <div class="jp-progress">
+														      <div class="jp-seek-bar">
+														        <div class="jp-play-bar"></div>
+														      </div>
+														    </div>
+														    <div class="jp-volume-bar">
+														      <div class="jp-volume-bar-value"></div>
+														    </div>
+														    <div class="jp-time-holder">
+														      <div class="jp-current-time"></div>
+														      <div class="jp-duration"></div>
+														      <ul class="jp-toggles">
+														        <li><a href="javascript:;" class="jp-repeat" tabindex="1" title="repeat">repeat</a></li>
+														        <li><a href="javascript:;" class="jp-repeat-off" tabindex="1" title="repeat off">repeat off</a></li>
+														      </ul>
+														    </div>
+														  </div>
+														  <div class="jp-title">
+														    <ul>
+														      <li><?php echo $musicname[5]; ?></li>
+														    </ul>
+														  </div>
+														  <div class="jp-no-solution">
+														    <span>Update Required</span>
+														    To play the media you will need to either update your browser to a recent version or update your <a href="http://get.adobe.com/flashplayer/" target="_blank">Flash plugin</a>.
+														  </div>
+														</div>
+													</div>
 												</div>
 											</div>
 										<?php
@@ -1242,18 +1635,47 @@ while ($values=mysql_fetch_array($query)) {
 										?>
 											<div class="audio">
 												<div class="dropped_div">
-												<p class="player" rel="<?php echo $i.$resource_position[$key]; ?>">
-													<span class="playtoggle"></span>
-													<span class="song_name"><?php echo $musicname[5]; ?></span>
-													<span class="gutter">
-														<span class="loading"></span>
-														<span class="handle" class="ui-slider-handle"></span>
-													</span>
-													<span class="timeleft"></span>
-													<audio>
-														<source src="<?php echo $resource[$key]; ?>" type="audio/mp3"></source>
-												    </audio>
-												</p>
+													<input type="hidden" class="audio_path" value="<?php echo $resource[$key]; ?>"/>
+													<div id="jquery_jplayer_1" class="jp-jplayer"></div>
+													<div id="jp_container_1" class="jp-audio">
+														<div class="jp-type-single">
+														  <div class="jp-gui jp-interface">
+														    <ul class="jp-controls">
+														      <li><a href="javascript:;" class="jp-play" tabindex="1">play</a></li>
+														      <li><a href="javascript:;" class="jp-pause" tabindex="1">pause</a></li>
+														      <li><a href="javascript:;" class="jp-stop" tabindex="1">stop</a></li>
+														      <li><a href="javascript:;" class="jp-mute" tabindex="1" title="mute">mute</a></li>
+														      <li><a href="javascript:;" class="jp-unmute" tabindex="1" title="unmute">unmute</a></li>
+														      <li><a href="javascript:;" class="jp-volume-max" tabindex="1" title="max volume">max volume</a></li>
+														    </ul>
+														    <div class="jp-progress">
+														      <div class="jp-seek-bar">
+														        <div class="jp-play-bar"></div>
+														      </div>
+														    </div>
+														    <div class="jp-volume-bar">
+														      <div class="jp-volume-bar-value"></div>
+														    </div>
+														    <div class="jp-time-holder">
+														      <div class="jp-current-time"></div>
+														      <div class="jp-duration"></div>
+														      <ul class="jp-toggles">
+														        <li><a href="javascript:;" class="jp-repeat" tabindex="1" title="repeat">repeat</a></li>
+														        <li><a href="javascript:;" class="jp-repeat-off" tabindex="1" title="repeat off">repeat off</a></li>
+														      </ul>
+														    </div>
+														  </div>
+														  <div class="jp-title">
+														    <ul>
+														      <li><?php echo $musicname[5]; ?></li>
+														    </ul>
+														  </div>
+														  <div class="jp-no-solution">
+														    <span>Update Required</span>
+														    To play the media you will need to either update your browser to a recent version or update your <a href="http://get.adobe.com/flashplayer/" target="_blank">Flash plugin</a>.
+														  </div>
+														</div>
+													</div>
 												</div>
 											</div>
 										<?php

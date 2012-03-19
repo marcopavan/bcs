@@ -1,5 +1,6 @@
 var spinner = '<div class="spinner"><div class="bar1"></div><div class="bar2"></div><div class="bar3"></div><div class="bar4"></div><div class="bar5"></div><div class="bar6"></div><div class="bar7"></div><div class="bar8"></div><div class="bar9"></div><div class="bar10"></div><div class="bar11"></div><div class="bar12"></div></div>';
 var spinner_create = '<div class="spinner_create"><div class="bar1"></div><div class="bar2"></div><div class="bar3"></div><div class="bar4"></div><div class="bar5"></div><div class="bar6"></div><div class="bar7"></div><div class="bar8"></div><div class="bar9"></div><div class="bar10"></div><div class="bar11"></div><div class="bar12"></div></div>';
+var jPlayer_id = 0;
 
 function onAjaxStart(){
   if(activeRequests <= 0){
@@ -145,9 +146,9 @@ function handleFileSelect(evt, actual_drop_zone) {
     // IMPORT AUDIO FILE
 
     if (actual_drop_zone.hasClass("audio")) {
-      if (!f.type.match('audio.*')) {
-      actual_drop_zone.find('.message').html('<p class="warning_img">Only audio files can be uploaded!<strong>');
-      break;
+      if (!f.type.match('audio\/(mpeg|mp4|x-m4a|mp3)')) {
+        actual_drop_zone.find('.message').html('<p class="warning_img">Only MP3 and M4A can be uploaded!<strong>');
+        break;
       }
       if (f.size > 10485760) {
         actual_drop_zone.find('.message').html('<p class="warning_img">Max audio file size: 10MB<strong>');
@@ -170,9 +171,41 @@ function handleFileSelect(evt, actual_drop_zone) {
             actual_drop_zone.find('.percentLoaded').html('Creating preview...');
           },
           success: function(urlToSend){
-            actual_drop_zone.html('<div class="submenu_audio"><p class="or">or</p><div class="input_container"><input type="file" class="input_file" name="input_file"/></div><img src="img/questionmark.png" title="Add these audio formats: mp3, wav, m4a, aiff. Max size 10 MB." class="show_audio_types"/></div><div class="dropped_div"><input type="hidden" class="audio_path" value="'+urlToSend+'"/><p class="player" rel="'+(totalAudio++)+'"><span class="playtoggle"></span><span class="song_name">'+f.name+'</span><span class="gutter"><span class="loading"></span><span class="handle" class="ui-slider-handle"></span></span><span class="timeleft"></span><audio><source src="'+urlToSend+'" type="'+f.type+'"></source></audio></p></div>');
+            jPlayer_id++;
+            var menu_audio = '<div class="submenu_audio"><p class="or">or</p><div class="input_container"><input type="file" class="input_file" name="input_file"/></div><img src="img/questionmark.png" title="Add these audio formats: mp3, m4a. Max size 10 MB." class="show_audio_types"/></div>';
+            var jplayer_audio = '<div id="jquery_jplayer_'+jPlayer_id+'" class="jp-jplayer"></div><div id="jp_container_'+jPlayer_id+'" class="jp-audio"><div class="jp-type-single"><div class="jp-gui jp-interface"><ul class="jp-controls"><li><a href="javascript:;" class="jp-play" tabindex="1">play</a></li><li><a href="javascript:;" class="jp-pause" tabindex="1">pause</a></li><li><a href="javascript:;" class="jp-stop" tabindex="1">stop</a></li><li><a href="javascript:;" class="jp-mute" tabindex="1" title="mute">mute</a></li><li><a href="javascript:;" class="jp-unmute" tabindex="1" title="unmute">unmute</a></li><li><a href="javascript:;" class="jp-volume-max" tabindex="1" title="max volume">max volume</a></li></ul><div class="jp-progress"><div class="jp-seek-bar"><div class="jp-play-bar"></div></div></div><div class="jp-volume-bar"><div class="jp-volume-bar-value"></div></div><div class="jp-time-holder"><div class="jp-current-time"></div><div class="jp-duration"></div><ul class="jp-toggles"><li><a href="javascript:;" class="jp-repeat" tabindex="1" title="repeat">repeat</a></li><li><a href="javascript:;" class="jp-repeat-off" tabindex="1" title="repeat off">repeat off</a></li></ul></div></div><div class="jp-title"><ul><li>'+f.name+'</li></ul></div><div class="jp-no-solution"><span>Update Required</span>To play the media you will need to either update your browser to a recent version or update your <a href="http://get.adobe.com/flashplayer/" target="_blank">Flash plugin</a>.</div></div></div>'; 
+            actual_drop_zone.html(menu_audio+'<div class="dropped_div"><input type="hidden" class="audio_path" value="'+urlToSend+'"/>'+jplayer_audio+'</div>');
+                        
             actual_drop_zone.addClass('content_inserted');
             actual_drop_zone.find('.show_audio_types').tooltip({effect: 'slide'});
+
+            var extAudioArray = urlToSend.split('.');
+            var extAudio = extAudioArray[extAudioArray.length-1];
+
+            $("#jquery_jplayer_"+jPlayer_id).jPlayer({
+              ready: function () {
+              switch (extAudio) {
+                case 'mp3':
+                  $(this).jPlayer("setMedia", {
+                    mp3: urlToSend
+                  });
+                  break;
+                case 'm4a':
+                  $(this).jPlayer("setMedia", {
+                    m4a: urlToSend
+                  });
+                  break;
+              }
+              },
+              cssSelectorAncestor: "#jp_container_"+jPlayer_id,
+              swfPath: "js/jQuery.jPlayer.2.1.0",
+              solution: 'html, flash', 
+              supplied: "mp3, m4a",
+              wmode: "window"
+            });
+            $("#jquery_jplayer_"+jPlayer_id).bind($.jPlayer.event.play, function() {
+              $(this).jPlayer("pauseOthers");
+            });
           },
           statusCode: {
             200: function() {
@@ -292,5 +325,3 @@ dropZone.live('drop', function(event){
 $('.input_file').live('change', function(event){
   handleFileSelect(event.originalEvent , $(this).parent().parent().parent());
 });
-
-var totalAudio = 0;

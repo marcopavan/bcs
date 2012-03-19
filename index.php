@@ -4,16 +4,17 @@
 <title>The New Bottol Creation System</title>
 <link rel="stylesheet" href="css/style.css" type="text/css" media="screen, print" />
 <link rel="stylesheet" href="js/fancybox/jquery.fancybox-1.3.4.css" type="text/css" media="screen" />
-<link rel="stylesheet" type="text/css" href="css/spinner.css">
+<link rel="stylesheet" type="text/css" href="css/spinner.css"/>
+<link rel="stylesheet" type="text/css" href="css/blue.monday/jplayer.blue.monday.css"/>
 <script type="text/javascript" language="javascript" src="js/jquery-1.7.1.min.js"></script>
 <script type="text/javascript" language="javascript" src="js/jquery-ui-1.8.16.custom.min.js"></script>
 <script type="text/javascript" language="javascript" src="js/tiny_mce/tiny_mce.js"></script>
+<script type="text/javascript" src="js/jQuery.jPlayer.2.1.0/jquery.jplayer.min.js"></script>
 <script type="text/javascript" src="js/blocks.js"></script>
 <script type="text/javascript" src="js/uploader.js"></script>
 <script type="text/javascript" src="js/fancybox/jquery.fancybox-1.3.4.pack.js"></script>
 <script type="text/javascript" src="js/jquery.embedly.js"></script>
 <script type="text/javascript" src="js/jquery.tools.min.js"></script>
-<script type="text/javascript" src="js/audio_player.js"></script>
 </head>
 
 <body onDragStart="return false;" ondragenter="return false;" ondragover="return false;" ondrop="return false;">
@@ -55,20 +56,20 @@ include('db_config.php');
 					<div class="element_popup" onclick="appendVideo()" title="Embed Video">
 						<img src="img/video.png"/>
 					</div>
+					<div class="element_popup" onclick="appendWebPage()" title="Embed Web Page">
+						<img src="img/webpage.png"/>
+					</div>
 					<div class="element_popup" onclick="appendAudio()" title="Embed Video">
 						<img src="img/audio.png"/>
 					</div>
 					<div class="element_popup" onclick="appendGenericLink()" title="Embed Web Link">
 						<img src="img/multimedia.png"/>
 					</div>
-					<div class="element_popup" onclick="appendWebPage()" title="Embed Web Page">
-						<img src="img/webpage.png"/>
+					<div class="element_popup" onclick="appendFile()" title="Embed File">
+						<img src="img/file.png"/>
 					</div>
 					<div class="element_popup" onclick="appendDocument()" title="Embed Document">
 						<img src="img/document.png"/>
-					</div>
-					<div class="element_popup" onclick="appendFile()" title="Embed File">
-						<img src="img/file.png"/>
 					</div>
 				</div>
 				<div id="hidden_menu">

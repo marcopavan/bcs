@@ -55,11 +55,41 @@ function moveShifted(index, content, parent, before){
 }
 
 function updateTooltip(){
-  $('#active').find('.show_audio_types').attr('title', 'Add these audio formats: mp3, wav, m4a, aiff. Max size 10 MB.').tooltip({effect: 'slide'});
+  $('#active').find('.show_audio_types').attr('title', 'Add these audio formats: mp3, m4a. Max size 10 MB.').tooltip({effect: 'slide'});
   $('#active').find('.show_image_types').attr('title', 'Add these image formats: jpeg, jpg, png, gif, bmp, tiff. Max size 5 MB.').tooltip({effect: 'slide'});
   $('#active').find('.show_providers').attr('title', 'Embed whatever you want! Try Google maps, Soundcloud, Grooveshark, Rdio, Flickr, Instagram, Twitter, Amazon, etc.').tooltip({effect: 'slide'});
   $('#active').find('.show_document_types').attr('title', 'Add these document types: pdf, doc, docx, ppt, pptx, pps. Max size 5 MB.').tooltip({effect: 'slide'});
   $('#active').find('.show_file_types').attr('title', 'Attach whatever you want! zip, rar, pdf, doc, xls, ppt, etc. Max size 10 MB.').tooltip({effect: 'slide'});
+}
+
+function updateAudioPlayer(playerIdNumber,resourceUrl) {
+  var extAudioArray = resourceUrl.split('.');
+  var extAudio = extAudioArray[extAudioArray.length-1];
+
+  $('#jquery_jplayer_'+playerIdNumber).jPlayer({
+    ready: function () {
+      switch (extAudio) {
+        case 'mp3':
+          $(this).jPlayer("setMedia", {
+            mp3: resourceUrl
+          });
+          break;
+        case 'm4a':
+          $(this).jPlayer("setMedia", {
+            m4a: resourceUrl
+          });
+          break;
+      }
+    },
+    cssSelectorAncestor: '#jp_container_'+playerIdNumber,
+    swfPath: "js/jQuery.jPlayer.2.1.0",
+    solution: 'html, flash',
+    supplied: "mp3, m4a",
+    wmode: "window"
+  });
+  $('#jquery_jplayer_'+playerIdNumber).bind($.jPlayer.event.play, function() {
+    $(this).jPlayer("pauseOthers");
+  });
 }
 
 function hideLateralArrows(){
@@ -203,9 +233,9 @@ function appendVideo() {
 function appendAudio() {
   var currentItem = $('.select');
   if(currentItem.hasClass('resize'))
-    currentItem.html(remover + '<div class="drop_zone audio"><div class="message"></div><div class="submenu_audio"><p class="or">or</p><div class="input_container"><input type="file" class="input_file" name="input_file"/></div><img src="img/questionmark.png" title="Add these audio formats: mp3, wav, m4a, aiff. Max size 10 MB." class="show_audio_types"/></div></div>'+inputs);
+    currentItem.html(remover + '<div class="drop_zone audio"><div class="message"></div><div class="submenu_audio"><p class="or">or</p><div class="input_container"><input type="file" class="input_file" name="input_file"/></div><img src="img/questionmark.png" title="Add these audio formats: mp3, m4a. Max size 10 MB." class="show_audio_types"/></div></div>'+inputs);
   else
-    currentItem.html(shiftLeft+shiftRight+remover + '<div class="drop_zone audio"><div class="message"></div><div class="submenu_audio"><p class="or">or</p><div class="input_container"><input type="file" class="input_file" name="input_file"/></div><img src="img/questionmark.png" title="Add these audio formats: mp3, wav, m4a, aiff. Max size 10 MB." class="show_audio_types"/></div></div>'+inputs);
+    currentItem.html(shiftLeft+shiftRight+remover + '<div class="drop_zone audio"><div class="message"></div><div class="submenu_audio"><p class="or">or</p><div class="input_container"><input type="file" class="input_file" name="input_file"/></div><img src="img/questionmark.png" title="Add these audio formats: mp3, m4a. Max size 10 MB." class="show_audio_types"/></div></div>'+inputs);
   currentItem.find('.show_audio_types').tooltip({effect: 'slide'});
   currentItem.removeClass('select');
   hideLateralArrows();
@@ -292,6 +322,15 @@ $('.move_up').live('click', function(){
         cont.remove();
               
         updateTooltip();
+
+        var audioPlayer = $('#blocks_content').find('.jp-jplayer');
+        audioPlayer.each(function(){
+          var playerId = $(this).attr('id');
+          var playerIdNumber = playerId.split('_');
+          var resourceUrl = $(this).siblings('.audio_path').attr('value');
+          $('#'+playerId).jPlayer("destroy");
+          updateAudioPlayer(playerIdNumber[playerIdNumber.length-1],resourceUrl);
+        });
         
         var tinyTextareas = cont.find('.tinyMCETextArea');
         tinyTextareas.each(function(){updateTextAreaTinyMCE($(this).attr('id'));});
@@ -307,6 +346,15 @@ $('.move_down').live('click', function(){
         cont.remove();
 
         updateTooltip();
+
+        var audioPlayer = $('#blocks_content').find('.jp-jplayer');
+        audioPlayer.each(function(){
+          var playerId = $(this).attr('id');
+          var playerIdNumber = playerId.split('_');
+          var resourceUrl = $(this).siblings('.audio_path').attr('value');
+          $('#'+playerId).jPlayer("destroy");
+          updateAudioPlayer(playerIdNumber[playerIdNumber.length-1],resourceUrl);
+        });
 
         var tinyTextareas = cont.find('.tinyMCETextArea');
         tinyTextareas.each(function(){updateTextAreaTinyMCE($(this).attr('id'));});
@@ -324,6 +372,15 @@ $('.move_left').live('click', function(){
         hideLateralArrows();
         updateTooltip();
 
+        var audioPlayer = $('#blocks_content').find('.jp-jplayer');
+        audioPlayer.each(function(){
+          var playerId = $(this).attr('id');
+          var playerIdNumber = playerId.split('_');
+          var resourceUrl = $(this).siblings('.audio_path').attr('value');
+          $('#'+playerId).jPlayer("destroy");
+          updateAudioPlayer(playerIdNumber[playerIdNumber.length-1],resourceUrl);
+        });
+
         var tinyTextareas = cont.find('.tinyMCETextArea');
         tinyTextareas.each(function(){updateTextAreaTinyMCE($(this).attr('id'));});
 
@@ -339,6 +396,15 @@ $('.move_right').live('click', function(){
 
         hideLateralArrows();
         updateTooltip();
+
+        var audioPlayer = $('#blocks_content').find('.jp-jplayer');
+        audioPlayer.each(function(){
+          var playerId = $(this).attr('id');
+          var playerIdNumber = playerId.split('_');
+          var resourceUrl = $(this).siblings('.audio_path').attr('value');
+          $('#'+playerId).jPlayer("destroy");
+          updateAudioPlayer(playerIdNumber[playerIdNumber.length-1],resourceUrl);
+        });
 
         var tinyTextareas = cont.find('.tinyMCETextArea');
         tinyTextareas.each(function(){updateTextAreaTinyMCE($(this).attr('id'));});
@@ -376,14 +442,14 @@ $('.resize_controls > *').live('click', function(){
   } else {
     toResize.children('a').attr('href','#hidden_menu');
   }
-  toResize.find('a').fancybox({
+  toResize.children('a').fancybox({
     'hideOnContentClick' : true,
     'onClosed' : function(){
       $('.select').removeClass('select');
     }
   });
-  toResize.find('a').removeClass('add_menu');
-  toResize.find('a').addClass('new_add_menu');
+  toResize.children('a').removeClass('add_menu');
+  toResize.children('a').addClass('new_add_menu');
 
   var tinyTextareas = toResize.find('.tinyMCETextArea');
   tinyTextareas.each(function(){updateTextAreaTinyMCE($(this).attr('id'), $(this).attr('rel'));});
