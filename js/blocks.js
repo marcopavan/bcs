@@ -69,12 +69,16 @@ function hideLateralArrows(){
     if(actualArrow == null)
       actualArrow = $(this);
   });
-  actualArrow.addClass('hidden_arrow');
+  if(actualArrow != null)
+    actualArrow.addClass('hidden_arrow');
+
+
   $('#active').find('.shift_right').each(function(){
     $(this).removeClass('hidden_arrow');
     actualArrow = $(this);
   });
-  actualArrow.addClass('hidden_arrow');
+  if(actualArrow != null)
+    actualArrow.addClass('hidden_arrow');
 }
 
 function removeActiveTiny(){
@@ -511,9 +515,9 @@ $(function(){
               $(this).attr('name', 'element' + elementId + '_' + actualInputName);
             });
           });
-        return true;
-        $('#submit_bottol').attr('disabled', 'disabled');
-        $('#submit_bottol').css('color', '#888');
+          return true;
+          $('#submit_bottol').attr('disabled', 'disabled');
+          $('#submit_bottol').css('color', '#888');
         });
 });
 
@@ -686,6 +690,8 @@ function videoType(textfield){
 
 function videoSearch(textfield){
         var pageurl = textfield.val();
+        if(pageurl == '' || pageurl == 'http://')
+                return;
 
         var i;
         var domain = -1;
@@ -727,6 +733,9 @@ function embedType(textfield){
 
 function embedURL(textfield) {
         var genericUrl = textfield.val();
+        if(genericUrl == '' || genericUrl == 'http://')
+                return;
+
         if(!(genericUrl.indexOf('http://')  == 0) && !(genericUrl.indexOf('https://')  == 0)) {
           genericUrl = 'http://' + genericUrl;
         }
@@ -749,18 +758,19 @@ function embedURL(textfield) {
           }
         });
 }
+
+
 //prevent send from input text
 $('#forum-topic-form input[type=text]').live('keydown', function(e){if(e.keyCode == 13) return false;});
 
 
-
-
 //click outside elements show preview
-$('.element, .block, #hidden_menu, #hidden_menu_largest').live('click', function(){
+/*
+$('.element, #hidden_menu, #hidden_menu_largest').live('mousedown', function(e){
   return false;
 });
 
-$(document).click(function(){
+$(document).mousedown(function(){
         removeActiveTiny();
         $('#active').attr('id', '');
-});
+});*/
