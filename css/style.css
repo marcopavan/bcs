@@ -356,7 +356,7 @@ a.prev {
 .block#active > div:hover .remove_item{ display: block; }
 .block .remove_item > img{
 	position: relative;
-	right: -16px;
+	right: -30px;
 	height: 30px;
 	width: auto;
 }
@@ -669,6 +669,9 @@ a.prev {
 	width: 100%;
 	position: relative;
 	z-index: 1;
+}
+.block .generic_link > div *{
+	max-width: 100%;
 }
 
 .block#active .generic_link > div {

@@ -2,7 +2,7 @@ var modifyer = '<div class="modify"><img class="remove" src="img/close.png"/><di
 
 var shiftLeft = '<div class="shift_left"><img class="move_left" src="img/double_arrow.png"/></div>';
 var shiftRight = '<div class="shift_right"><img class="move_right" src="img/double_arrow.png"/></div>';
-var remover = '<div class="remove_item"><img class="reset_item" src="img/remove.png"/></div>';
+var remover = '<div class="remove_item"><img class="preview_item" src="img/preview.png"/><img class="reset_item" src="img/remove.png"/></div>';
 
 var resizeControls = '<div class="resize_controls"><p rel="small">S</p><p rel="medium">M</p><p rel="large">L</p><p class="selected" rel="largest">XL</p></div>';
 
@@ -99,12 +99,16 @@ function hideLateralArrows(){
     if(actualArrow == null)
       actualArrow = $(this);
   });
-  actualArrow.addClass('hidden_arrow');
+  if(actualArrow != null)
+    actualArrow.addClass('hidden_arrow');
+
+
   $('#active').find('.shift_right').each(function(){
     $(this).removeClass('hidden_arrow');
     actualArrow = $(this);
   });
-  actualArrow.addClass('hidden_arrow');
+  if(actualArrow != null)
+    actualArrow.addClass('hidden_arrow');
 }
 
 function removeActiveTiny(){
@@ -427,6 +431,12 @@ $('.reset_item').live('click', function(){
         return false;
 });
 
+$('.preview_item').live('click', function(){
+        removeActiveTiny();
+        $('#active').attr('id', '');
+        return false;
+});
+
 $('.resize_controls > *').live('click', function(){
   var resizer = $(this).parent();
   var selected = resizer.find('.selected');
@@ -455,28 +465,28 @@ $('.resize_controls > *').live('click', function(){
   tinyTextareas.each(function(){updateTextAreaTinyMCE($(this).attr('id'), $(this).attr('rel'));});
 
 
-  var max = toResize.width();
+  //var max = toResize.width();
   $(toResize.find('.embed')).remove();
   $(toResize.find('.hidden_link')).embedly({
-    maxWidth: max,
+    //maxWidth: max,
     //key: 'abb3e3165efb11e195364040d3dc5c07',
     wmode: 'transparent',
     method: 'after'
   });
 });
 
-$('.tinyMCETextAreaDisplay').live('mousedown', function(){return false;})
+//$('.tinyMCETextAreaDisplay').live('mousedown', function(){});
 
-$('.block').live('mousedown', function(){
-        if($(this).attr('id') == 'active')
-          return;
+$('.edit_block').live('mousedown', function(){
+        if($(this).parent().attr('id') == 'active')
+          return false;
 
         removeActiveTiny();
         $('#active').attr('id', '');
 
-        $(this).attr('id', 'active');
+        $(this).parent().attr('id', 'active');
 
-        var tinyTextareas = $(this).find('.tinyMCETextArea');
+        var tinyTextareas = $(this).parent().find('.tinyMCETextArea');
         tinyTextareas.each(function(){createTextAreaTinyMCE($(this).attr('id'));});
 });
 
@@ -569,21 +579,21 @@ $(function(){
               $(this).attr('name', 'element' + elementId + '_' + actualInputName);
             });
           });
-        return true;
-        $('#submit_bottol').attr('disabled', 'disabled');
-        $('#submit_bottol').css('color', '#888');
+          return true;
+          $('#submit_bottol').attr('disabled', 'disabled');
+          $('#submit_bottol').css('color', '#888');
         });
 });
 
 function createTextAreaTinyMCE(textAreaId){
         var ta = $('#'+textAreaId);
-
+        
         if(ta.parents('.small').size() > 0)
                 tinyMCE.settings = tinyconfigS;
         if(ta.parents('.medium').size() > 0)
                 tinyMCE.settings = tinyconfigM;
         if(ta.closest('.large').size() > 0)
-                tinyMCE.init(tinyconfigL);
+                tinyMCE.settings = tinyconfigL;
         if(ta.parents('.largest').size() > 0)
                 tinyMCE.settings = tinyconfigXL;
 
@@ -744,6 +754,8 @@ function videoType(textfield){
 
 function videoSearch(textfield){
         var pageurl = textfield.val();
+        if(pageurl == '' || pageurl == 'http://')
+                return;
 
         var i;
         var domain = -1;
@@ -785,6 +797,9 @@ function embedType(textfield){
 
 function embedURL(textfield) {
         var genericUrl = textfield.val();
+        if(genericUrl == '' || genericUrl == 'http://')
+                return;
+
         if(!(genericUrl.indexOf('http://')  == 0) && !(genericUrl.indexOf('https://')  == 0)) {
           genericUrl = 'http://' + genericUrl;
         }
@@ -795,10 +810,10 @@ function embedURL(textfield) {
           dataType: "jsonp",
           complete: function(){
             textfield.parent().find('.hidden_link').attr('href',genericUrl);
-            var max = textfield.parent().width();
+            //var max = textfield.parent().width();
             $(textfield.parent().find('.embed')).remove();
             $(textfield.parent().find('.hidden_link')).embedly({
-              maxWidth: max,
+              //maxWidth: max,
               key: 'abb3e3165efb11e195364040d3dc5c07',
               wmode: 'transparent',
               method: 'after'
@@ -807,5 +822,19 @@ function embedURL(textfield) {
           }
         });
 }
+
+
 //prevent send from input text
 $('#forum-topic-form input[type=text]').live('keydown', function(e){if(e.keyCode == 13) return false;});
+
+
+//click outside elements show preview
+/*
+$('.element, #hidden_menu, #hidden_menu_largest').live('mousedown', function(e){
+  return false;
+});
+
+$(document).mousedown(function(){
+        removeActiveTiny();
+        $('#active').attr('id', '');
+});*/
