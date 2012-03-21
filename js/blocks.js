@@ -409,7 +409,7 @@ $('.resize_controls > *').live('click', function(){
   });
 });
 
-$('.tinyMCETextAreaDisplay').live('mousedown', function(){return false;})
+//$('.tinyMCETextAreaDisplay').live('mousedown', function(){});
 
 $('.edit_block').live('mousedown', function(){
         if($(this).parent().attr('id') == 'active')
@@ -422,8 +422,6 @@ $('.edit_block').live('mousedown', function(){
 
         var tinyTextareas = $(this).parent().find('.tinyMCETextArea');
         tinyTextareas.each(function(){createTextAreaTinyMCE($(this).attr('id'));});
-
-        return false;
 });
 
 var elementId = 0;
@@ -523,13 +521,13 @@ $(function(){
 
 function createTextAreaTinyMCE(textAreaId){
         var ta = $('#'+textAreaId);
-
+        
         if(ta.parents('.small').size() > 0)
                 tinyMCE.settings = tinyconfigS;
         if(ta.parents('.medium').size() > 0)
                 tinyMCE.settings = tinyconfigM;
         if(ta.closest('.large').size() > 0)
-                tinyMCE.init(tinyconfigL);
+                tinyMCE.settings = tinyconfigL;
         if(ta.parents('.largest').size() > 0)
                 tinyMCE.settings = tinyconfigXL;
 
