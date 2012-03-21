@@ -323,8 +323,7 @@ $('.remove').live('click', function(){
 });
 
 $('.move_up').live('click', function(){
-        
-        //removeActiveTiny();
+        removeActiveTiny();
 
       	var cont = $(this).parent().parent().parent();
 
@@ -344,13 +343,17 @@ $('.move_up').live('click', function(){
           updateAudioPlayer(playerIdNumber[playerIdNumber.length-1],resourceUrl);
         });
 
-        var tinyTextareas = cont.find('.tinyMCETextArea');
-        tinyTextareas.each(function(){updateTextAreaTinyMCE($(this).attr('id'));});
+        var tinyTextareas = $('#active').find('.tinyMCETextArea');
+        tinyTextareas.each(function(){$(this).val($(this).siblings('.tinyMCETextAreaDisplay').html());});
+
+        createActiveTiny();
 
         return false;
 });
 
 $('.move_down').live('click', function(){
+        removeActiveTiny();
+
         var cont = $(this).parent().parent().parent();
         var myIndex = $('#blocks_content > .block').index(cont);
         myIndex++;
@@ -368,13 +371,17 @@ $('.move_down').live('click', function(){
           updateAudioPlayer(playerIdNumber[playerIdNumber.length-1],resourceUrl);
         });
 
-        var tinyTextareas = cont.find('.tinyMCETextArea');
-        tinyTextareas.each(function(){updateTextAreaTinyMCE($(this).attr('id'));});
+        var tinyTextareas = $('#active').find('.tinyMCETextArea');
+        tinyTextareas.each(function(){$(this).val($(this).siblings('.tinyMCETextAreaDisplay').html());});
+
+        createActiveTiny();
 
         return false;
 });
 
 $('.move_left').live('click', function(){
+        removeActiveTiny();
+
         var cont = $(this).parent().parent();
         var myIndex = cont.parent().find('.small, .medium, .large').index(cont);
         myIndex--;
@@ -393,13 +400,17 @@ $('.move_left').live('click', function(){
           updateAudioPlayer(playerIdNumber[playerIdNumber.length-1],resourceUrl);
         });
 
-        var tinyTextareas = cont.find('.tinyMCETextArea');
-        tinyTextareas.each(function(){updateTextAreaTinyMCE($(this).attr('id'));});
+        var tinyTextareas = $('#active').find('.tinyMCETextArea');
+        tinyTextareas.each(function(){$(this).val($(this).siblings('.tinyMCETextAreaDisplay').html());});
+
+        createActiveTiny();
 
         return false;
 });
 
 $('.move_right').live('click', function(){
+        removeActiveTiny();
+
         var cont = $(this).parent().parent();
         var myIndex = cont.parent().find('.small, .medium, .large').index(cont);
         myIndex++;
@@ -418,8 +429,10 @@ $('.move_right').live('click', function(){
           updateAudioPlayer(playerIdNumber[playerIdNumber.length-1],resourceUrl);
         });
 
-        var tinyTextareas = cont.find('.tinyMCETextArea');
-        tinyTextareas.each(function(){updateTextAreaTinyMCE($(this).attr('id'));});
+        var tinyTextareas = $('#active').find('.tinyMCETextArea');
+        tinyTextareas.each(function(){$(this).val($(this).siblings('.tinyMCETextAreaDisplay').html());});
+
+        createActiveTiny();
 
         return false;
 });
@@ -493,6 +506,8 @@ $('.edit_block').live('mousedown', function(){
         $('#active').attr('id', '');
 
         $(this).parent().attr('id', 'active');
+        
+        hideLateralArrows();
 
         var tinyTextareas = $(this).parent().find('.tinyMCETextArea');
         tinyTextareas.each(function(){createTextAreaTinyMCE($(this).attr('id'));});
