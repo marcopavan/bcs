@@ -21,6 +21,7 @@ function add(index, content, before){
         if(index != null && index == 'last') index = null;
         if(index != null && index > max - 1) index = max - 1;
 
+        removeActiveTiny();
         $('#active').attr('id', '');
 
       	if(content == null)
@@ -521,12 +522,18 @@ $(function(){
                 start: function(event, ui){
                         if(ui.item.attr('id') != 'active') return;
                         var tinyTextareas = ui.item.find('.tinyMCETextArea');
-                        tinyTextareas.each(function(){removeTextAreaTinyMCE($(this).attr('id'));});
+                        tinyTextareas.each(function(){
+                          removeTextAreaTinyMCE($(this).attr('id'));
+                          $(this).siblings('.tinyMCETextAreaDisplay').css('display', 'block');
+                        });
                 },
                 stop: function(event, ui){
                         if(ui.item.attr('id') != 'active') return;
                         var tinyTextareas = ui.item.find('.tinyMCETextArea');
-                        tinyTextareas.each(function(){createTextAreaTinyMCE($(this).attr('id'));});
+                        tinyTextareas.each(function(){
+                          $(this).siblings('.tinyMCETextAreaDisplay').css('display', '');
+                          createTextAreaTinyMCE($(this).attr('id'));
+                        });
                 }
         });
 
