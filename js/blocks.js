@@ -21,7 +21,6 @@ function add(index, content, before){
         if(index != null && index == 'last') index = null;
         if(index != null && index > max - 1) index = max - 1;
 
-        removeActiveTiny();
         $('#active').attr('id', '');
 
       	if(content == null)
@@ -216,7 +215,12 @@ function appendText() {
     currentItem.html(remover + '<textarea id="textarea' + (++textareaNum) + '" class="tinyMCETextArea"></textarea><div class="tinyMCETextAreaDisplay"></div>'+inputs);
   else
     currentItem.html(shiftLeft+shiftRight+remover + '<textarea id="textarea' + (++textareaNum) + '" class="tinyMCETextArea"></textarea><div class="tinyMCETextAreaDisplay"></div>'+inputs);
-  createTextAreaTinyMCE('textarea'+textareaNum);
+
+  if(currentItem.parents('#active').size() == 1)
+    createTextAreaTinyMCE('textarea'+textareaNum);
+  else
+    removeTextAreaTinyMCE('textarea'+textareaNum);
+
   currentItem.removeClass('select');
   hideLateralArrows();
 }
