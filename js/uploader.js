@@ -262,6 +262,8 @@ function handleFileSelect(evt, actual_drop_zone) {
 }
 
 function saveImage(file, actual_drop_zone){
+  removeTemp(actual_drop_zone);
+      
   var sendForm = new FormData();
   sendForm.append('file', file);
   sendForm.append('name', file.name);

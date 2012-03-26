@@ -597,7 +597,7 @@ $(function(){
               case 'v': resourceContent = $(this).find('.video iframe').attr('src'); break;
               case 'e': resourceContent = $(this).find('.generic_link .embed').html(); break;
               case 'f': resourceContent = $(this).find('.file .file_path').val(); break;
-              case 'x': resourceContent = ''
+              case 'x': resourceContent = '';
               break;
             }
 
@@ -878,3 +878,11 @@ $(document).mousedown(function(){
         removeActiveTiny();
         $('#active').attr('id', '');
 });*/
+
+
+// remove useless temp files
+function removeTemp(contElement){
+  contElement.find('.document_path, .img_path, .audio_path, .file_path').each(function(){
+    $.post('removeTemp.php', {'toRemove': $(this).val()});
+  });
+}
